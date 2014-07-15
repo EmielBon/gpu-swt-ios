@@ -1,0 +1,502 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		172C1A4D19755954004C7283 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172C1A4C19755954004C7283 /* Foundation.framework */; };
+		172C1A4F19755954004C7283 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172C1A4E19755954004C7283 /* CoreGraphics.framework */; };
+		172C1A5119755954004C7283 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172C1A5019755954004C7283 /* UIKit.framework */; };
+		172C1A5319755954004C7283 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172C1A5219755954004C7283 /* GLKit.framework */; };
+		172C1A5519755954004C7283 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172C1A5419755954004C7283 /* OpenGLES.framework */; };
+		172C1A5B19755954004C7283 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 172C1A5919755954004C7283 /* InfoPlist.strings */; };
+		172C1A5D19755954004C7283 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 172C1A5C19755954004C7283 /* main.m */; };
+		172C1A6119755954004C7283 /* TextDetectionAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 172C1A6019755954004C7283 /* TextDetectionAppDelegate.m */; };
+		172C1A6419755954004C7283 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 172C1A6219755954004C7283 /* Main_iPhone.storyboard */; };
+		172C1A6719755954004C7283 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 172C1A6519755954004C7283 /* Main_iPad.storyboard */; };
+		172C1A6919755954004C7283 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 172C1A6819755954004C7283 /* Shader.fsh */; };
+		172C1A6B19755954004C7283 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 172C1A6A19755954004C7283 /* Shader.vsh */; };
+		172C1A6E19755954004C7283 /* TextDetectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172C1A6D19755954004C7283 /* TextDetectionViewController.m */; };
+		172C1A7019755954004C7283 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 172C1A6F19755954004C7283 /* Images.xcassets */; };
+		172C1A7719755954004C7283 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172C1A7619755954004C7283 /* XCTest.framework */; };
+		172C1A7819755954004C7283 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172C1A4C19755954004C7283 /* Foundation.framework */; };
+		172C1A7919755954004C7283 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172C1A5019755954004C7283 /* UIKit.framework */; };
+		172C1A8119755954004C7283 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 172C1A7F19755954004C7283 /* InfoPlist.strings */; };
+		172C1A8319755954004C7283 /* TextDetectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 172C1A8219755954004C7283 /* TextDetectionTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		172C1A7A19755954004C7283 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 172C1A4119755954004C7283 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 172C1A4819755954004C7283;
+			remoteInfo = TextDetection;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		172C1A4919755954004C7283 /* TextDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextDetection.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		172C1A4C19755954004C7283 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		172C1A4E19755954004C7283 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		172C1A5019755954004C7283 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		172C1A5219755954004C7283 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		172C1A5419755954004C7283 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		172C1A5819755954004C7283 /* TextDetection-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextDetection-Info.plist"; sourceTree = "<group>"; };
+		172C1A5A19755954004C7283 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		172C1A5C19755954004C7283 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		172C1A5E19755954004C7283 /* TextDetection-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TextDetection-Prefix.pch"; sourceTree = "<group>"; };
+		172C1A5F19755954004C7283 /* TextDetectionAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextDetectionAppDelegate.h; sourceTree = "<group>"; };
+		172C1A6019755954004C7283 /* TextDetectionAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextDetectionAppDelegate.m; sourceTree = "<group>"; };
+		172C1A6319755954004C7283 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		172C1A6619755954004C7283 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		172C1A6819755954004C7283 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
+		172C1A6A19755954004C7283 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
+		172C1A6C19755954004C7283 /* TextDetectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextDetectionViewController.h; sourceTree = "<group>"; };
+		172C1A6D19755954004C7283 /* TextDetectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextDetectionViewController.m; sourceTree = "<group>"; };
+		172C1A6F19755954004C7283 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		172C1A7519755954004C7283 /* TextDetectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextDetectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		172C1A7619755954004C7283 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		172C1A7E19755954004C7283 /* TextDetectionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextDetectionTests-Info.plist"; sourceTree = "<group>"; };
+		172C1A8019755954004C7283 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		172C1A8219755954004C7283 /* TextDetectionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextDetectionTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		172C1A4619755954004C7283 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				172C1A5519755954004C7283 /* OpenGLES.framework in Frameworks */,
+				172C1A4F19755954004C7283 /* CoreGraphics.framework in Frameworks */,
+				172C1A5119755954004C7283 /* UIKit.framework in Frameworks */,
+				172C1A5319755954004C7283 /* GLKit.framework in Frameworks */,
+				172C1A4D19755954004C7283 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		172C1A7219755954004C7283 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				172C1A7719755954004C7283 /* XCTest.framework in Frameworks */,
+				172C1A7919755954004C7283 /* UIKit.framework in Frameworks */,
+				172C1A7819755954004C7283 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		172C1A4019755954004C7283 = {
+			isa = PBXGroup;
+			children = (
+				172C1A5619755954004C7283 /* TextDetection */,
+				172C1A7C19755954004C7283 /* TextDetectionTests */,
+				172C1A4B19755954004C7283 /* Frameworks */,
+				172C1A4A19755954004C7283 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		172C1A4A19755954004C7283 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				172C1A4919755954004C7283 /* TextDetection.app */,
+				172C1A7519755954004C7283 /* TextDetectionTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		172C1A4B19755954004C7283 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				172C1A4C19755954004C7283 /* Foundation.framework */,
+				172C1A4E19755954004C7283 /* CoreGraphics.framework */,
+				172C1A5019755954004C7283 /* UIKit.framework */,
+				172C1A5219755954004C7283 /* GLKit.framework */,
+				172C1A5419755954004C7283 /* OpenGLES.framework */,
+				172C1A7619755954004C7283 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		172C1A5619755954004C7283 /* TextDetection */ = {
+			isa = PBXGroup;
+			children = (
+				172C1A5F19755954004C7283 /* TextDetectionAppDelegate.h */,
+				172C1A6019755954004C7283 /* TextDetectionAppDelegate.m */,
+				172C1A6219755954004C7283 /* Main_iPhone.storyboard */,
+				172C1A6519755954004C7283 /* Main_iPad.storyboard */,
+				172C1A6819755954004C7283 /* Shader.fsh */,
+				172C1A6A19755954004C7283 /* Shader.vsh */,
+				172C1A6C19755954004C7283 /* TextDetectionViewController.h */,
+				172C1A6D19755954004C7283 /* TextDetectionViewController.m */,
+				172C1A6F19755954004C7283 /* Images.xcassets */,
+				172C1A5719755954004C7283 /* Supporting Files */,
+			);
+			path = TextDetection;
+			sourceTree = "<group>";
+		};
+		172C1A5719755954004C7283 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				172C1A5819755954004C7283 /* TextDetection-Info.plist */,
+				172C1A5919755954004C7283 /* InfoPlist.strings */,
+				172C1A5C19755954004C7283 /* main.m */,
+				172C1A5E19755954004C7283 /* TextDetection-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		172C1A7C19755954004C7283 /* TextDetectionTests */ = {
+			isa = PBXGroup;
+			children = (
+				172C1A8219755954004C7283 /* TextDetectionTests.m */,
+				172C1A7D19755954004C7283 /* Supporting Files */,
+			);
+			path = TextDetectionTests;
+			sourceTree = "<group>";
+		};
+		172C1A7D19755954004C7283 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				172C1A7E19755954004C7283 /* TextDetectionTests-Info.plist */,
+				172C1A7F19755954004C7283 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		172C1A4819755954004C7283 /* TextDetection */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 172C1A8619755954004C7283 /* Build configuration list for PBXNativeTarget "TextDetection" */;
+			buildPhases = (
+				172C1A4519755954004C7283 /* Sources */,
+				172C1A4619755954004C7283 /* Frameworks */,
+				172C1A4719755954004C7283 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TextDetection;
+			productName = TextDetection;
+			productReference = 172C1A4919755954004C7283 /* TextDetection.app */;
+			productType = "com.apple.product-type.application";
+		};
+		172C1A7419755954004C7283 /* TextDetectionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 172C1A8919755954004C7283 /* Build configuration list for PBXNativeTarget "TextDetectionTests" */;
+			buildPhases = (
+				172C1A7119755954004C7283 /* Sources */,
+				172C1A7219755954004C7283 /* Frameworks */,
+				172C1A7319755954004C7283 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				172C1A7B19755954004C7283 /* PBXTargetDependency */,
+			);
+			name = TextDetectionTests;
+			productName = TextDetectionTests;
+			productReference = 172C1A7519755954004C7283 /* TextDetectionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		172C1A4119755954004C7283 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TextDetection;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "___FULLUSERNAME___";
+				TargetAttributes = {
+					172C1A7419755954004C7283 = {
+						TestTargetID = 172C1A4819755954004C7283;
+					};
+				};
+			};
+			buildConfigurationList = 172C1A4419755954004C7283 /* Build configuration list for PBXProject "TextDetection" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 172C1A4019755954004C7283;
+			productRefGroup = 172C1A4A19755954004C7283 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				172C1A4819755954004C7283 /* TextDetection */,
+				172C1A7419755954004C7283 /* TextDetectionTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		172C1A4719755954004C7283 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				172C1A6919755954004C7283 /* Shader.fsh in Resources */,
+				172C1A6719755954004C7283 /* Main_iPad.storyboard in Resources */,
+				172C1A6419755954004C7283 /* Main_iPhone.storyboard in Resources */,
+				172C1A7019755954004C7283 /* Images.xcassets in Resources */,
+				172C1A5B19755954004C7283 /* InfoPlist.strings in Resources */,
+				172C1A6B19755954004C7283 /* Shader.vsh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		172C1A7319755954004C7283 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				172C1A8119755954004C7283 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		172C1A4519755954004C7283 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				172C1A5D19755954004C7283 /* main.m in Sources */,
+				172C1A6119755954004C7283 /* TextDetectionAppDelegate.m in Sources */,
+				172C1A6E19755954004C7283 /* TextDetectionViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		172C1A7119755954004C7283 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				172C1A8319755954004C7283 /* TextDetectionTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		172C1A7B19755954004C7283 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 172C1A4819755954004C7283 /* TextDetection */;
+			targetProxy = 172C1A7A19755954004C7283 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		172C1A5919755954004C7283 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				172C1A5A19755954004C7283 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		172C1A6219755954004C7283 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				172C1A6319755954004C7283 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		172C1A6519755954004C7283 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				172C1A6619755954004C7283 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		172C1A7F19755954004C7283 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				172C1A8019755954004C7283 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		172C1A8419755954004C7283 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		172C1A8519755954004C7283 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		172C1A8719755954004C7283 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TextDetection/TextDetection-Prefix.pch";
+				INFOPLIST_FILE = "TextDetection/TextDetection-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		172C1A8819755954004C7283 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TextDetection/TextDetection-Prefix.pch";
+				INFOPLIST_FILE = "TextDetection/TextDetection-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		172C1A8A19755954004C7283 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TextDetection.app/TextDetection";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TextDetection/TextDetection-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TextDetectionTests/TextDetectionTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		172C1A8B19755954004C7283 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TextDetection.app/TextDetection";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TextDetection/TextDetection-Prefix.pch";
+				INFOPLIST_FILE = "TextDetectionTests/TextDetectionTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		172C1A4419755954004C7283 /* Build configuration list for PBXProject "TextDetection" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				172C1A8419755954004C7283 /* Debug */,
+				172C1A8519755954004C7283 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		172C1A8619755954004C7283 /* Build configuration list for PBXNativeTarget "TextDetection" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				172C1A8719755954004C7283 /* Debug */,
+				172C1A8819755954004C7283 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		172C1A8919755954004C7283 /* Build configuration list for PBXNativeTarget "TextDetectionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				172C1A8A19755954004C7283 /* Debug */,
+				172C1A8B19755954004C7283 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 172C1A4119755954004C7283 /* Project object */;
+}
