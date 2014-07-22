@@ -19,13 +19,42 @@
 		172C1A6719755954004C7283 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 172C1A6519755954004C7283 /* Main_iPad.storyboard */; };
 		172C1A6919755954004C7283 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 172C1A6819755954004C7283 /* Shader.fsh */; };
 		172C1A6B19755954004C7283 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 172C1A6A19755954004C7283 /* Shader.vsh */; };
-		172C1A6E19755954004C7283 /* TextDetectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172C1A6D19755954004C7283 /* TextDetectionViewController.m */; };
+		172C1A6E19755954004C7283 /* TextDetectionViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 172C1A6D19755954004C7283 /* TextDetectionViewController.mm */; };
 		172C1A7019755954004C7283 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 172C1A6F19755954004C7283 /* Images.xcassets */; };
 		172C1A7719755954004C7283 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172C1A7619755954004C7283 /* XCTest.framework */; };
 		172C1A7819755954004C7283 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172C1A4C19755954004C7283 /* Foundation.framework */; };
 		172C1A7919755954004C7283 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172C1A5019755954004C7283 /* UIKit.framework */; };
 		172C1A8119755954004C7283 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 172C1A7F19755954004C7283 /* InfoPlist.strings */; };
 		172C1A8319755954004C7283 /* TextDetectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 172C1A8219755954004C7283 /* TextDetectionTests.m */; };
+		172C1AB0197575A8004C7283 /* FrameBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1A8F197575A8004C7283 /* FrameBuffer.cpp */; };
+		172C1AB1197575A8004C7283 /* GLError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1A91197575A8004C7283 /* GLError.cpp */; };
+		172C1AB2197575A8004C7283 /* GraphicsDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1A93197575A8004C7283 /* GraphicsDevice.cpp */; };
+		172C1AB3197575A8004C7283 /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1A9A197575A8004C7283 /* Program.cpp */; };
+		172C1AB4197575A8004C7283 /* RenderBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1A9C197575A8004C7283 /* RenderBuffer.cpp */; };
+		172C1AB5197575A8004C7283 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1A9F197575A8004C7283 /* Shader.cpp */; };
+		172C1AB6197575A8004C7283 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AA1197575A8004C7283 /* Texture.cpp */; };
+		172C1AB7197575A8004C7283 /* Uniform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AA4197575A8004C7283 /* Uniform.cpp */; };
+		172C1AB8197575A8004C7283 /* VertexPosition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AAA197575A8004C7283 /* VertexPosition.cpp */; };
+		172C1AB9197575A8004C7283 /* VertexPosition2DCompressed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AAC197575A8004C7283 /* VertexPosition2DCompressed.cpp */; };
+		172C1ABA197575A8004C7283 /* VertexPositionTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AAE197575A8004C7283 /* VertexPositionTexture.cpp */; };
+		172C1AC519757A32004C7283 /* BoundingBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1ABF19757A32004C7283 /* BoundingBox.cpp */; };
+		172C1AC619757A32004C7283 /* ContentLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AC119757A32004C7283 /* ContentLoader.cpp */; };
+		172C1AC719757A32004C7283 /* DrawableRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AC319757A32004C7283 /* DrawableRect.cpp */; };
+		172C1ACA19769ECD004C7283 /* RenderWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AC819769ECD004C7283 /* RenderWindow.cpp */; };
+		172C1ADB1976C225004C7283 /* Chain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AD21976C225004C7283 /* Chain.cpp */; };
+		172C1ADC1976C225004C7283 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AD41976C225004C7283 /* Component.cpp */; };
+		172C1ADD1976C225004C7283 /* LetterCandidate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AD61976C225004C7283 /* LetterCandidate.cpp */; };
+		172C1ADE1976C225004C7283 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AD81976C225004C7283 /* Ray.cpp */; };
+		172C1AE11976CA66004C7283 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172C1AE01976CA66004C7283 /* opencv2.framework */; };
+		172C1AE61976D811004C7283 /* SWTHelperGPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AE41976D811004C7283 /* SWTHelperGPU.cpp */; };
+		172C1AED1976DB84004C7283 /* GrayFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AE91976DB84004C7283 /* GrayFilter.cpp */; };
+		172C1AEE1976DB84004C7283 /* TextRegionsFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AEB1976DB84004C7283 /* TextRegionsFilter.cpp */; };
+		172C1AF11976DBB8004C7283 /* Filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AEF1976DBB8004C7283 /* Filter.cpp */; };
+		172C1AF51979516A004C7283 /* sign800x600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 172C1AF41979516A004C7283 /* sign800x600.jpg */; };
+		17B5D3A7197D05E100DE1FA4 /* Trivial.vs in Resources */ = {isa = PBXBuildFile; fileRef = 17B5D3A6197D05E100DE1FA4 /* Trivial.vs */; };
+		17B5D3A9197D05FF00DE1FA4 /* Normal.fs in Resources */ = {isa = PBXBuildFile; fileRef = 17B5D3A8197D05FF00DE1FA4 /* Normal.fs */; };
+		17B5D3AB197D070900DE1FA4 /* TextureUtil.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 17B5D3AA197D070900DE1FA4 /* TextureUtil.fsh */; };
+		17B5D3AD197D071000DE1FA4 /* Util.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 17B5D3AC197D071000DE1FA4 /* Util.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,13 +85,88 @@
 		172C1A6819755954004C7283 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
 		172C1A6A19755954004C7283 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
 		172C1A6C19755954004C7283 /* TextDetectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextDetectionViewController.h; sourceTree = "<group>"; };
-		172C1A6D19755954004C7283 /* TextDetectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextDetectionViewController.m; sourceTree = "<group>"; };
+		172C1A6D19755954004C7283 /* TextDetectionViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TextDetectionViewController.mm; sourceTree = "<group>"; };
 		172C1A6F19755954004C7283 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		172C1A7519755954004C7283 /* TextDetectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextDetectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		172C1A7619755954004C7283 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		172C1A7E19755954004C7283 /* TextDetectionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextDetectionTests-Info.plist"; sourceTree = "<group>"; };
 		172C1A8019755954004C7283 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		172C1A8219755954004C7283 /* TextDetectionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextDetectionTests.m; sourceTree = "<group>"; };
+		172C1A8F197575A8004C7283 /* FrameBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameBuffer.cpp; sourceTree = "<group>"; };
+		172C1A90197575A8004C7283 /* FrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameBuffer.h; sourceTree = "<group>"; };
+		172C1A91197575A8004C7283 /* GLError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLError.cpp; sourceTree = "<group>"; };
+		172C1A92197575A8004C7283 /* GLError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLError.h; sourceTree = "<group>"; };
+		172C1A93197575A8004C7283 /* GraphicsDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GraphicsDevice.cpp; sourceTree = "<group>"; };
+		172C1A94197575A8004C7283 /* GraphicsDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsDevice.h; sourceTree = "<group>"; };
+		172C1A95197575A8004C7283 /* IndexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexBuffer.h; sourceTree = "<group>"; };
+		172C1A96197575A8004C7283 /* IOGLBindableResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOGLBindableResource.h; sourceTree = "<group>"; };
+		172C1A97197575A8004C7283 /* IOGLResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOGLResource.h; sourceTree = "<group>"; };
+		172C1A98197575A8004C7283 /* OGLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGLBuffer.h; sourceTree = "<group>"; };
+		172C1A99197575A8004C7283 /* PrimitiveType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimitiveType.h; sourceTree = "<group>"; };
+		172C1A9A197575A8004C7283 /* Program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Program.cpp; sourceTree = "<group>"; };
+		172C1A9B197575A8004C7283 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
+		172C1A9C197575A8004C7283 /* RenderBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderBuffer.cpp; sourceTree = "<group>"; };
+		172C1A9D197575A8004C7283 /* RenderBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderBuffer.h; sourceTree = "<group>"; };
+		172C1A9E197575A8004C7283 /* RenderBufferType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderBufferType.h; sourceTree = "<group>"; };
+		172C1A9F197575A8004C7283 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		172C1AA0197575A8004C7283 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		172C1AA1197575A8004C7283 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		172C1AA2197575A8004C7283 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		172C1AA3197575A8004C7283 /* TextureParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureParameters.h; sourceTree = "<group>"; };
+		172C1AA4197575A8004C7283 /* Uniform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Uniform.cpp; sourceTree = "<group>"; };
+		172C1AA5197575A8004C7283 /* Uniform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uniform.h; sourceTree = "<group>"; };
+		172C1AA6197575A8004C7283 /* VertexArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexArray.h; sourceTree = "<group>"; };
+		172C1AA7197575A8004C7283 /* VertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexBuffer.h; sourceTree = "<group>"; };
+		172C1AA8197575A8004C7283 /* VertexDeclaration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexDeclaration.h; sourceTree = "<group>"; };
+		172C1AA9197575A8004C7283 /* VertexDeclarationElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexDeclarationElement.h; sourceTree = "<group>"; };
+		172C1AAA197575A8004C7283 /* VertexPosition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VertexPosition.cpp; sourceTree = "<group>"; };
+		172C1AAB197575A8004C7283 /* VertexPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexPosition.h; sourceTree = "<group>"; };
+		172C1AAC197575A8004C7283 /* VertexPosition2DCompressed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VertexPosition2DCompressed.cpp; sourceTree = "<group>"; };
+		172C1AAD197575A8004C7283 /* VertexPosition2DCompressed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexPosition2DCompressed.h; sourceTree = "<group>"; };
+		172C1AAE197575A8004C7283 /* VertexPositionTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VertexPositionTexture.cpp; sourceTree = "<group>"; };
+		172C1AAF197575A8004C7283 /* VertexPositionTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexPositionTexture.h; sourceTree = "<group>"; };
+		172C1ABD19757606004C7283 /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		172C1ABF19757A32004C7283 /* BoundingBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoundingBox.cpp; sourceTree = "<group>"; };
+		172C1AC019757A32004C7283 /* BoundingBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoundingBox.h; sourceTree = "<group>"; };
+		172C1AC119757A32004C7283 /* ContentLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContentLoader.cpp; sourceTree = "<group>"; };
+		172C1AC219757A32004C7283 /* ContentLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentLoader.h; sourceTree = "<group>"; };
+		172C1AC319757A32004C7283 /* DrawableRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawableRect.cpp; sourceTree = "<group>"; };
+		172C1AC419757A32004C7283 /* DrawableRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableRect.h; sourceTree = "<group>"; };
+		172C1AC819769ECD004C7283 /* RenderWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderWindow.cpp; sourceTree = "<group>"; };
+		172C1AC919769ECD004C7283 /* RenderWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderWindow.h; sourceTree = "<group>"; };
+		172C1ACB19769FCA004C7283 /* Rect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rect.h; sourceTree = "<group>"; };
+		172C1ACC1976BC58004C7283 /* ContainerTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContainerTypes.h; sourceTree = "<group>"; };
+		172C1ACD1976BD02004C7283 /* FrameworkTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameworkTypes.h; sourceTree = "<group>"; };
+		172C1ACE1976BD28004C7283 /* GraphicsTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphicsTypes.h; sourceTree = "<group>"; };
+		172C1ACF1976BD5C004C7283 /* SWTTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWTTypes.h; sourceTree = "<group>"; };
+		172C1AD01976BD7C004C7283 /* Vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
+		172C1AD11976BE94004C7283 /* CoreTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreTypes.h; sourceTree = "<group>"; };
+		172C1AD21976C225004C7283 /* Chain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Chain.cpp; sourceTree = "<group>"; };
+		172C1AD31976C225004C7283 /* Chain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chain.h; sourceTree = "<group>"; };
+		172C1AD41976C225004C7283 /* Component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Component.cpp; sourceTree = "<group>"; };
+		172C1AD51976C225004C7283 /* Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
+		172C1AD61976C225004C7283 /* LetterCandidate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LetterCandidate.cpp; sourceTree = "<group>"; };
+		172C1AD71976C225004C7283 /* LetterCandidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetterCandidate.h; sourceTree = "<group>"; };
+		172C1AD81976C225004C7283 /* Ray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ray.cpp; sourceTree = "<group>"; };
+		172C1AD91976C225004C7283 /* Ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ray.h; sourceTree = "<group>"; };
+		172C1ADA1976C225004C7283 /* SWTParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTParameters.h; sourceTree = "<group>"; };
+		172C1AE01976CA66004C7283 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = TextDetection/opencv2.framework; sourceTree = "<group>"; };
+		172C1AE21976D7C4004C7283 /* MathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathHelper.h; sourceTree = "<group>"; };
+		172C1AE31976D7C4004C7283 /* Profiling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Profiling.h; sourceTree = "<group>"; };
+		172C1AE41976D811004C7283 /* SWTHelperGPU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SWTHelperGPU.cpp; sourceTree = "<group>"; };
+		172C1AE51976D811004C7283 /* SWTHelperGPU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTHelperGPU.h; sourceTree = "<group>"; };
+		172C1AE91976DB84004C7283 /* GrayFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GrayFilter.cpp; sourceTree = "<group>"; };
+		172C1AEA1976DB84004C7283 /* GrayFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayFilter.h; sourceTree = "<group>"; };
+		172C1AEB1976DB84004C7283 /* TextRegionsFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextRegionsFilter.cpp; sourceTree = "<group>"; };
+		172C1AEC1976DB84004C7283 /* TextRegionsFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextRegionsFilter.h; sourceTree = "<group>"; };
+		172C1AEF1976DBB8004C7283 /* Filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Filter.cpp; sourceTree = "<group>"; };
+		172C1AF01976DBB8004C7283 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		172C1AF41979516A004C7283 /* sign800x600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sign800x600.jpg; sourceTree = "<group>"; };
+		172C1AF619795FB2004C7283 /* TextureUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextureUtil.h; sourceTree = "<group>"; };
+		17B5D3A6197D05E100DE1FA4 /* Trivial.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Trivial.vs; sourceTree = "<group>"; };
+		17B5D3A8197D05FF00DE1FA4 /* Normal.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Normal.fs; sourceTree = "<group>"; };
+		17B5D3AA197D070900DE1FA4 /* TextureUtil.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextureUtil.fsh; sourceTree = "<group>"; };
+		17B5D3AC197D071000DE1FA4 /* Util.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Util.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				172C1AE11976CA66004C7283 /* opencv2.framework in Frameworks */,
 				172C1A5519755954004C7283 /* OpenGLES.framework in Frameworks */,
 				172C1A4F19755954004C7283 /* CoreGraphics.framework in Frameworks */,
 				172C1A5119755954004C7283 /* UIKit.framework in Frameworks */,
@@ -94,6 +199,8 @@
 		172C1A4019755954004C7283 = {
 			isa = PBXGroup;
 			children = (
+				172C1AF41979516A004C7283 /* sign800x600.jpg */,
+				172C1AF819796E47004C7283 /* Shaders */,
 				172C1A5619755954004C7283 /* TextDetection */,
 				172C1A7C19755954004C7283 /* TextDetectionTests */,
 				172C1A4B19755954004C7283 /* Frameworks */,
@@ -113,6 +220,7 @@
 		172C1A4B19755954004C7283 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				172C1AE01976CA66004C7283 /* opencv2.framework */,
 				172C1A4C19755954004C7283 /* Foundation.framework */,
 				172C1A4E19755954004C7283 /* CoreGraphics.framework */,
 				172C1A5019755954004C7283 /* UIKit.framework */,
@@ -126,16 +234,21 @@
 		172C1A5619755954004C7283 /* TextDetection */ = {
 			isa = PBXGroup;
 			children = (
-				172C1A5F19755954004C7283 /* TextDetectionAppDelegate.h */,
-				172C1A6019755954004C7283 /* TextDetectionAppDelegate.m */,
-				172C1A6219755954004C7283 /* Main_iPhone.storyboard */,
+				172C1AE71976D817004C7283 /* SWT-GPU */,
+				172C1ADF1976C229004C7283 /* SWT */,
+				172C1ABE19757A23004C7283 /* Framework */,
+				172C1A6F19755954004C7283 /* Images.xcassets */,
 				172C1A6519755954004C7283 /* Main_iPad.storyboard */,
+				172C1A6219755954004C7283 /* Main_iPhone.storyboard */,
+				172C1ABB197575BA004C7283 /* OpenGL */,
 				172C1A6819755954004C7283 /* Shader.fsh */,
 				172C1A6A19755954004C7283 /* Shader.vsh */,
-				172C1A6C19755954004C7283 /* TextDetectionViewController.h */,
-				172C1A6D19755954004C7283 /* TextDetectionViewController.m */,
-				172C1A6F19755954004C7283 /* Images.xcassets */,
 				172C1A5719755954004C7283 /* Supporting Files */,
+				172C1A6C19755954004C7283 /* TextDetectionViewController.h */,
+				172C1A6D19755954004C7283 /* TextDetectionViewController.mm */,
+				172C1ABC197575DF004C7283 /* Util */,
+				172C1AC819769ECD004C7283 /* RenderWindow.cpp */,
+				172C1AC919769ECD004C7283 /* RenderWindow.h */,
 			);
 			path = TextDetection;
 			sourceTree = "<group>";
@@ -143,6 +256,8 @@
 		172C1A5719755954004C7283 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				172C1A5F19755954004C7283 /* TextDetectionAppDelegate.h */,
+				172C1A6019755954004C7283 /* TextDetectionAppDelegate.m */,
 				172C1A5819755954004C7283 /* TextDetection-Info.plist */,
 				172C1A5919755954004C7283 /* InfoPlist.strings */,
 				172C1A5C19755954004C7283 /* main.m */,
@@ -167,6 +282,128 @@
 				172C1A7F19755954004C7283 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		172C1ABB197575BA004C7283 /* OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				172C1A8F197575A8004C7283 /* FrameBuffer.cpp */,
+				172C1A90197575A8004C7283 /* FrameBuffer.h */,
+				172C1A91197575A8004C7283 /* GLError.cpp */,
+				172C1A92197575A8004C7283 /* GLError.h */,
+				172C1A93197575A8004C7283 /* GraphicsDevice.cpp */,
+				172C1A94197575A8004C7283 /* GraphicsDevice.h */,
+				172C1A95197575A8004C7283 /* IndexBuffer.h */,
+				172C1A96197575A8004C7283 /* IOGLBindableResource.h */,
+				172C1A97197575A8004C7283 /* IOGLResource.h */,
+				172C1A98197575A8004C7283 /* OGLBuffer.h */,
+				172C1A99197575A8004C7283 /* PrimitiveType.h */,
+				172C1A9A197575A8004C7283 /* Program.cpp */,
+				172C1A9B197575A8004C7283 /* Program.h */,
+				172C1A9C197575A8004C7283 /* RenderBuffer.cpp */,
+				172C1A9D197575A8004C7283 /* RenderBuffer.h */,
+				172C1A9E197575A8004C7283 /* RenderBufferType.h */,
+				172C1A9F197575A8004C7283 /* Shader.cpp */,
+				172C1AA0197575A8004C7283 /* Shader.h */,
+				172C1AA1197575A8004C7283 /* Texture.cpp */,
+				172C1AA2197575A8004C7283 /* Texture.h */,
+				172C1AA3197575A8004C7283 /* TextureParameters.h */,
+				172C1AA4197575A8004C7283 /* Uniform.cpp */,
+				172C1AA5197575A8004C7283 /* Uniform.h */,
+				172C1AA6197575A8004C7283 /* VertexArray.h */,
+				172C1AA7197575A8004C7283 /* VertexBuffer.h */,
+				172C1AA8197575A8004C7283 /* VertexDeclaration.h */,
+				172C1AA9197575A8004C7283 /* VertexDeclarationElement.h */,
+				172C1AAA197575A8004C7283 /* VertexPosition.cpp */,
+				172C1AAB197575A8004C7283 /* VertexPosition.h */,
+				172C1AAC197575A8004C7283 /* VertexPosition2DCompressed.cpp */,
+				172C1AAD197575A8004C7283 /* VertexPosition2DCompressed.h */,
+				172C1AAE197575A8004C7283 /* VertexPositionTexture.cpp */,
+				172C1AAF197575A8004C7283 /* VertexPositionTexture.h */,
+			);
+			name = OpenGL;
+			sourceTree = "<group>";
+		};
+		172C1ABC197575DF004C7283 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				172C1ACC1976BC58004C7283 /* ContainerTypes.h */,
+				172C1AD11976BE94004C7283 /* CoreTypes.h */,
+				172C1ACD1976BD02004C7283 /* FrameworkTypes.h */,
+				172C1ACE1976BD28004C7283 /* GraphicsTypes.h */,
+				172C1AE21976D7C4004C7283 /* MathHelper.h */,
+				172C1AE31976D7C4004C7283 /* Profiling.h */,
+				172C1ACB19769FCA004C7283 /* Rect.h */,
+				172C1ACF1976BD5C004C7283 /* SWTTypes.h */,
+				172C1AF619795FB2004C7283 /* TextureUtil.h */,
+				172C1ABD19757606004C7283 /* types.h */,
+				172C1AD01976BD7C004C7283 /* Vector.h */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		172C1ABE19757A23004C7283 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				172C1ABF19757A32004C7283 /* BoundingBox.cpp */,
+				172C1AC019757A32004C7283 /* BoundingBox.h */,
+				172C1AC119757A32004C7283 /* ContentLoader.cpp */,
+				172C1AC219757A32004C7283 /* ContentLoader.h */,
+				172C1AC319757A32004C7283 /* DrawableRect.cpp */,
+				172C1AC419757A32004C7283 /* DrawableRect.h */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		172C1ADF1976C229004C7283 /* SWT */ = {
+			isa = PBXGroup;
+			children = (
+				172C1AD21976C225004C7283 /* Chain.cpp */,
+				172C1AD31976C225004C7283 /* Chain.h */,
+				172C1AD41976C225004C7283 /* Component.cpp */,
+				172C1AD51976C225004C7283 /* Component.h */,
+				172C1AD61976C225004C7283 /* LetterCandidate.cpp */,
+				172C1AD71976C225004C7283 /* LetterCandidate.h */,
+				172C1AD81976C225004C7283 /* Ray.cpp */,
+				172C1AD91976C225004C7283 /* Ray.h */,
+				172C1ADA1976C225004C7283 /* SWTParameters.h */,
+			);
+			name = SWT;
+			sourceTree = "<group>";
+		};
+		172C1AE71976D817004C7283 /* SWT-GPU */ = {
+			isa = PBXGroup;
+			children = (
+				172C1AE81976DB78004C7283 /* Filters */,
+				172C1AE41976D811004C7283 /* SWTHelperGPU.cpp */,
+				172C1AE51976D811004C7283 /* SWTHelperGPU.h */,
+			);
+			name = "SWT-GPU";
+			sourceTree = "<group>";
+		};
+		172C1AE81976DB78004C7283 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				172C1AEF1976DBB8004C7283 /* Filter.cpp */,
+				172C1AF01976DBB8004C7283 /* Filter.h */,
+				172C1AE91976DB84004C7283 /* GrayFilter.cpp */,
+				172C1AEA1976DB84004C7283 /* GrayFilter.h */,
+				172C1AEB1976DB84004C7283 /* TextRegionsFilter.cpp */,
+				172C1AEC1976DB84004C7283 /* TextRegionsFilter.h */,
+			);
+			name = Filters;
+			sourceTree = "<group>";
+		};
+		172C1AF819796E47004C7283 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				17B5D3A8197D05FF00DE1FA4 /* Normal.fs */,
+				17B5D3AA197D070900DE1FA4 /* TextureUtil.fsh */,
+				17B5D3A6197D05E100DE1FA4 /* Trivial.vs */,
+				17B5D3AC197D071000DE1FA4 /* Util.fsh */,
+			);
+			name = Shaders;
+			path = TextDetection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,10 +484,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				172C1A6919755954004C7283 /* Shader.fsh in Resources */,
+				17B5D3AB197D070900DE1FA4 /* TextureUtil.fsh in Resources */,
 				172C1A6719755954004C7283 /* Main_iPad.storyboard in Resources */,
 				172C1A6419755954004C7283 /* Main_iPhone.storyboard in Resources */,
 				172C1A7019755954004C7283 /* Images.xcassets in Resources */,
+				17B5D3AD197D071000DE1FA4 /* Util.fsh in Resources */,
+				17B5D3A7197D05E100DE1FA4 /* Trivial.vs in Resources */,
+				172C1AF51979516A004C7283 /* sign800x600.jpg in Resources */,
 				172C1A5B19755954004C7283 /* InfoPlist.strings in Resources */,
+				17B5D3A9197D05FF00DE1FA4 /* Normal.fs in Resources */,
 				172C1A6B19755954004C7283 /* Shader.vsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,9 +512,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				172C1AED1976DB84004C7283 /* GrayFilter.cpp in Sources */,
+				172C1AB7197575A8004C7283 /* Uniform.cpp in Sources */,
+				172C1AC719757A32004C7283 /* DrawableRect.cpp in Sources */,
+				172C1AB0197575A8004C7283 /* FrameBuffer.cpp in Sources */,
+				172C1AB8197575A8004C7283 /* VertexPosition.cpp in Sources */,
 				172C1A5D19755954004C7283 /* main.m in Sources */,
 				172C1A6119755954004C7283 /* TextDetectionAppDelegate.m in Sources */,
-				172C1A6E19755954004C7283 /* TextDetectionViewController.m in Sources */,
+				172C1ABA197575A8004C7283 /* VertexPositionTexture.cpp in Sources */,
+				172C1AEE1976DB84004C7283 /* TextRegionsFilter.cpp in Sources */,
+				172C1A6E19755954004C7283 /* TextDetectionViewController.mm in Sources */,
+				172C1AB5197575A8004C7283 /* Shader.cpp in Sources */,
+				172C1AE61976D811004C7283 /* SWTHelperGPU.cpp in Sources */,
+				172C1ADC1976C225004C7283 /* Component.cpp in Sources */,
+				172C1AB3197575A8004C7283 /* Program.cpp in Sources */,
+				172C1AC619757A32004C7283 /* ContentLoader.cpp in Sources */,
+				172C1AB4197575A8004C7283 /* RenderBuffer.cpp in Sources */,
+				172C1AB9197575A8004C7283 /* VertexPosition2DCompressed.cpp in Sources */,
+				172C1AF11976DBB8004C7283 /* Filter.cpp in Sources */,
+				172C1AB1197575A8004C7283 /* GLError.cpp in Sources */,
+				172C1ACA19769ECD004C7283 /* RenderWindow.cpp in Sources */,
+				172C1AB2197575A8004C7283 /* GraphicsDevice.cpp in Sources */,
+				172C1AB6197575A8004C7283 /* Texture.cpp in Sources */,
+				172C1ADE1976C225004C7283 /* Ray.cpp in Sources */,
+				172C1ADD1976C225004C7283 /* LetterCandidate.cpp in Sources */,
+				172C1AC519757A32004C7283 /* BoundingBox.cpp in Sources */,
+				172C1ADB1976C225004C7283 /* Chain.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,10 +672,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TextDetection",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TextDetection/TextDetection-Prefix.pch";
 				INFOPLIST_FILE = "TextDetection/TextDetection-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -420,10 +691,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TextDetection",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TextDetection/TextDetection-Prefix.pch";
 				INFOPLIST_FILE = "TextDetection/TextDetection-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -487,6 +764,7 @@
 				172C1A8819755954004C7283 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		172C1A8919755954004C7283 /* Build configuration list for PBXNativeTarget "TextDetectionTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +773,7 @@
 				172C1A8B19755954004C7283 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

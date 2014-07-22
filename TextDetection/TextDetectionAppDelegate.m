@@ -3,7 +3,7 @@
 //  TextDetection
 //
 //  Created by Emiel Bon on 15-07-14.
-//  Copyright (c) 2014 ___FULLUSERNAME___. All rights reserved.
+//  Copyright (c) 2014 Emiel Bon. All rights reserved.
 //
 
 #import "TextDetectionAppDelegate.h"
