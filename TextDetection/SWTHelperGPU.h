@@ -18,7 +18,9 @@ public:
     
 private:
     
-    static Ptr<Texture> ApplyPass(Ptr<Filter> filter, Ptr<Texture> input = nullptr);
-    
     static void DisableIrrelvantState();
+
+public:
+    
+    static int InputWidth, InputHeight;
 };

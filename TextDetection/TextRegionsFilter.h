@@ -24,6 +24,10 @@ public:
     
     void Initialize();
     
+    Ptr<Texture> PerformSteps();
+    
+public:
+    
     void PrepareBoundingBoxCalculation();
     
     void PrepareSummationOperations();
@@ -50,8 +54,6 @@ public:
     
     void ExtractLetterCandidates(Ptr<Texture> filteredBoundingBoxes, Ptr<Texture> filteredAverages, int N, int count);
     
-    void PerformSteps(Ptr<Texture> output);
-    
 public:
     
     List< Ptr<LetterCandidate> > LetterCandidates;
@@ -59,7 +61,7 @@ public:
 private:
     
     Ptr<Filter> grayFilter;
-    //Ptr<SWTFilter> swtFilter;
+    Ptr<SWTFilter> swtFilter;
     //Ptr<ConnectedComponentsFilter> connectedComponentsFilter;
     Ptr<Texture> gray, stencil;
     Ptr<Program> boundingBoxes, filterInvalidComponents, filterComponentProperties, countComponents, stencilRouting, countPixels, average, variance, writeIDs;

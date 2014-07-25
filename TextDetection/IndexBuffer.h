@@ -20,22 +20,24 @@ private:
     
 public:
     
-    IndexBuffer(PrimitiveType primitiveType = PrimitiveType::Triangles);
+    IndexBuffer();
     
     void SetData(const List<GLubyte> &indices);
-    
-public:
-    
-    ::PrimitiveType PrimitiveType;
 };
 
-inline IndexBuffer::IndexBuffer(::PrimitiveType primitiveType /* = PrimitiveType::Triangles */) : PrimitiveType(primitiveType)
+inline IndexBuffer::IndexBuffer()
 {
+    check_gl_error();
     Setup(GL_ELEMENT_ARRAY_BUFFER);
     Generate();
+    check_gl_error();
 }
 
 inline void IndexBuffer::SetData(const List<GLubyte> &indices)
 {
-    base::SetData(GL_ELEMENT_ARRAY_BUFFER, static_cast<GLsizei>(indices.size()), sizeof(GLubyte), indices.data());
+    check_gl_error();
+    Bind();
+    check_gl_error();
+    base::SetData(GL_ELEMENT_ARRAY_BUFFER, indices.size(), sizeof(GLubyte), indices.data());
+    check_gl_error();
 }

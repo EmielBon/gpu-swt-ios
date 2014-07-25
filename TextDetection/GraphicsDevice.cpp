@@ -13,41 +13,45 @@
 
 Ptr<::VertexBuffer> GraphicsDevice::VertexBuffer = nullptr;
 Ptr<::IndexBuffer>  GraphicsDevice::IndexBuffer  = nullptr;
-Ptr<VertexArray>    GraphicsDevice::vertexArray  = nullptr;
 
 Ptr<::VertexBuffer> GraphicsDevice::DefaultVertexBuffer = nullptr;
 Ptr<::IndexBuffer>  GraphicsDevice::DefaultIndexBuffer  = nullptr;
 
-void GraphicsDevice::DrawPrimitives()
+void GraphicsDevice::DrawPrimitives(PrimitiveType primitiveType)
 {
     AssertCompleteProgram();
-    SetupVertexArray();
-    // bind the index buffer
+    //SetupVertexArray();
+    VertexBuffer->VertexArrayObject.Bind();
+    // bind the index buffer (apparently HAS to happen AFTER vertex array setup)
+    auto x = IndexBuffer;
     IndexBuffer->Bind();
     // draw the VAO
     // todo: kan miss een kleiner datatype dan int of zelfs short, omdat er voor per pixel geen indices gebruikt worden
-    glDrawElements((GLenum)(IndexBuffer->PrimitiveType), IndexBuffer->Count(), GL_UNSIGNED_BYTE, NULL);
+    glDrawElements((GLenum)primitiveType, IndexBuffer->Count(), GL_UNSIGNED_BYTE, NULL);
+    VertexArray::BindDefault();
 }
 
 void GraphicsDevice::DrawArrays(PrimitiveType primitiveType)
 {
+    check_gl_error();
     AssertCompleteProgram();
-    SetupVertexArray();
+    check_gl_error();
+    //SetupVertexArray();
+    VertexBuffer->VertexArrayObject.Bind();
+    check_gl_error();
     // Draw without index buffer
     glDrawArrays((GLenum)primitiveType, 0, VertexBuffer->Count());
+    VertexArray::BindDefault();
 }
 
 void GraphicsDevice::SetupVertexArray()
 {
-    if (!vertexArray)
-        vertexArray = New<VertexArray>();
-    
     auto &vertexDeclaration         = VertexBuffer->GetVertexDeclaration();
     auto &vertexDeclarationElements = vertexDeclaration.GetElements();
     GLuint stride                   = vertexDeclaration.Stride();
     
     VertexBuffer->Bind();
-    vertexArray->Bind();
+    VertexBuffer->VertexArrayObject.Bind();
     
     auto activeProgram = Program::GetCurrentlyUsed();
     
@@ -57,9 +61,9 @@ void GraphicsDevice::SetupVertexArray()
         GLint  location = activeProgram->GetAttributeLocation(vertexElement.GetName().c_str());
         GLuint size     = vertexElement.GetSize();
         GLenum type     = vertexElement.GetType();
-     
+        
         glEnableVertexAttribArray(location);
-        glVertexAttribPointer(location, size, type, GL_FALSE, stride, (char *)NULL + vertexElement.GetElementOffset());
+        glVertexAttribPointer(location, size, type, GL_FALSE, stride, reinterpret_cast<void*>(vertexElement.GetElementOffset()));
     }
 }
 

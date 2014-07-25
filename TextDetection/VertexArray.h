@@ -25,7 +25,7 @@ public:
     
 public:
     
-    GLuint vertexArrayObjectId;
+    GLuint handle;
 };
 
 inline VertexArray::VertexArray()

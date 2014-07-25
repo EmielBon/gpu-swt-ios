@@ -22,7 +22,7 @@ public:
     
     void LoadShaderPrograms();
     
-    void PerformSteps(Ptr<Texture> output);
+    Ptr<Texture> PerformSteps();
 
 private:
     

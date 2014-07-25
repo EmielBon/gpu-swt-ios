@@ -11,8 +11,9 @@
 #include "VertexBuffer.h"
 #include "Texture.h"
 #include "GraphicsDevice.h"
+#include "FrameBuffer.h"
 
-void GrayFilter::PerformSteps(Ptr<Texture> output)
+Ptr<Texture> GrayFilter::PerformSteps()
 {
     /*List<VertexPosition> vertices(2);
     vertices[0].Position = Vector3(10, 10, 0);
@@ -30,7 +31,13 @@ void GrayFilter::PerformSteps(Ptr<Texture> output)
     RenderToTexture(output, PrimitiveType::Lines, GL_COLOR_BUFFER_BIT);
     GraphicsDevice::UseDefaultBuffers();*/
     
+    auto output = New<Texture>(Input->GetWidth(), Input->GetHeight(), GL_RGBA, GL_UNSIGNED_BYTE);
+    check_gl_error();
     grayscale->Use();
+    check_gl_error();
     grayscale->Uniforms["Texture"].SetValue(*Input);
-    RenderToTexture(output, PrimitiveType::Unspecified, GL_COLOR_BUFFER_BIT);
+    check_gl_error();
+    RenderToTexture(output, PrimitiveType::Triangles);
+    check_gl_error();
+    return output;
 }

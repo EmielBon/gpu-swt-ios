@@ -38,6 +38,9 @@ GLuint Program::CreateFromShaders(const List<Ptr<Shader> > &shaders)
     for(unsigned i = 0; i < shaders.size(); ++i)
         glAttachShader(programId, shaders[i]->GetHandle());
     
+    // Hardcode position to attribute location 0, I don't like it but I hope it helps with the VAO problems
+    glBindAttribLocation(programId, 0, "Position");
+    
     //link the shaders together
     glLinkProgram(programId);
     

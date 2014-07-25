@@ -14,10 +14,13 @@
 
 using Vector2  = cv::Vec2f;
 using Vector2i = cv::Vec2i;
+using Vector2b = cv::Vec2b;
 using Vector3  = cv::Vec3f;
 using Vector3i = cv::Vec3i;
+using Vector3b = cv::Vec3b;
 using Vector4  = cv::Vec4f;
 using Vector4i = cv::Vec4i;
+using Vector4b = cv::Vec4b;
 
 /*template<class T, int N>
 struct Vector

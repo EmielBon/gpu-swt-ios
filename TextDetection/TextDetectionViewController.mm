@@ -33,13 +33,13 @@
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"sign800x600" ofType:@"jpg"];
     NSString *bundlePath = [[filePath stringByDeletingLastPathComponent] stringByAppendingString:@"/"];
     
+    GLKTextureInfo *textureInfo;
+    NSError *error;
+    
+    textureInfo = [GLKTextureLoader textureWithContentsOfFile:filePath options:@{ GLKTextureLoaderOriginBottomLeft : @YES }error:&error];
+    
     ContentLoader::ContentPath = bundlePath.UTF8String;
-    window = new RenderWindow();
-    //GLKTextureInfo *textureInfo;
-    //NSError *error;
-    //NSString *filePath = [[NSBundle mainBundle] pathForResource:@"sign800x600" ofType:@"jpg"];
-    //textureInfo = [GLKTextureLoader textureWithContentsOfFile:filePath options:nil error:&error];
-    //cv::Mat x = cv::imread(filePath.UTF8String);
+    window = new RenderWindow(textureInfo.name, textureInfo.width, textureInfo.height);
 }
 
 - (void)dealloc
@@ -70,19 +70,8 @@
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
+    [view bindDrawable];
     window->Draw();
-    //glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
-    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
-    //glBindVertexArrayOES(_vertexArray);
-    
-    // Render the object again with ES2
-    //glUseProgram(_program);
-
-    //glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
-    //glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
-    
-    //glDrawArrays(GL_TRIANGLES, 0, 36);
 }
 
 @end

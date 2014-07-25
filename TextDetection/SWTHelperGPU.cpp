@@ -21,53 +21,41 @@
 #include "RenderBuffer.h"
 #include "RenderBufferType.h"
 
+int SWTHelperGPU::InputWidth = 0;
+int SWTHelperGPU::InputHeight = 0;
+
 TimeSpan renderTime, copyTime, compileTime;
 
 List< Ptr<LetterCandidate> > SWTHelperGPU::StrokeWidthTransform(Ptr<Texture> input)
 {
+    InputWidth  = input->GetWidth();
+    InputHeight = input->GetHeight();
+    
+    glViewport(0, 0, InputWidth, InputHeight);
     glFinish();
     auto startTime = now();
     
     DisableIrrelvantState();
-    
-    int width  = input->GetWidth();
-    int height = input->GetHeight();
-    // Create a Texture from the input
-    
-    /*List< Ptr<Texture> > textures;
-    
-    for(int i = 0; i < 14; ++i)
-        textures.push_back( New<Texture>(width, height, GL_RGBA, GL_FLOAT) );
-    
-    for(int i = 0; i < 14; ++i)
-        textures[i].reset();
-    */
-    
     // Create the framebuffer attachments
-    auto colorf       = New<Texture>(width, height, GL_RGBA,              GL_FLOAT);
-    auto depthStencil = New<Texture>(width, height, GL_DEPTH_STENCIL_OES, GL_UNSIGNED_INT_24_8_OES);
-    //Ptr<RenderBuffer> depthStencil = New<RenderBuffer>(width, height, RenderBufferType::DepthStencil);
-    
+    //auto depthStencil = New<Texture>(width, height, GL_DEPTH_STENCIL_OES, GL_UNSIGNED_INT_24_8_OES);
     // Create and setup framebuffer
-    FrameBuffer frameBuffer(colorf);
+    FrameBuffer::DefaultOffscreenFrameBuffer = New<FrameBuffer>();
     //frameBuffer.SetDepthStencil(depthStencil);
-    
-    // Create a full-screen rect
-    DrawableRect rect(-1, -1, 1, 1);
-    GraphicsDevice::SetDefaultBuffers(rect.VertexBuffer, rect.IndexBuffer);
-    GraphicsDevice::UseDefaultBuffers();
-    
-    frameBuffer.Bind();
-
+    check_gl_error();
     auto textRegionsFilter = New<TextRegionsFilter>(input);
+    check_gl_error();
     textRegionsFilter->DoLoadShaderPrograms();
-    
+    check_gl_error();
     glFinish();
     auto setupTime = now() - startTime;
-    
-    ApplyPass(textRegionsFilter);
-    
-    //FrameBuffer::GetCurrentlyBound()->Print(RenderBufferType::Stencil);
+    check_gl_error();
+    textRegionsFilter->Input = input;
+    textRegionsFilter->Apply();
+    check_gl_error();
+    renderTime  += textRegionsFilter->RenderTime;
+    compileTime += textRegionsFilter->CompileTime;
+    check_gl_error();
+    //FrameBuffer::DefaultOffscreenFrameBuffer->Print(RenderBufferType::Stencil);
     
     glFinish();
     auto totalTime = now() - startTime;
@@ -83,30 +71,13 @@ List< Ptr<LetterCandidate> > SWTHelperGPU::StrokeWidthTransform(Ptr<Texture> inp
     return textRegionsFilter->LetterCandidates;
 }
 
-Ptr<Texture> SWTHelperGPU::ApplyPass(Ptr<Filter> filter, Ptr<Texture> input)
-{
-    auto output = FrameBuffer::GetCurrentlyBound()->ColorAttachment0->GetEmptyClone();
-    
-    if (input)
-        filter->Input = input;
-    filter->Apply(output);
-    renderTime  += filter->RenderTime;
-    compileTime += filter->CompileTime;
-    
-    DEBUG_FB(filter->Name);
-    return output;
-}
-
 void SWTHelperGPU::DisableIrrelvantState()
 {
-    /*glDisable(GL_DITHER);
-    glDisable(GL_ALPHA_TEST);
-    glDisable(GL_BLEND);
-    glDisable(GL_STENCIL_TEST);
-    glDisable(GL_FOG);
-    glDisable(GL_TEXTURE_2D);
-    glDisable(GL_DEPTH_TEST);
-    glPixelZoom(1.0,1.0);*/
+    glDisable(GL_CULL_FACE); check_gl_error();
+    glDisable(GL_DITHER); check_gl_error();
+    glDisable(GL_BLEND); check_gl_error();
+    glDisable(GL_STENCIL_TEST); check_gl_error();
+    glDisable(GL_DEPTH_TEST); check_gl_error();
     // todo: more?
     // todo: some state disabeling makes OpenGL Profiler crash T_T
 }

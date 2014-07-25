@@ -37,23 +37,25 @@ LinkedList< Ptr<Chain> > MakePairs(List<Ptr<LetterCandidate>> &components);
 
 RenderWindow* RenderWindow::instance = nullptr;
 
-RenderWindow::RenderWindow()
+RenderWindow::RenderWindow(GLuint inputTextureHandle, GLuint width, GLuint height)
     : currentTextureIndex(0), oldTextureIndex(-1)
 {
     instance = this;
         
-    auto input = ContentLoader::Load<Texture>("sign800x600");
+    //auto input = ContentLoader::Load<Texture>("sign800x600");
     
-    //auto input = New<Texture>(inputTexture, width, height, GL_NONE, GL_NONE); // These parameters probably have no impact, except if you want an empty copy of this texture
-    
-    AddTexture(input, "Input image");
+    auto input = New<Texture>(inputTextureHandle, width, height, GL_RGBA, GL_UNSIGNED_BYTE); // These parameters probably have no impact, except if you want an empty copy of this texture
     check_gl_error();
-    
+    AddTexture(input, "Input image", false);
+    check_gl_error();
     rect1 = New<DrawableRect>(-1, -1, 1, 1);
+    GraphicsDevice::SetDefaultBuffers(rect1->VertexBuffer, rect1->IndexBuffer);
+    GraphicsDevice::UseDefaultBuffers();
+    check_gl_error();
     program = Program::LoadScreenSpaceProgram("Normal");
     check_gl_error();
-    //auto letterCandidates = SWTHelperGPU::StrokeWidthTransform(input);
-    
+    auto letterCandidates = SWTHelperGPU::StrokeWidthTransform(input);
+    check_gl_error();
     /*FilterOnOverlappingBoundingBoxes(letterCandidates);
     //DrawBoundingBoxes(input, components, "Boundingboxes with overlap <= 2 (letters)");
     
@@ -76,17 +78,9 @@ RenderWindow::RenderWindow()
     AddTexture(output, "Detected text regions");*/
 }
 
-void RenderWindow::DrawRect(const DrawableRect &rect)
-{
-    GraphicsDevice::SetBuffers(rect.VertexBuffer, rect.IndexBuffer);
-    auto texture = textures[currentTextureIndex];
-    program->Use();
-    program->Uniforms["Texture"].SetValue(*texture);
-    GraphicsDevice::DrawArrays(PrimitiveType::Triangles);
-}
-
 void RenderWindow::Draw()
 {
+    glViewport(0, 0, SWTHelperGPU::InputWidth, SWTHelperGPU::InputHeight);
     check_gl_error();
     
     if (!textures.empty())
@@ -120,32 +114,50 @@ void RenderWindow::Draw()
 
 void RenderWindow::DrawCurrentTexture()
 {
-    static GLint defaultFrameBuffer = 0;
-    
-    if (defaultFrameBuffer == 0)
+    static float counter = 0;
+    counter += 0.1f;
+    if (counter > 1)
     {
-        GLint defaultFrameBuffer;
-        glGetIntegerv(GL_FRAMEBUFFER_BINDING, &defaultFrameBuffer);
+        counter = 0;
+        currentTextureIndex = (currentTextureIndex + 1) % textures.size();
     }
-    
-    //glBindFramebuffer(GL_FRAMEBUFFER, defaultFrameBuffer);
     glClearColor(1, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
-    DrawRect(*rect1);
+    check_gl_error();
+    GraphicsDevice::UseDefaultBuffers();
+    check_gl_error();
+    auto texture = textures[currentTextureIndex];
+    check_gl_error();
+    program->Use();
+    check_gl_error();
+    program->Uniforms["Texture"].SetValue(*texture);
+    check_gl_error();
+    if (!GraphicsDevice::IndexBuffer)
+        GraphicsDevice::DrawArrays(PrimitiveType::Triangles);
+    else
+        GraphicsDevice::DrawPrimitives(PrimitiveType::Triangles);
+    check_gl_error();
 }
 
-void RenderWindow::AddTexture(Ptr<Texture> texture, const String &descriptor)
+void RenderWindow::AddTexture(Ptr<Texture> input, const String &descriptor /* = "" */, bool makeCopy /* = true */)
 {
+    Ptr<Texture> texture = input;
+    
+    /*if (makeCopy)
+    {
+        GraphicsDevice::UseDefaultBuffers();
+        auto x = GraphicsDevice::VertexBuffer;
+        auto y = GraphicsDevice::IndexBuffer;
+        texture = input->GetEmptyClone();
+        auto previousColorAttachment = FrameBuffer::DefaultOffscreenFrameBuffer->ColorAttachment0;
+        FrameBuffer::DefaultOffscreenFrameBuffer->SetColorAttachment(texture);
+        program->Use();
+        program->Uniforms["Texture"].SetValue(*input);
+        GraphicsDevice::DrawArrays(PrimitiveType::Triangles);
+        FrameBuffer::DefaultOffscreenFrameBuffer->SetColorAttachment(previousColorAttachment);
+    }*/
     textures.push_back(texture);
     textureDescriptors.push_back(descriptor);
-}
-
-void RenderWindow::AddFrameBufferSnapshot(const String &descriptor)
-{
-    auto frameBuffer = FrameBuffer::GetCurrentlyBound();
-    auto dest = frameBuffer->ColorAttachment0->GetEmptyClone();
-    frameBuffer->CopyColorAttachment(*dest);
-    AddTexture(dest, descriptor);
 }
 
 void FilterOnOverlappingBoundingBoxes(List<Ptr<LetterCandidate>> &components)

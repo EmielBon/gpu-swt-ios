@@ -19,7 +19,7 @@ protected:
     
 public:
     
-    void Apply(Ptr<Texture> output);
+    Ptr<Texture> Apply();
     
     virtual void Initialize() { }
     
@@ -27,11 +27,9 @@ public:
     
     void DoInitialize();
     
-    void DoPerformSteps();
-    
 protected:
     
-    virtual void PerformSteps(Ptr<Texture> output) = 0;
+    virtual Ptr<Texture> PerformSteps() = 0;
     
     virtual void LoadShaderPrograms() = 0;
     
@@ -45,11 +43,11 @@ protected:
     Ptr<Program> LoadProgram(const String &vertexShaderSource, const String &fragmentShaderSource);
     
     // Apply a filter as part of this filter, aggregating the profiling information
-    void ApplyFilter(Filter &filter, Ptr<Texture> output);
+    Ptr<Texture> ApplyFilter(Filter &filter);
     
-    void Render(PrimitiveType primitiveType = PrimitiveType::Unspecified, GLenum clearOptions = GL_NONE);
+    void Render(PrimitiveType primitiveType, GLenum clearOptions = GL_NONE);
 
-    void RenderToTexture(Ptr<Texture> destination, PrimitiveType primitiveType = PrimitiveType::Unspecified, GLenum clearOptions = GL_NONE);
+    void RenderToTexture(Ptr<Texture> destination, PrimitiveType primitiveType, GLenum clearOptions = GL_NONE);
     
     Ptr<Texture> GetColorAttachment();
     

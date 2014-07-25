@@ -18,7 +18,7 @@ class RenderWindow
 {
 public:
     
-    RenderWindow();
+    RenderWindow(GLuint inputTextureHandle, GLuint width, GLuint height);
     
     static RenderWindow& Instance();
     
@@ -26,7 +26,7 @@ public:
     
     void Draw();
     
-    void AddTexture(std::shared_ptr<Texture> texture, const String &descriptor = "");
+    void AddTexture(std::shared_ptr<Texture> input, const String &descriptor = "", bool makeCopy = true);
     
     void AddFrameBufferSnapshot(const String &descriptor = "");
     

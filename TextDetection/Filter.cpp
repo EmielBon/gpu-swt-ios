@@ -46,7 +46,9 @@ void Filter::DoInitialize()
 {
     if (!initialized)
     {
+        check_gl_error();
         Initialize();
+        check_gl_error();
         ColorBuffers.clear();
         if (!PerPixelVertices && !Input)
             throw std::runtime_error("Cannot initialize per pixel vertex buffer without input texture");
@@ -56,7 +58,7 @@ void Filter::DoInitialize()
     initialized = true;
 }
 
-void Filter::Apply(Ptr<Texture> output)
+Ptr<Texture> Filter::Apply()
 {
     TotalTime = RenderTime = CompileTime = TimeSpan(0);
     
@@ -66,17 +68,22 @@ void Filter::Apply(Ptr<Texture> output)
     glFinish();
     auto t = now();
 #endif
+    check_gl_error();
     DoLoadShaderPrograms();
+    check_gl_error();
     DoInitialize();
-    PerformSteps(output);
+    check_gl_error();
+    auto output = PerformSteps();
+    check_gl_error();
     ColorBuffers.clear();
 #ifdef PROFILING
     TotalTime = now() - t;
     PrintProfilingInfo();
 #endif
+    return output;
 }
 
-void Filter::Render(PrimitiveType primitiveType /* = PrimitiveType::Unspecified */, GLenum clearOptions /* = GL_NONE */)
+void Filter::Render(PrimitiveType primitiveType, GLenum clearOptions /* = GL_NONE */)
 {
 #ifdef PROFILING
     glFinish();
@@ -84,10 +91,10 @@ void Filter::Render(PrimitiveType primitiveType /* = PrimitiveType::Unspecified 
 #endif
     if (clearOptions != GL_NONE);
         glClear(clearOptions);
-    if (primitiveType == PrimitiveType::Unspecified)
-        GraphicsDevice::DrawPrimitives();
-    else
+    if (!GraphicsDevice::IndexBuffer)
         GraphicsDevice::DrawArrays(primitiveType);
+    else
+        GraphicsDevice::DrawPrimitives(primitiveType);
 #ifdef PROFILING
     glFinish();
     RenderTime += now() - f;
@@ -102,12 +109,12 @@ void Filter::RenderToTexture(Ptr<Texture> destination, PrimitiveType primitiveTy
 
 Ptr<Texture> Filter::GetColorAttachment()
 {
-    return FrameBuffer::GetCurrentlyBound()->ColorAttachment0;
+    return FrameBuffer::DefaultOffscreenFrameBuffer->ColorAttachment0;
 }
 
 void Filter::SetColorAttachment(Ptr<Texture> colorAttachment)
 {
-    FrameBuffer::GetCurrentlyBound()->SetColorAttachment(colorAttachment);
+    FrameBuffer::DefaultOffscreenFrameBuffer->SetColorAttachment(colorAttachment);
 }
 
 Ptr<Program> Filter::LoadProgram(const String &vertexShaderSource, const String &fragmentShaderSource)
@@ -115,13 +122,12 @@ Ptr<Program> Filter::LoadProgram(const String &vertexShaderSource, const String 
     return ContentLoader::Load<Program>(vertexShaderSource, fragmentShaderSource);
 }
 
-void Filter::ApplyFilter(Filter &filter, Ptr<Texture> output)
+Ptr<Texture> Filter::ApplyFilter(Filter &filter)
 {
-    if (!output)
-        throw std::runtime_error("Error: output is null");
-    filter.Apply(output);
+    auto output = filter.Apply();
     RenderTime  += filter.RenderTime;
     CompileTime += filter.CompileTime;
+    return output;
 }
 
 void Filter::PrintProfilingInfo() const

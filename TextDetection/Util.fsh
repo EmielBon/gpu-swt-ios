@@ -22,3 +22,8 @@ vec4 ifelse(bool condition, vec4 a, vec4 b)
 {
     return mix(a, b, int(!condition));
 }
+
+float getRatio(float x, float y)
+{
+    return max(x / y, y / x);
+}

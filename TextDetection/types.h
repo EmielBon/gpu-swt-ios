@@ -32,7 +32,7 @@ template<class T> using Function = std::function<T>;
 #define DEBUG_STEPS
 
 #ifdef DEBUG_STEPS
-    #define DEBUG_FB(name) RenderWindow::Instance().AddFrameBufferSnapshot(name)
+    #define DEBUG_FB(texture, name) RenderWindow::Instance().AddTexture(texture, name)
 #else
-    #define DEBUG_FB(name)
+    #define DEBUG_FB(texture, name)
 #endif

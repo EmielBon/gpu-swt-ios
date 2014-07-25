@@ -15,7 +15,7 @@ class GraphicsDevice
 {
 public:
     
-    static void DrawPrimitives();
+    static void DrawPrimitives(PrimitiveType primitiveType);
     
     static void DrawArrays(PrimitiveType primitiveType);
     
@@ -38,10 +38,6 @@ public:
     
     static Ptr<::VertexBuffer> DefaultVertexBuffer;
     static Ptr<::IndexBuffer>  DefaultIndexBuffer;
-    
-private:
-    
-    static Ptr<VertexArray> vertexArray;
 };
 
 inline void GraphicsDevice::SetBuffers(Ptr<::VertexBuffer> vertexBuffer, Ptr<::IndexBuffer> indexBuffer)

@@ -51,6 +51,23 @@
 		172C1AEE1976DB84004C7283 /* TextRegionsFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AEB1976DB84004C7283 /* TextRegionsFilter.cpp */; };
 		172C1AF11976DBB8004C7283 /* Filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AEF1976DBB8004C7283 /* Filter.cpp */; };
 		172C1AF51979516A004C7283 /* sign800x600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 172C1AF41979516A004C7283 /* sign800x600.jpg */; };
+		1780ACCB197FF4F8003FCC0A /* Grayscale.fs in Resources */ = {isa = PBXBuildFile; fileRef = 1780ACCA197FF4F8003FCC0A /* Grayscale.fs */; };
+		179631F01982828000262A80 /* CannyFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 179631E81982828000262A80 /* CannyFilter.cpp */; };
+		179631F11982828000262A80 /* GaussianFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 179631EA1982828000262A80 /* GaussianFilter.cpp */; };
+		179631F21982828000262A80 /* SobelFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 179631EC1982828000262A80 /* SobelFilter.cpp */; };
+		179631F31982828000262A80 /* SWTFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 179631EE1982828000262A80 /* SWTFilter.cpp */; };
+		179631F7198282A400262A80 /* Canny.fs in Resources */ = {isa = PBXBuildFile; fileRef = 179631F5198282A400262A80 /* Canny.fs */; };
+		179631F8198282A400262A80 /* CannySobel2.fs in Resources */ = {isa = PBXBuildFile; fileRef = 179631F6198282A400262A80 /* CannySobel2.fs */; };
+		179631FC198282BB00262A80 /* GaussianBlurH.fs in Resources */ = {isa = PBXBuildFile; fileRef = 179631FA198282BB00262A80 /* GaussianBlurH.fs */; };
+		179631FD198282BB00262A80 /* GaussianBlurV.fs in Resources */ = {isa = PBXBuildFile; fileRef = 179631FB198282BB00262A80 /* GaussianBlurV.fs */; };
+		17963201198282E900262A80 /* Sobel1.fs in Resources */ = {isa = PBXBuildFile; fileRef = 179631FF198282E900262A80 /* Sobel1.fs */; };
+		17963202198282E900262A80 /* Sobel2.fs in Resources */ = {isa = PBXBuildFile; fileRef = 17963200198282E900262A80 /* Sobel2.fs */; };
+		179632081982830800262A80 /* AverageRays.fs in Resources */ = {isa = PBXBuildFile; fileRef = 179632041982830800262A80 /* AverageRays.fs */; };
+		179632091982830800262A80 /* CastRays.fs in Resources */ = {isa = PBXBuildFile; fileRef = 179632051982830800262A80 /* CastRays.fs */; };
+		1796320A1982830800262A80 /* WriteAverageRays.vs in Resources */ = {isa = PBXBuildFile; fileRef = 179632061982830800262A80 /* WriteAverageRays.vs */; };
+		1796320B1982830800262A80 /* WriteRays.vs in Resources */ = {isa = PBXBuildFile; fileRef = 179632071982830800262A80 /* WriteRays.vs */; };
+		179632101982834000262A80 /* Value.fs in Resources */ = {isa = PBXBuildFile; fileRef = 1796320F1982834000262A80 /* Value.fs */; };
+		17963213198289B400262A80 /* Codec.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 17963212198289B400262A80 /* Codec.fsh */; };
 		17B5D3A7197D05E100DE1FA4 /* Trivial.vs in Resources */ = {isa = PBXBuildFile; fileRef = 17B5D3A6197D05E100DE1FA4 /* Trivial.vs */; };
 		17B5D3A9197D05FF00DE1FA4 /* Normal.fs in Resources */ = {isa = PBXBuildFile; fileRef = 17B5D3A8197D05FF00DE1FA4 /* Normal.fs */; };
 		17B5D3AB197D070900DE1FA4 /* TextureUtil.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 17B5D3AA197D070900DE1FA4 /* TextureUtil.fsh */; };
@@ -92,7 +109,7 @@
 		172C1A7E19755954004C7283 /* TextDetectionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextDetectionTests-Info.plist"; sourceTree = "<group>"; };
 		172C1A8019755954004C7283 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		172C1A8219755954004C7283 /* TextDetectionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextDetectionTests.m; sourceTree = "<group>"; };
-		172C1A8F197575A8004C7283 /* FrameBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameBuffer.cpp; sourceTree = "<group>"; };
+		172C1A8F197575A8004C7283 /* FrameBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = FrameBuffer.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		172C1A90197575A8004C7283 /* FrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameBuffer.h; sourceTree = "<group>"; };
 		172C1A91197575A8004C7283 /* GLError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLError.cpp; sourceTree = "<group>"; };
 		172C1A92197575A8004C7283 /* GLError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLError.h; sourceTree = "<group>"; };
@@ -132,7 +149,7 @@
 		172C1AC219757A32004C7283 /* ContentLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentLoader.h; sourceTree = "<group>"; };
 		172C1AC319757A32004C7283 /* DrawableRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawableRect.cpp; sourceTree = "<group>"; };
 		172C1AC419757A32004C7283 /* DrawableRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawableRect.h; sourceTree = "<group>"; };
-		172C1AC819769ECD004C7283 /* RenderWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderWindow.cpp; sourceTree = "<group>"; };
+		172C1AC819769ECD004C7283 /* RenderWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = RenderWindow.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		172C1AC919769ECD004C7283 /* RenderWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderWindow.h; sourceTree = "<group>"; };
 		172C1ACB19769FCA004C7283 /* Rect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rect.h; sourceTree = "<group>"; };
 		172C1ACC1976BC58004C7283 /* ContainerTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContainerTypes.h; sourceTree = "<group>"; };
@@ -153,16 +170,37 @@
 		172C1AE01976CA66004C7283 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = TextDetection/opencv2.framework; sourceTree = "<group>"; };
 		172C1AE21976D7C4004C7283 /* MathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathHelper.h; sourceTree = "<group>"; };
 		172C1AE31976D7C4004C7283 /* Profiling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Profiling.h; sourceTree = "<group>"; };
-		172C1AE41976D811004C7283 /* SWTHelperGPU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SWTHelperGPU.cpp; sourceTree = "<group>"; };
+		172C1AE41976D811004C7283 /* SWTHelperGPU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = SWTHelperGPU.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		172C1AE51976D811004C7283 /* SWTHelperGPU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTHelperGPU.h; sourceTree = "<group>"; };
 		172C1AE91976DB84004C7283 /* GrayFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GrayFilter.cpp; sourceTree = "<group>"; };
 		172C1AEA1976DB84004C7283 /* GrayFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayFilter.h; sourceTree = "<group>"; };
-		172C1AEB1976DB84004C7283 /* TextRegionsFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextRegionsFilter.cpp; sourceTree = "<group>"; };
+		172C1AEB1976DB84004C7283 /* TextRegionsFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = TextRegionsFilter.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		172C1AEC1976DB84004C7283 /* TextRegionsFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextRegionsFilter.h; sourceTree = "<group>"; };
-		172C1AEF1976DBB8004C7283 /* Filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Filter.cpp; sourceTree = "<group>"; };
+		172C1AEF1976DBB8004C7283 /* Filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Filter.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		172C1AF01976DBB8004C7283 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
 		172C1AF41979516A004C7283 /* sign800x600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sign800x600.jpg; sourceTree = "<group>"; };
 		172C1AF619795FB2004C7283 /* TextureUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextureUtil.h; sourceTree = "<group>"; };
+		1780ACCA197FF4F8003FCC0A /* Grayscale.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Grayscale.fs; sourceTree = "<group>"; };
+		179631E81982828000262A80 /* CannyFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CannyFilter.cpp; sourceTree = "<group>"; };
+		179631E91982828000262A80 /* CannyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CannyFilter.h; sourceTree = "<group>"; };
+		179631EA1982828000262A80 /* GaussianFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GaussianFilter.cpp; sourceTree = "<group>"; };
+		179631EB1982828000262A80 /* GaussianFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GaussianFilter.h; sourceTree = "<group>"; };
+		179631EC1982828000262A80 /* SobelFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SobelFilter.cpp; sourceTree = "<group>"; };
+		179631ED1982828000262A80 /* SobelFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SobelFilter.h; sourceTree = "<group>"; };
+		179631EE1982828000262A80 /* SWTFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SWTFilter.cpp; sourceTree = "<group>"; };
+		179631EF1982828000262A80 /* SWTFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTFilter.h; sourceTree = "<group>"; };
+		179631F5198282A400262A80 /* Canny.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Canny.fs; sourceTree = "<group>"; };
+		179631F6198282A400262A80 /* CannySobel2.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CannySobel2.fs; sourceTree = "<group>"; };
+		179631FA198282BB00262A80 /* GaussianBlurH.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = GaussianBlurH.fs; sourceTree = "<group>"; };
+		179631FB198282BB00262A80 /* GaussianBlurV.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = GaussianBlurV.fs; sourceTree = "<group>"; };
+		179631FF198282E900262A80 /* Sobel1.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Sobel1.fs; sourceTree = "<group>"; };
+		17963200198282E900262A80 /* Sobel2.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Sobel2.fs; sourceTree = "<group>"; };
+		179632041982830800262A80 /* AverageRays.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = AverageRays.fs; sourceTree = "<group>"; };
+		179632051982830800262A80 /* CastRays.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = CastRays.fs; sourceTree = "<group>"; };
+		179632061982830800262A80 /* WriteAverageRays.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = WriteAverageRays.vs; sourceTree = "<group>"; };
+		179632071982830800262A80 /* WriteRays.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = WriteRays.vs; sourceTree = "<group>"; };
+		1796320F1982834000262A80 /* Value.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Value.fs; sourceTree = "<group>"; };
+		17963212198289B400262A80 /* Codec.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Codec.fsh; sourceTree = "<group>"; };
 		17B5D3A6197D05E100DE1FA4 /* Trivial.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Trivial.vs; sourceTree = "<group>"; };
 		17B5D3A8197D05FF00DE1FA4 /* Normal.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Normal.fs; sourceTree = "<group>"; };
 		17B5D3AA197D070900DE1FA4 /* TextureUtil.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextureUtil.fsh; sourceTree = "<group>"; };
@@ -234,21 +272,19 @@
 		172C1A5619755954004C7283 /* TextDetection */ = {
 			isa = PBXGroup;
 			children = (
-				172C1AE71976D817004C7283 /* SWT-GPU */,
-				172C1ADF1976C229004C7283 /* SWT */,
-				172C1ABE19757A23004C7283 /* Framework */,
+				172C1AC919769ECD004C7283 /* RenderWindow.h */,
+				172C1AC819769ECD004C7283 /* RenderWindow.cpp */,
+				172C1A6C19755954004C7283 /* TextDetectionViewController.h */,
+				172C1A6D19755954004C7283 /* TextDetectionViewController.mm */,
 				172C1A6F19755954004C7283 /* Images.xcassets */,
 				172C1A6519755954004C7283 /* Main_iPad.storyboard */,
 				172C1A6219755954004C7283 /* Main_iPhone.storyboard */,
+				172C1ABE19757A23004C7283 /* Framework */,
 				172C1ABB197575BA004C7283 /* OpenGL */,
-				172C1A6819755954004C7283 /* Shader.fsh */,
-				172C1A6A19755954004C7283 /* Shader.vsh */,
 				172C1A5719755954004C7283 /* Supporting Files */,
-				172C1A6C19755954004C7283 /* TextDetectionViewController.h */,
-				172C1A6D19755954004C7283 /* TextDetectionViewController.mm */,
+				172C1ADF1976C229004C7283 /* SWT */,
+				172C1AE71976D817004C7283 /* SWT-GPU */,
 				172C1ABC197575DF004C7283 /* Util */,
-				172C1AC819769ECD004C7283 /* RenderWindow.cpp */,
-				172C1AC919769ECD004C7283 /* RenderWindow.h */,
 			);
 			path = TextDetection;
 			sourceTree = "<group>";
@@ -384,10 +420,18 @@
 		172C1AE81976DB78004C7283 /* Filters */ = {
 			isa = PBXGroup;
 			children = (
+				179631E81982828000262A80 /* CannyFilter.cpp */,
+				179631E91982828000262A80 /* CannyFilter.h */,
 				172C1AEF1976DBB8004C7283 /* Filter.cpp */,
 				172C1AF01976DBB8004C7283 /* Filter.h */,
+				179631EA1982828000262A80 /* GaussianFilter.cpp */,
+				179631EB1982828000262A80 /* GaussianFilter.h */,
 				172C1AE91976DB84004C7283 /* GrayFilter.cpp */,
 				172C1AEA1976DB84004C7283 /* GrayFilter.h */,
+				179631EC1982828000262A80 /* SobelFilter.cpp */,
+				179631ED1982828000262A80 /* SobelFilter.h */,
+				179631EE1982828000262A80 /* SWTFilter.cpp */,
+				179631EF1982828000262A80 /* SWTFilter.h */,
 				172C1AEB1976DB84004C7283 /* TextRegionsFilter.cpp */,
 				172C1AEC1976DB84004C7283 /* TextRegionsFilter.h */,
 			);
@@ -397,13 +441,68 @@
 		172C1AF819796E47004C7283 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				172C1A6819755954004C7283 /* Shader.fsh */,
+				172C1A6A19755954004C7283 /* Shader.vsh */,
+				1780ACCA197FF4F8003FCC0A /* Grayscale.fs */,
 				17B5D3A8197D05FF00DE1FA4 /* Normal.fs */,
-				17B5D3AA197D070900DE1FA4 /* TextureUtil.fsh */,
+				1796320F1982834000262A80 /* Value.fs */,
 				17B5D3A6197D05E100DE1FA4 /* Trivial.vs */,
-				17B5D3AC197D071000DE1FA4 /* Util.fsh */,
+				179631F41982829800262A80 /* Canny */,
+				179631F9198282A800262A80 /* Gaussian Blur */,
+				179631FE198282DF00262A80 /* Sobel */,
+				17963203198282F400262A80 /* Stroke Width Transform */,
+				1796320C1982830B00262A80 /* Util */,
 			);
 			name = Shaders;
 			path = TextDetection;
+			sourceTree = "<group>";
+		};
+		179631F41982829800262A80 /* Canny */ = {
+			isa = PBXGroup;
+			children = (
+				179631F5198282A400262A80 /* Canny.fs */,
+				179631F6198282A400262A80 /* CannySobel2.fs */,
+			);
+			name = Canny;
+			sourceTree = "<group>";
+		};
+		179631F9198282A800262A80 /* Gaussian Blur */ = {
+			isa = PBXGroup;
+			children = (
+				179631FA198282BB00262A80 /* GaussianBlurH.fs */,
+				179631FB198282BB00262A80 /* GaussianBlurV.fs */,
+			);
+			name = "Gaussian Blur";
+			sourceTree = "<group>";
+		};
+		179631FE198282DF00262A80 /* Sobel */ = {
+			isa = PBXGroup;
+			children = (
+				179631FF198282E900262A80 /* Sobel1.fs */,
+				17963200198282E900262A80 /* Sobel2.fs */,
+			);
+			name = Sobel;
+			sourceTree = "<group>";
+		};
+		17963203198282F400262A80 /* Stroke Width Transform */ = {
+			isa = PBXGroup;
+			children = (
+				179632041982830800262A80 /* AverageRays.fs */,
+				179632051982830800262A80 /* CastRays.fs */,
+				179632061982830800262A80 /* WriteAverageRays.vs */,
+				179632071982830800262A80 /* WriteRays.vs */,
+			);
+			name = "Stroke Width Transform";
+			sourceTree = "<group>";
+		};
+		1796320C1982830B00262A80 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				17963212198289B400262A80 /* Codec.fsh */,
+				17B5D3AA197D070900DE1FA4 /* TextureUtil.fsh */,
+				17B5D3AC197D071000DE1FA4 /* Util.fsh */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,15 +584,28 @@
 			files = (
 				172C1A6919755954004C7283 /* Shader.fsh in Resources */,
 				17B5D3AB197D070900DE1FA4 /* TextureUtil.fsh in Resources */,
+				179632101982834000262A80 /* Value.fs in Resources */,
+				179631F7198282A400262A80 /* Canny.fs in Resources */,
+				179631F8198282A400262A80 /* CannySobel2.fs in Resources */,
+				179632091982830800262A80 /* CastRays.fs in Resources */,
 				172C1A6719755954004C7283 /* Main_iPad.storyboard in Resources */,
+				179632081982830800262A80 /* AverageRays.fs in Resources */,
 				172C1A6419755954004C7283 /* Main_iPhone.storyboard in Resources */,
 				172C1A7019755954004C7283 /* Images.xcassets in Resources */,
+				17963201198282E900262A80 /* Sobel1.fs in Resources */,
+				179631FC198282BB00262A80 /* GaussianBlurH.fs in Resources */,
 				17B5D3AD197D071000DE1FA4 /* Util.fsh in Resources */,
+				1780ACCB197FF4F8003FCC0A /* Grayscale.fs in Resources */,
 				17B5D3A7197D05E100DE1FA4 /* Trivial.vs in Resources */,
 				172C1AF51979516A004C7283 /* sign800x600.jpg in Resources */,
+				1796320B1982830800262A80 /* WriteRays.vs in Resources */,
 				172C1A5B19755954004C7283 /* InfoPlist.strings in Resources */,
+				179631FD198282BB00262A80 /* GaussianBlurV.fs in Resources */,
 				17B5D3A9197D05FF00DE1FA4 /* Normal.fs in Resources */,
 				172C1A6B19755954004C7283 /* Shader.vsh in Resources */,
+				17963202198282E900262A80 /* Sobel2.fs in Resources */,
+				17963213198289B400262A80 /* Codec.fsh in Resources */,
+				1796320A1982830800262A80 /* WriteAverageRays.vs in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,7 +628,9 @@
 				172C1AB7197575A8004C7283 /* Uniform.cpp in Sources */,
 				172C1AC719757A32004C7283 /* DrawableRect.cpp in Sources */,
 				172C1AB0197575A8004C7283 /* FrameBuffer.cpp in Sources */,
+				179631F01982828000262A80 /* CannyFilter.cpp in Sources */,
 				172C1AB8197575A8004C7283 /* VertexPosition.cpp in Sources */,
+				179631F21982828000262A80 /* SobelFilter.cpp in Sources */,
 				172C1A5D19755954004C7283 /* main.m in Sources */,
 				172C1A6119755954004C7283 /* TextDetectionAppDelegate.m in Sources */,
 				172C1ABA197575A8004C7283 /* VertexPositionTexture.cpp in Sources */,
@@ -531,8 +645,10 @@
 				172C1AB9197575A8004C7283 /* VertexPosition2DCompressed.cpp in Sources */,
 				172C1AF11976DBB8004C7283 /* Filter.cpp in Sources */,
 				172C1AB1197575A8004C7283 /* GLError.cpp in Sources */,
+				179631F11982828000262A80 /* GaussianFilter.cpp in Sources */,
 				172C1ACA19769ECD004C7283 /* RenderWindow.cpp in Sources */,
 				172C1AB2197575A8004C7283 /* GraphicsDevice.cpp in Sources */,
+				179631F31982828000262A80 /* SWTFilter.cpp in Sources */,
 				172C1AB6197575A8004C7283 /* Texture.cpp in Sources */,
 				172C1ADE1976C225004C7283 /* Ray.cpp in Sources */,
 				172C1ADD1976C225004C7283 /* LetterCandidate.cpp in Sources */,

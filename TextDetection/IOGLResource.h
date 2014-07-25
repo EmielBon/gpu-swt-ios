@@ -40,6 +40,7 @@ inline void IOGLResource::Setup(Function<void(GLsizei, GLuint*)> generateFunctio
 
 inline void IOGLResource::Generate()
 {
+    check_gl_error();
     GenerateFunction(1, &handle);
     check_gl_error();
 }
@@ -51,6 +52,7 @@ inline GLuint IOGLResource::GetHandle() const
 
 inline void IOGLResource::Dispose()
 {
-    DisposeFunction(1, &handle);
+    check_gl_error();
+    //DisposeFunction(1, &handle);
     check_gl_error();
 }

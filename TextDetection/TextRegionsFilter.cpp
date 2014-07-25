@@ -8,7 +8,7 @@
 
 #include "TextRegionsFilter.h"
 #include "GrayFilter.h"
-//#include "SWTFilter.h"
+#include "SWTFilter.h"
 //#include "ConnectedComponentsFilter.h"
 #include "Texture.h"
 #include "FrameBuffer.h"
@@ -17,7 +17,7 @@
 #include "VertexBuffer.h"
 #include "GraphicsDevice.h"
 #include "RenderWindow.h"
-
+#include "SWTHelperGPU.h"
 #include "SWTParameters.h"
 #include "LetterCandidate.h"
 #include <cmath>
@@ -25,11 +25,11 @@
 void TextRegionsFilter::LoadShaderPrograms()
 {
     grayFilter                = New<GrayFilter>(Input);
-    //swtFilter                 = New<SWTFilter>();
+    swtFilter                 = New<SWTFilter>();
     //connectedComponentsFilter = New<ConnectedComponentsFilter>();
     
     grayFilter->DoLoadShaderPrograms();
-    //swtFilter->DoLoadShaderPrograms();
+    swtFilter->DoLoadShaderPrograms();
     //connectedComponentsFilter->DoLoadShaderPrograms();
     
     /*boundingBoxes             = LoadProgram("ScatterToRoot", "BoundingBoxes");
@@ -46,9 +46,11 @@ void TextRegionsFilter::LoadShaderPrograms()
 
 void TextRegionsFilter::Initialize()
 {
-    gray = GetColorAttachment()->GetEmptyClone();
-    ApplyFilter(*grayFilter, gray); DEBUG_FB("Gray");
-    
+    check_gl_error();
+    gray = ApplyFilter(*grayFilter);
+    check_gl_error();
+    DEBUG_FB(gray, "Gray");
+    check_gl_error();
     //PreparePerPixelVertices();
 }
 
@@ -71,7 +73,7 @@ void TextRegionsFilter::FilterInvalidComponents(Ptr<Texture> boundingBoxes, Ptr<
     filterInvalidComponents->Uniforms["Averages"].SetValue(*averages);
     filterInvalidComponents->Uniforms["PixelCounts"].SetValue(*pixelCounts);
     filterInvalidComponents->Uniforms["VarianceSums"].SetValue(*varianceSums);
-    RenderToTexture(output);
+    //RenderToTexture(output);
 }
 
 void TextRegionsFilter::FilterComponentProperties(Ptr<Texture> filteredBoundingBoxes, Ptr<Texture> averages, Ptr<Texture> output)
@@ -79,7 +81,7 @@ void TextRegionsFilter::FilterComponentProperties(Ptr<Texture> filteredBoundingB
     filterComponentProperties->Use();
     filterComponentProperties->Uniforms["BoundingBoxes"].SetValue(*filteredBoundingBoxes);
     filterComponentProperties->Uniforms["Averages"].SetValue(*averages);
-    RenderToTexture(output);
+    //RenderToTexture(output);
 }
 
 void TextRegionsFilter::BoundingBoxes(Ptr<Texture> components, Ptr<Texture> output, bool clear)
@@ -133,7 +135,7 @@ void TextRegionsFilter::PrepareStencilRouting(int N)
         pixels[i] = pixels[i-1] + 1;
     
     stencil = New<Texture>(width, height, GL_DEPTH_STENCIL_OES, GL_UNSIGNED_INT_24_8_OES);
-    FrameBuffer::GetCurrentlyBound()->SetDepthStencil(stencil);
+    FrameBuffer::DefaultOffscreenFrameBuffer->SetDepthStencil(stencil);
     
     glClearStencil(0);
     glClear(GL_STENCIL_BUFFER_BIT);
@@ -150,9 +152,9 @@ void TextRegionsFilter::PrepareStencilRouting(int N)
 void TextRegionsFilter::ExtractLetterCandidates(Ptr<Texture> filteredBoundingBoxes, Ptr<Texture> filteredAverages, int N, int count)
 {
     SetColorAttachment(filteredBoundingBoxes);
-    auto bboxPixels = FrameBuffer::GetCurrentlyBound()->ReadPixels<cv::Vec4f>(0, 0, N, N, GL_RGBA, GL_FLOAT);
+    auto bboxPixels = FrameBuffer::DefaultOffscreenFrameBuffer->ReadPixels<cv::Vec4f>(0, 0, N, N, GL_RGBA, GL_FLOAT);
     SetColorAttachment(filteredAverages);
-    auto averagesPixels = FrameBuffer::GetCurrentlyBound()->ReadPixels<cv::Vec4f>(0, 0, N, N, GL_RGBA, GL_FLOAT);
+    auto averagesPixels = FrameBuffer::DefaultOffscreenFrameBuffer->ReadPixels<cv::Vec4f>(0, 0, N, N, GL_RGBA, GL_FLOAT);
     
     for(int i = 0; i < (int)bboxPixels.size(); ++i)
     {
@@ -192,12 +194,14 @@ void TextRegionsFilter::StencilRouting(Ptr<Texture> input, float N, Ptr<Texture>
     RenderToTexture(output);
 }*/
 
-void TextRegionsFilter::PerformSteps(Ptr<Texture> output)
+Ptr<Texture> TextRegionsFilter::PerformSteps()
 {
-    /*ReserveColorBuffers(12);
+    // Attention: output is null;
     
-    auto swt1        = ColorBuffers[0];
-    auto swt2        = ColorBuffers[1];
+    //ReserveColorBuffers(12);
+    
+    auto swt1        = New<Texture>(SWTHelperGPU::InputWidth, SWTHelperGPU::InputHeight, GL_RG_EXT, GL_HALF_FLOAT_OES);
+    /*auto swt2        = ColorBuffers[1];
     auto components1 = ColorBuffers[2];
     auto components2 = ColorBuffers[3];
     auto bboxes      = ColorBuffers[4];
@@ -208,12 +212,12 @@ void TextRegionsFilter::PerformSteps(Ptr<Texture> output)
     auto temp        = ColorBuffers[9];
     auto filteredAverages = ColorBuffers[10];
     auto output2     = ColorBuffers[11];
-    
+    */
     // Calculate SWT
     swtFilter->Input = gray;
     swtFilter->GradientDirection = GradientDirection::With;
-    ApplyFilter(*swtFilter, swt1);
-    
+    //ApplyFilter(*swtFilter, swt1);
+    /*
     swtFilter->GradientDirection = GradientDirection::Against;
     ApplyFilter(*swtFilter, swt2);
     
@@ -237,7 +241,7 @@ void TextRegionsFilter::PerformSteps(Ptr<Texture> output)
     AverageColorAndSWT(components1, pixelCount, Input, swt1, averages, true);
     AverageColorAndSWT(components2, pixelCount, Input, swt2, averages, false);
     */
-    /*auto pixels = FrameBuffer::GetCurrentlyBound()->ReadPixels<cv::Vec4f>(0, 0, 800, 600, GL_RGBA, GL_FLOAT);
+    /*auto pixels = FrameBuffer::DefaultOffscreenFrameBuffer->ReadPixels<cv::Vec4f>(0, 0, 800, 600, GL_RGBA, GL_FLOAT);
     for(auto& pixel : pixels)
     {
         if (pixel[3] != 0.0)
@@ -289,4 +293,5 @@ void TextRegionsFilter::PerformSteps(Ptr<Texture> output)
     glPointSize(1);
 
     GraphicsDevice::UseDefaultBuffers();*/
+    return nullptr;
 }
