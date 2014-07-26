@@ -24,7 +24,7 @@
 
 void TextRegionsFilter::LoadShaderPrograms()
 {
-    grayFilter                = New<GrayFilter>(Input);
+    grayFilter                = New<GrayFilter>();
     swtFilter                 = New<SWTFilter>();
     //connectedComponentsFilter = New<ConnectedComponentsFilter>();
     
@@ -47,7 +47,7 @@ void TextRegionsFilter::LoadShaderPrograms()
 void TextRegionsFilter::Initialize()
 {
     check_gl_error();
-    gray = ApplyFilter(*grayFilter);
+    gray = ApplyFilter(*grayFilter, Input);
     check_gl_error();
     DEBUG_FB(gray, "Gray");
     check_gl_error();
@@ -214,9 +214,8 @@ Ptr<Texture> TextRegionsFilter::PerformSteps()
     auto output2     = ColorBuffers[11];
     */
     // Calculate SWT
-    swtFilter->Input = gray;
     swtFilter->GradientDirection = GradientDirection::With;
-    //ApplyFilter(*swtFilter, swt1);
+    swt1 = ApplyFilter(*swtFilter, Input);
     /*
     swtFilter->GradientDirection = GradientDirection::Against;
     ApplyFilter(*swtFilter, swt2);

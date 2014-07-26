@@ -18,7 +18,7 @@ private:
     
 public:
     
-    GaussianFilter(Ptr<Texture> input = nullptr);
+    GaussianFilter();
     
     void LoadShaderPrograms();
     
@@ -26,16 +26,16 @@ public:
     
 private:
     
-    void HorizontalPass(const Texture &input, Ptr<Texture> output);
+    void HorizontalPass(Ptr<Texture> input, Ptr<Texture> output);
     
-    void VerticalPass(const Texture &input, Ptr<Texture> output);
+    void VerticalPass(Ptr<Texture> input, Ptr<Texture> output);
     
 private:
     
     Ptr<Program> hor, ver;
 };
 
-inline GaussianFilter::GaussianFilter(Ptr<Texture> input) : base("Gaussian Blur", input)
+inline GaussianFilter::GaussianFilter() : base("Gaussian Blur")
 {
     
 }

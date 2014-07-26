@@ -141,6 +141,8 @@ void RenderWindow::DrawCurrentTexture()
 
 void RenderWindow::AddTexture(Ptr<Texture> input, const String &descriptor /* = "" */, bool makeCopy /* = true */)
 {
+    if (!input)
+        return;
     Ptr<Texture> texture = input;
     
     /*if (makeCopy)

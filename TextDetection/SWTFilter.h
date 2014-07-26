@@ -18,7 +18,7 @@ private:
     
 public:
     
-    SWTFilter(Ptr<Texture> input = nullptr);
+    SWTFilter();
     
     void Initialize();
     
@@ -61,8 +61,8 @@ public:
     ::GradientDirection GradientDirection;
 };
 
-inline SWTFilter::SWTFilter(Ptr<Texture> input)
-    : base("StrokeWidthTransform", input), GradientDirection(GradientDirection::Unspecified)
+inline SWTFilter::SWTFilter()
+    : base("StrokeWidthTransform"), GradientDirection(GradientDirection::Unspecified)
 {
     
 }

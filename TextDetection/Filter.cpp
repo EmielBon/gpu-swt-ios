@@ -16,6 +16,7 @@
 #include "FrameBuffer.h"
 #include "VertexPosition.h"
 #include "VertexBuffer.h"
+#include "SWTHelperGPU.h"
 
 Ptr<VertexBuffer> Filter::PerPixelVertices = nullptr;
 
@@ -58,8 +59,9 @@ void Filter::DoInitialize()
     initialized = true;
 }
 
-Ptr<Texture> Filter::Apply()
+Ptr<Texture> Filter::Apply(Ptr<Texture> input)
 {
+    Input = input;
     TotalTime = RenderTime = CompileTime = TimeSpan(0);
     
     if (!Input)
@@ -101,7 +103,7 @@ void Filter::Render(PrimitiveType primitiveType, GLenum clearOptions /* = GL_NON
 #endif
 }
 
-void Filter::RenderToTexture(Ptr<Texture> destination, PrimitiveType primitiveType /* = PrimitiveType::Unspecified */, GLenum clearOptions /* = GL_NONE */)
+void Filter::RenderToTexture(Ptr<Texture> destination, PrimitiveType primitiveType /* = PrimitiveType::Triangles */, GLenum clearOptions /* = GL_NONE */)
 {
     SetColorAttachment(destination);
     Render(primitiveType, clearOptions);
@@ -122,9 +124,9 @@ Ptr<Program> Filter::LoadProgram(const String &vertexShaderSource, const String 
     return ContentLoader::Load<Program>(vertexShaderSource, fragmentShaderSource);
 }
 
-Ptr<Texture> Filter::ApplyFilter(Filter &filter)
+Ptr<Texture> Filter::ApplyFilter(Filter &filter, Ptr<Texture> input)
 {
-    auto output = filter.Apply();
+    auto output = filter.Apply(input);
     RenderTime  += filter.RenderTime;
     CompileTime += filter.CompileTime;
     return output;
@@ -147,8 +149,8 @@ void Filter::PrintProfilingInfo() const
 
 void Filter::PreparePerPixelVertices()
 {
-    int width  = Input->GetWidth();
-    int height = Input->GetHeight();
+    int width  = SWTHelperGPU::InputWidth;
+    int height = SWTHelperGPU::InputHeight;
     
     List<VertexPosition> vertices;
     for (int x = 0; x < width;  ++x)

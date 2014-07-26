@@ -15,11 +15,11 @@ class Filter
 {
 protected:
     
-    Filter(const String &name, Ptr<Texture> input = nullptr);
+    Filter(const String &name);
     
 public:
     
-    Ptr<Texture> Apply();
+    Ptr<Texture> Apply(Ptr<Texture> input);
     
     virtual void Initialize() { }
     
@@ -43,11 +43,11 @@ protected:
     Ptr<Program> LoadProgram(const String &vertexShaderSource, const String &fragmentShaderSource);
     
     // Apply a filter as part of this filter, aggregating the profiling information
-    Ptr<Texture> ApplyFilter(Filter &filter);
+    Ptr<Texture> ApplyFilter(Filter &filter, Ptr<Texture> input);
     
     void Render(PrimitiveType primitiveType, GLenum clearOptions = GL_NONE);
 
-    void RenderToTexture(Ptr<Texture> destination, PrimitiveType primitiveType, GLenum clearOptions = GL_NONE);
+    void RenderToTexture(Ptr<Texture> destination, PrimitiveType primitiveType = PrimitiveType::Triangles, GLenum clearOptions = GL_NONE);
     
     Ptr<Texture> GetColorAttachment();
     
@@ -71,12 +71,11 @@ public:
     
     String Name;
     Ptr<Texture> Input;
-    
     TimeSpan RenderTime, CompileTime, TotalTime;
 };
 
-inline Filter::Filter(const String &name, Ptr<Texture> input)
-    : shadersLoaded(false), initialized(false), Name(name), Input(input), RenderTime(0), CompileTime(0), TotalTime(0)
+inline Filter::Filter(const String &name)
+    : shadersLoaded(false), initialized(false), Name(name), RenderTime(0), CompileTime(0), TotalTime(0)
 {
     
 }

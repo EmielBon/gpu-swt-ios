@@ -18,13 +18,13 @@ private:
     
 public:
     
-    CannyFilter(Ptr<Texture> input = nullptr);
+    CannyFilter();
     
     void LoadShaderPrograms();
     
     void Initialize();
     
-    void PerformSteps(Ptr<Texture> output);
+    Ptr<Texture> PerformSteps();
     
 private:
     
@@ -46,7 +46,7 @@ private:
     Ptr<Program> histogram, canny, scharr, diffCanny;
 };
 
-inline CannyFilter::CannyFilter(Ptr<Texture> input) : base("Canny", input)
+inline CannyFilter::CannyFilter() : base("Canny")
 {
     
 }

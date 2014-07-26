@@ -8,25 +8,27 @@
 
 #include "SobelFilter.h"
 #include "Texture.h"
+#include "SWTHelperGPU.h"
 
 Ptr<Texture> SobelFilter::PerformSteps()
 {
-    //ReserveColorBuffers(1);
-    //ScharrAveraging(*Input, ColorBuffers[0]);
-    //Differentiation(*ColorBuffers[0], output);
-    return nullptr;
+    auto output = New<Texture>(SWTHelperGPU::InputWidth, SWTHelperGPU::InputHeight, GL_RG_EXT, GL_HALF_FLOAT_OES);
+    auto temp   = output->GetEmptyClone();
+    ScharrAveraging(Input, temp);
+    Differentiation(temp, output);
+    return output;
 }
 
-void SobelFilter::ScharrAveraging(const Texture &input, Ptr<Texture> output)
+void SobelFilter::ScharrAveraging(Ptr<Texture> input, Ptr<Texture> output)
 {
     scharr->Use();
-    scharr->Uniforms["Texture"].SetValue(input);
-    //RenderToTexture(output);
+    scharr->Uniforms["Texture"].SetValue(*input);
+    RenderToTexture(output, PrimitiveType::Triangles);
 }
 
-void SobelFilter::Differentiation(const Texture &input, Ptr<Texture> output)
+void SobelFilter::Differentiation(Ptr<Texture> input, Ptr<Texture> output)
 {
     diff->Use();
-    diff->Uniforms["Texture"].SetValue(input);
-    //RenderToTexture(output);
+    diff->Uniforms["Texture"].SetValue(*input);
+    RenderToTexture(output, PrimitiveType::Triangles);
 }

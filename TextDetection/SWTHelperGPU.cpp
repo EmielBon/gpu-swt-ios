@@ -42,15 +42,14 @@ List< Ptr<LetterCandidate> > SWTHelperGPU::StrokeWidthTransform(Ptr<Texture> inp
     FrameBuffer::DefaultOffscreenFrameBuffer = New<FrameBuffer>();
     //frameBuffer.SetDepthStencil(depthStencil);
     check_gl_error();
-    auto textRegionsFilter = New<TextRegionsFilter>(input);
+    auto textRegionsFilter = New<TextRegionsFilter>();
     check_gl_error();
     textRegionsFilter->DoLoadShaderPrograms();
     check_gl_error();
     glFinish();
     auto setupTime = now() - startTime;
     check_gl_error();
-    textRegionsFilter->Input = input;
-    textRegionsFilter->Apply();
+    textRegionsFilter->Apply(input);
     check_gl_error();
     renderTime  += textRegionsFilter->RenderTime;
     compileTime += textRegionsFilter->CompileTime;

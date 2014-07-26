@@ -18,16 +18,16 @@ void CannyFilter::LoadShaderPrograms()
     gaussian = New<GaussianFilter>();
     gaussian->DoLoadShaderPrograms();
     
-    histogram = LoadProgram("Histogram", "Value");
-    canny     = LoadScreenSpaceProgram("Canny");
-    scharr    = LoadScreenSpaceProgram("Sobel1");
-    diffCanny = LoadScreenSpaceProgram("CannySobel2");
+    //histogram = LoadProgram("Histogram", "Value");
+    //canny     = LoadScreenSpaceProgram("Canny");
+    //scharr    = LoadScreenSpaceProgram("Sobel1");
+    //diffCanny = LoadScreenSpaceProgram("CannySobel2");
 }
 
 void CannyFilter::Initialize()
 {
     glClearColor(0, 0, 0, 0);
-    PrepareStencilTest();
+    //PrepareStencilTest();
 }
 
 void CannyFilter::PrepareStencilTest()
@@ -37,7 +37,7 @@ void CannyFilter::PrepareStencilTest()
     glStencilFunc(GL_ALWAYS, 2, 0xFF);
 }
 
-void CannyFilter::PerformSteps(Ptr<Texture> output)
+Ptr<Texture> CannyFilter::PerformSteps()
 {
     /*ReserveColorBuffers(2);
 
@@ -60,11 +60,11 @@ void CannyFilter::PerformSteps(Ptr<Texture> output)
     for(i = 0; i < 255 && percentile < 0.5; ++i)
         percentile += pixels[i] / count;
     float median = i / 255.0f;
+    */
+    auto blurred = ApplyFilter(*gaussian, Input);
+    DEBUG_FB(blurred, "Blurred");
     
-    gaussian->Input = Input;
-    ApplyFilter(*gaussian, ColorBuffers[0]);
-    
-    ScharrAveraging(*ColorBuffers[0], output);
+    /*ScharrAveraging(*ColorBuffers[0], output);
     Differentiation(*output, ColorBuffers[0]);
     
     //glEnable(GL_STENCIL_TEST);
@@ -72,6 +72,7 @@ void CannyFilter::PerformSteps(Ptr<Texture> output)
     DetectEdges(*ColorBuffers[0], 0.33f * median, 0.66f * median, output); // Buffer0 contains gradients
     DEBUG_FB("Edges");*/
     //glDisable(GL_STENCIL_TEST);
+    return nullptr;
 }
 
 void CannyFilter::DetectEdges(const Texture &gradients, float lowerThreshold, float upperThreshold, Ptr<Texture> output)
@@ -88,12 +89,12 @@ void CannyFilter::ScharrAveraging(const Texture &input, Ptr<Texture> output)
 {
     scharr->Use();
     scharr->Uniforms["Texture"].SetValue(input);
-    //RenderToTexture(output);
+    RenderToTexture(output);
 }
 
 void CannyFilter::Differentiation(const Texture &input, Ptr<Texture> output)
 {
     diffCanny->Use();
     diffCanny->Uniforms["Texture"].SetValue(input);
-    //RenderToTexture(output);
+    RenderToTexture(output);
 }

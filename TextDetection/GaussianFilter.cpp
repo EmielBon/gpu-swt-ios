@@ -7,25 +7,28 @@
 //
 
 #include "GaussianFilter.h"
+#include "SWTHelperGPU.h"
+#include "Texture.h"
 
 Ptr<Texture> GaussianFilter::PerformSteps()
 {
-    //ReserveColorBuffers(1);
-    //HorizontalPass(*Input, ColorBuffers[0]);
-    //VerticalPass(*ColorBuffers[0], output);
-    return nullptr;
+    auto output = New<Texture>(SWTHelperGPU::InputWidth, SWTHelperGPU::InputHeight, GL_RGBA, GL_UNSIGNED_BYTE);
+    auto temp   = output->GetEmptyClone();
+    HorizontalPass(Input, temp);
+    VerticalPass(temp, output);
+    return output;
 }
 
-void GaussianFilter::HorizontalPass(const Texture &input, Ptr<Texture> output)
+void GaussianFilter::HorizontalPass(Ptr<Texture> input, Ptr<Texture> output)
 {
     hor->Use();
-    hor->Uniforms["Texture"].SetValue(input);
-    //RenderToTexture(output);
+    hor->Uniforms["Texture"].SetValue(*input);
+    RenderToTexture(output);
 }
 
-void GaussianFilter::VerticalPass(const Texture &input, Ptr<Texture> output)
+void GaussianFilter::VerticalPass(Ptr<Texture> input, Ptr<Texture> output)
 {
     ver->Use();
-    ver->Uniforms["Texture"].SetValue(input);
-    //RenderToTexture(output);
+    ver->Uniforms["Texture"].SetValue(*input);
+    RenderToTexture(output);
 }

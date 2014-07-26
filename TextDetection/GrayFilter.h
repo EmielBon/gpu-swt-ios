@@ -18,7 +18,7 @@ private:
     
 public:
     
-    GrayFilter(Ptr<Texture> input = nullptr);
+    GrayFilter();
     
     void LoadShaderPrograms();
     
@@ -29,7 +29,7 @@ private:
     Ptr<Program> grayscale;
 };
 
-inline GrayFilter::GrayFilter(Ptr<Texture> input) : base("Grayscale", input)
+inline GrayFilter::GrayFilter() : base("Grayscale")
 {
     
 }

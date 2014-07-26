@@ -18,7 +18,7 @@ private:
     
 public:
     
-    TextRegionsFilter(Ptr<Texture> input = nullptr);
+    TextRegionsFilter();
     
     void LoadShaderPrograms();
     
@@ -69,8 +69,8 @@ private:
     Ptr<Program> vertexTexture;
 };
 
-inline TextRegionsFilter::TextRegionsFilter(Ptr<Texture> input)
-    : base("TextRegions", input)
+inline TextRegionsFilter::TextRegionsFilter()
+    : base("TextRegions")
 {
     
 }

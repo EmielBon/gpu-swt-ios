@@ -21,11 +21,11 @@
 
 void SWTFilter::LoadShaderPrograms()
 {
-    sobel    = New<SobelFilter>();
-    //canny    = New<CannyFilter>();
+    sobel = New<SobelFilter>();
+    canny = New<CannyFilter>();
     
     sobel->DoLoadShaderPrograms();
-    //canny->DoLoadShaderPrograms();
+    canny->DoLoadShaderPrograms();
     
     /*cast     = LoadScreenSpaceProgram("CastRays");
     write    = LoadProgram("WriteRays", "Value");
@@ -36,14 +36,8 @@ void SWTFilter::LoadShaderPrograms()
 
 void SWTFilter::Initialize()
 {
-    //gradients = New<Texture>(SWTHelperGPU::InputWidth, SWTHelperGPU::InputHeight, GL_RG_EXT, GL_HALF_FLOAT_OES);
-    //edges     = ColorBuffers[1];
-    
-    sobel->Input = Input;
-    //canny->Input = Input;
-    
-    gradients = ApplyFilter(*sobel);
-    //ApplyFilter(*canny, edges); // Builds an edge-only stencil buffer
+    gradients = ApplyFilter(*sobel, Input);
+    edges     = ApplyFilter(*canny, Input);
     DEBUG_FB(gradients, "Gradients");
     //PrepareEdgeOnlyStencil();
     //PrepareRayLines(*edges);

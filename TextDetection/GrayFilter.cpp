@@ -12,6 +12,7 @@
 #include "Texture.h"
 #include "GraphicsDevice.h"
 #include "FrameBuffer.h"
+#include "SWTHelperGPU.h"
 
 Ptr<Texture> GrayFilter::PerformSteps()
 {
@@ -31,7 +32,7 @@ Ptr<Texture> GrayFilter::PerformSteps()
     RenderToTexture(output, PrimitiveType::Lines, GL_COLOR_BUFFER_BIT);
     GraphicsDevice::UseDefaultBuffers();*/
     
-    auto output = New<Texture>(Input->GetWidth(), Input->GetHeight(), GL_RGBA, GL_UNSIGNED_BYTE);
+    auto output = New<Texture>(SWTHelperGPU::InputWidth, SWTHelperGPU::InputHeight, GL_RED_EXT, GL_UNSIGNED_BYTE);
     check_gl_error();
     grayscale->Use();
     check_gl_error();

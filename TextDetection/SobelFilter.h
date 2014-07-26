@@ -18,7 +18,7 @@ private:
     
 public:
     
-    SobelFilter(Ptr<Texture> input = nullptr);
+    SobelFilter();
     
     void LoadShaderPrograms();
     
@@ -26,16 +26,16 @@ public:
 
 private:
     
-    void ScharrAveraging(const Texture &input, Ptr<Texture> output);
+    void ScharrAveraging(Ptr<Texture> input, Ptr<Texture> output);
     
-    void Differentiation(const Texture &input, Ptr<Texture> output);
+    void Differentiation(Ptr<Texture> input, Ptr<Texture> output);
     
 private:
     
     Ptr<Program> scharr, diff;
 };
 
-inline SobelFilter::SobelFilter(Ptr<Texture> input) : base("Sobel", input)
+inline SobelFilter::SobelFilter() : base("Sobel")
 {
     
 }
