@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "IOGLResource.h"
+#include "OGLResource.h"
 #include "types.h"
 #include "Uniform.h"
 

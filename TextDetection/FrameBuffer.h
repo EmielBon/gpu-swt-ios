@@ -8,12 +8,12 @@
 
 #pragma once
 
-#include "IOGLBindableResource.h"
+#include "OGLBindableResource.h"
 #include "RenderBufferType.h"
 #include "Texture.h"
 #include "types.h"
 
-class FrameBuffer : public IOGLBindableResource<FrameBuffer>
+class FrameBuffer : public OGLBindableResource<FrameBuffer>
 {
 public:
     

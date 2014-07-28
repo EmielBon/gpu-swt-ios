@@ -8,11 +8,11 @@
 
 #pragma once
 
-#include "IOGLBindableResource.h"
+#include "OGLBindableResource.h"
 #include "RenderBufferType.h"
 #include "types.h"
 
-class RenderBuffer : public IOGLBindableResource<RenderBuffer>
+class RenderBuffer : public OGLBindableResource<RenderBuffer>
 {
 public:
     

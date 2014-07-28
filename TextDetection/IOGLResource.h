@@ -1,58 +1,23 @@
 //
 //  IOGLResource.h
-//  OGLTest
+//  TextDetection
 //
-//  Created by Emiel Bon on 03-02-14.
+//  Created by Emiel Bon on 28-07-14.
 //  Copyright (c) 2014 Emiel Bon. All rights reserved.
 //
 
 #pragma once
 
 #include "types.h"
-#include "GLError.h"
 
 class IOGLResource
 {
 public:
     
-    virtual ~IOGLResource() { Dispose(); };
+    virtual void Generate() = 0;
     
-    void Setup(Function<void(GLsizei, GLuint*)> generateFunction, Function<void(GLsizei, GLuint*)> disposeFunction);
+    virtual GLuint GetHandle() const = 0;
     
-    void Generate();
-    
-    GLuint GetHandle() const;
-    
-    void Dispose();
-    
-protected:
-    
-    GLuint handle;
-    Function<void(GLsizei, GLuint*)> GenerateFunction;
-    Function<void(GLsizei, GLuint*)> DisposeFunction;
+    virtual void Dispose() = 0;
 };
 
-inline void IOGLResource::Setup(Function<void(GLsizei, GLuint*)> generateFunction, Function<void(GLsizei, GLuint*)> disposeFunction)
-{
-    GenerateFunction = generateFunction;
-    DisposeFunction  = disposeFunction;
-}
-
-inline void IOGLResource::Generate()
-{
-    check_gl_error();
-    GenerateFunction(1, &handle);
-    check_gl_error();
-}
-
-inline GLuint IOGLResource::GetHandle() const
-{
-    return handle;
-}
-
-inline void IOGLResource::Dispose()
-{
-    check_gl_error();
-    //DisposeFunction(1, &handle);
-    check_gl_error();
-}

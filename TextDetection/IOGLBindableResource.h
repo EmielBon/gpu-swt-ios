@@ -1,80 +1,25 @@
 //
 //  IOGLBindableResource.h
-//  OGLTest
+//  TextDetection
 //
-//  Created by Emiel Bon on 20-03-14.
+//  Created by Emiel Bon on 28-07-14.
 //  Copyright (c) 2014 Emiel Bon. All rights reserved.
 //
+
+
 
 #pragma once
 
 #include "IOGLResource.h"
 #include "types.h"
 
-template<class T>
-class IOGLBindableResource : public IOGLResource
+class IOGLBindableResource
 {
 public:
     
-    virtual ~IOGLBindableResource() = default;
+    virtual void Bind() const = 0;
     
-    void Setup(Function<void(GLsizei, GLuint*)> generateFunction, Function<void(GLsizei, GLuint*)> disposeFunction, Function<void(GLenum, GLuint)> bindFunction, GLenum targetName);
+    virtual void Unbind() const = 0;
     
-    void Bind() const;
-    
-    void Unbind() const;
-    
-    bool IsBound() const;
-    
-    static T* GetCurrentlyBound() { return static_cast<T*>(boundBuffer); }
-    
-protected:
-    
-    static Function<void(GLenum, GLuint)> BindFunction;
-    static GLenum TargetName;
-    
-private:
-    
-    static IOGLBindableResource<T> *boundBuffer;
+    virtual bool IsBound() const = 0;
 };
-
-template<class T> IOGLBindableResource<T>* IOGLBindableResource<T>::boundBuffer = nullptr;
-template<class T> Function<void(GLenum, GLuint)> IOGLBindableResource<T>::BindFunction;
-template<class T> GLenum IOGLBindableResource<T>::TargetName = GL_NONE;
-
-template<class T>
-inline void IOGLBindableResource<T>::Setup(Function<void(GLsizei, GLuint*)> generateFunction, Function<void(GLsizei, GLuint*)> disposeFunction, Function<void(GLenum, GLuint)> bindFunction, GLenum targetName)
-{
-    BindFunction = bindFunction;
-    TargetName   = targetName;
-    IOGLResource::Setup(generateFunction, disposeFunction);
-}
-
-template<class T>
-inline void IOGLBindableResource<T>::Bind() const
-{
-    if (!IsBound())
-    {
-        boundBuffer = const_cast<IOGLBindableResource*>(this);
-        BindFunction( TargetName, GetHandle() );
-        check_gl_error();
-    }
-}
-
-template<class T>
-inline void IOGLBindableResource<T>::Unbind() const
-{
-    if (IsBound())
-    {
-        BindFunction(TargetName, 0);
-        check_gl_error();
-    }
-}
-
-template<class T>
-inline bool IOGLBindableResource<T>::IsBound() const
-{
-    if (boundBuffer)
-        return GetHandle() == boundBuffer->GetHandle();
-    return false;
-}

@@ -45,8 +45,6 @@ void FrameBuffer::SetColorAttachment(Ptr<Texture> colorAttachment)
         throw std::runtime_error("Attempt to attach nullptr color attachment");
         
     ColorAttachment0 = colorAttachment;
-    ColorAttachment0->Bind();
-    // todo: remove bind
     Bind();
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, ColorAttachment0->GetHandle(), 0);
     AssertFrameBufferComplete();

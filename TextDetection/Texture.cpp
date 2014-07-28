@@ -11,7 +11,7 @@
 Texture::Texture(GLuint handle, int width, int height, GLenum format, GLenum type)
     : Parameters(width, height, format, type)
 {
-    Setup( [&](GLsizei count, GLuint* textures) { this->handle = handle; }, glDeleteTextures, glBindTexture, GL_TEXTURE_2D );
+    Setup( [&](GLsizei count, GLuint* textures) { this->handle = handle; }, glDeleteTextures, glBindTexture, GL_TEXTURE_2D);
     Generate();
 }
 

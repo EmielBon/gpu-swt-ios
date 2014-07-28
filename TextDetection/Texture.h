@@ -8,16 +8,12 @@
 
 #pragma once
 
-#include "IOGLBindableResource.h"
+#include "OGLBindableResource.h"
 #include "TextureParameters.h"
 #include "types.h"
 
-class Texture : public IOGLBindableResource<Texture>
+class Texture : public OGLBindableResource<Texture>
 {
-private:
-    
-    using base = IOGLBindableResource<Texture>;
-    
 public:
     
     // Empty constructor. Setup, Generate and Initialize need to be called manually
@@ -42,12 +38,6 @@ public:
 public:
     
     TextureParameters Parameters;
-    //static const GLenum PREFERRED_TYPE = GL_UNSIGNED_INT_8_8_8_8_REV;
-    
-private:
-    
-    static Map<Tuple<int, int, GLenum, GLenum>, Stack<GLuint>> freeTextures;
-    static const int MAX_RETAINED_TEXTURES = 100;
 };
 
 inline Texture::Texture(int width, int height, GLenum format, GLenum type, const GLvoid *pixels /* = nullptr */)

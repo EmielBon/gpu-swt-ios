@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include "IOGLResource.h"
 #include "types.h"
 
 class Shader

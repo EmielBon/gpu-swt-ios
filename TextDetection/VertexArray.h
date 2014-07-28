@@ -8,10 +8,10 @@
 
 #pragma once
 
-#include "IOGLResource.h"
+#include "OGLResource.h"
 #include "types.h"
 
-class VertexArray : public IOGLResource
+class VertexArray : public OGLResource
 {
 public:
     

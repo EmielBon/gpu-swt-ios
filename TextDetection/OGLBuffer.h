@@ -8,15 +8,15 @@
 
 #pragma once
 
-#include "IOGLBindableResource.h"
+#include "OGLBindableResource.h"
 #include "types.h"
 
 template<class T>
-class OGLBuffer : public IOGLBindableResource<T>
+class OGLBuffer : public OGLBindableResource<T>
 {
 private:
     
-    using base = IOGLBindableResource<T>;
+    using base = OGLBindableResource<T>;
     
 public:
     
