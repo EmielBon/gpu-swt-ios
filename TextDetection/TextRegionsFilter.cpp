@@ -12,7 +12,7 @@
 //#include "ConnectedComponentsFilter.h"
 #include "Texture.h"
 #include "FrameBuffer.h"
-
+#include "GaussianFilter.h"
 #include "VertexPosition.h"
 #include "VertexBuffer.h"
 #include "GraphicsDevice.h"
@@ -46,10 +46,14 @@ void TextRegionsFilter::LoadShaderPrograms()
 
 void TextRegionsFilter::Initialize()
 {
+    auto gauss = New<GaussianFilter>();
+    gauss->DoLoadShaderPrograms();
     check_gl_error();
     gray = ApplyFilter(*grayFilter, Input);
+    auto blur = ApplyFilter(*gauss, Input);
     check_gl_error();
     DEBUG_FB(gray, "Gray");
+    DEBUG_FB(blur, "Gauss");
     check_gl_error();
     //PreparePerPixelVertices();
 }
@@ -200,8 +204,8 @@ Ptr<Texture> TextRegionsFilter::PerformSteps()
     
     //ReserveColorBuffers(12);
     
-    auto swt1        = New<Texture>(SWTHelperGPU::InputWidth, SWTHelperGPU::InputHeight, GL_RG_EXT, GL_HALF_FLOAT_OES);
-    /*auto swt2        = ColorBuffers[1];
+    /*auto swt1        = ColorBuffers[0];
+    auto swt2        = ColorBuffers[1];
     auto components1 = ColorBuffers[2];
     auto components2 = ColorBuffers[3];
     auto bboxes      = ColorBuffers[4];
@@ -215,7 +219,7 @@ Ptr<Texture> TextRegionsFilter::PerformSteps()
     */
     // Calculate SWT
     swtFilter->GradientDirection = GradientDirection::With;
-    swt1 = ApplyFilter(*swtFilter, Input);
+    auto swt1 = ApplyFilter(*swtFilter, gray);
     /*
     swtFilter->GradientDirection = GradientDirection::Against;
     ApplyFilter(*swtFilter, swt2);

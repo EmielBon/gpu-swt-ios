@@ -65,7 +65,10 @@ template<class T>
 inline void IOGLBindableResource<T>::Unbind() const
 {
     if (IsBound())
+    {
         BindFunction(TargetName, 0);
+        check_gl_error();
+    }
 }
 
 template<class T>

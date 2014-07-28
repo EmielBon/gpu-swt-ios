@@ -20,15 +20,15 @@ Ptr<::IndexBuffer>  GraphicsDevice::DefaultIndexBuffer  = nullptr;
 void GraphicsDevice::DrawPrimitives(PrimitiveType primitiveType)
 {
     AssertCompleteProgram();
-    //SetupVertexArray();
     VertexBuffer->VertexArrayObject.Bind();
+    //VertexBuffer->VertexArrayObject.Bind();
     // bind the index buffer (apparently HAS to happen AFTER vertex array setup)
-    auto x = IndexBuffer;
     IndexBuffer->Bind();
     // draw the VAO
     // todo: kan miss een kleiner datatype dan int of zelfs short, omdat er voor per pixel geen indices gebruikt worden
     glDrawElements((GLenum)primitiveType, IndexBuffer->Count(), GL_UNSIGNED_BYTE, NULL);
-    VertexArray::BindDefault();
+    IndexBuffer->Unbind();
+    VertexBuffer->Unbind();
 }
 
 void GraphicsDevice::DrawArrays(PrimitiveType primitiveType)
@@ -36,7 +36,6 @@ void GraphicsDevice::DrawArrays(PrimitiveType primitiveType)
     check_gl_error();
     AssertCompleteProgram();
     check_gl_error();
-    //SetupVertexArray();
     VertexBuffer->VertexArrayObject.Bind();
     check_gl_error();
     // Draw without index buffer
@@ -44,7 +43,7 @@ void GraphicsDevice::DrawArrays(PrimitiveType primitiveType)
     VertexArray::BindDefault();
 }
 
-void GraphicsDevice::SetupVertexArray()
+/*void GraphicsDevice::SetupVertexArray()
 {
     auto &vertexDeclaration         = VertexBuffer->GetVertexDeclaration();
     auto &vertexDeclarationElements = vertexDeclaration.GetElements();
@@ -65,7 +64,7 @@ void GraphicsDevice::SetupVertexArray()
         glEnableVertexAttribArray(location);
         glVertexAttribPointer(location, size, type, GL_FALSE, stride, reinterpret_cast<void*>(vertexElement.GetElementOffset()));
     }
-}
+}*/
 
 void GraphicsDevice::AssertCompleteProgram()
 {

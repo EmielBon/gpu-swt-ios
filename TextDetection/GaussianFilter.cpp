@@ -13,8 +13,10 @@
 Ptr<Texture> GaussianFilter::PerformSteps()
 {
     auto output = New<Texture>(SWTHelperGPU::InputWidth, SWTHelperGPU::InputHeight, GL_RGBA, GL_UNSIGNED_BYTE);
-    auto temp   = output->GetEmptyClone();
+    auto temp   = New<Texture>(SWTHelperGPU::InputWidth, SWTHelperGPU::InputHeight, GL_RGBA, GL_UNSIGNED_BYTE);
+    temp->Bind();
     HorizontalPass(Input, temp);
+    output->Bind();
     VerticalPass(temp, output);
     return output;
 }

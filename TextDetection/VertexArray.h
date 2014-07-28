@@ -19,13 +19,9 @@ public:
     
     void Bind();
     
-    static void BindDefault();
-    
     void Unbind();
     
-public:
-    
-    GLuint handle;
+    static void BindDefault();
 };
 
 inline VertexArray::VertexArray()
@@ -39,12 +35,12 @@ inline void VertexArray::Bind()
     glBindVertexArrayOES( GetHandle() );
 }
 
-inline void VertexArray::BindDefault()
-{
-    glBindVertexArrayOES(0);
-}
-
 inline void VertexArray::Unbind()
 {
     BindDefault();
+}
+
+inline void VertexArray::BindDefault()
+{
+    glBindVertexArrayOES(0);
 }

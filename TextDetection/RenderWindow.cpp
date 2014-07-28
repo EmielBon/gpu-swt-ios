@@ -52,7 +52,7 @@ RenderWindow::RenderWindow(GLuint inputTextureHandle, GLuint width, GLuint heigh
     GraphicsDevice::SetDefaultBuffers(rect1->VertexBuffer, rect1->IndexBuffer);
     GraphicsDevice::UseDefaultBuffers();
     check_gl_error();
-    program = Program::LoadScreenSpaceProgram("Normal");
+    program = Program::LoadScreenSpaceProgram("Sobel1");
     check_gl_error();
     auto letterCandidates = SWTHelperGPU::StrokeWidthTransform(input);
     check_gl_error();

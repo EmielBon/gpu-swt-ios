@@ -27,7 +27,7 @@ public:
     
 private:
     
-    static void SetupVertexArray();
+    //static void SetupVertexArray();
     
     static void AssertCompleteProgram();
     

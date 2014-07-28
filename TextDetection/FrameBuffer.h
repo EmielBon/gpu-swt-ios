@@ -30,7 +30,7 @@ public:
     bool IsFrameBufferComplete() const;
 
     // Warning! Clamps color values to [0,1]
-    void CopyColorAttachment(const Texture &destination) const;
+    //void CopyColorAttachment(const Texture &destination) const;
     
     template<class T>
     static List<T> ReadPixels(int x, int y, int width, int height, GLenum format, GLenum type);

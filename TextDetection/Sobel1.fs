@@ -22,5 +22,5 @@ void main()
     float vHor = dot(hResult, weights);
     float vVer = dot(vResult, weights);
     
-    gl_FragColor = vec4(vHor, vVer, 0, 1);
+    gl_FragColor = sample(Texture, vec2(uv));//vec4(vHor, vVer, 0, 1);
 }

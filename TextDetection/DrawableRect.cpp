@@ -30,7 +30,6 @@ DrawableRect::DrawableRect(float x1, float y1, float x2, float y2)
     IndexBuffer = New<::IndexBuffer>();   check_gl_error();
     IndexBuffer->SetData(indices);        check_gl_error();*/
     
-    
     List<VertexPosition> vertices(6);
      
     vertices[0].Position = {x1, y1, 1};

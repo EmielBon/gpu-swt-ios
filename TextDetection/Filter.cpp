@@ -51,10 +51,10 @@ void Filter::DoInitialize()
         Initialize();
         check_gl_error();
         ColorBuffers.clear();
-        if (!PerPixelVertices && !Input)
+        /*if (!PerPixelVertices && !Input)
             throw std::runtime_error("Cannot initialize per pixel vertex buffer without input texture");
         if (!PerPixelVertices) // initialize the static per pixel vertexbuffer once
-            PreparePerPixelVertices();
+            PreparePerPixelVertices();*/
     }
     initialized = true;
 }

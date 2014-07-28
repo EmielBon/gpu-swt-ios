@@ -80,7 +80,7 @@ void FrameBuffer::SetDepthStencil(Ptr<RenderBuffer> renderBufferAttachment)
     AssertFrameBufferComplete();
 }
 
-void FrameBuffer::CopyColorAttachment(const Texture &dest) const
+/*void FrameBuffer::CopyColorAttachment(const Texture &dest) const
 {
     GLenum sourceType = FrameBuffer::DefaultOffscreenFrameBuffer->ColorAttachment0->Parameters.Type;
     GLenum   destType = dest.Parameters.Type;
@@ -98,7 +98,7 @@ void FrameBuffer::CopyColorAttachment(const Texture &dest) const
     if (prev)
         prev->Bind();
     check_gl_error();
-}
+}*/
 
 void FrameBuffer::Print(int x, int y, int width, int height)
 {
