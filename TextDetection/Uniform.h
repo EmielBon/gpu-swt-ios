@@ -120,5 +120,5 @@ inline void Uniform::SetValue(const Vector4 &value)
 
 inline void Uniform::AssertLocation() const
 {
-    assert2(location >= 0, "Error: Setting value of inactive uniform");
+    warning(location >= 0, "Warning: Setting value of inactive uniform");
 }

@@ -47,3 +47,8 @@ vec2 round(vec2 v)
 {
     return floor(v + vec2(0.5));
 }
+
+float atan2(vec2 v)
+{
+    return atan(v.y, v.x);
+}

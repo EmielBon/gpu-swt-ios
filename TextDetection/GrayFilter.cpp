@@ -39,7 +39,6 @@ Ptr<Texture> GrayFilter::PerformSteps()
     grayscale->Uniforms["Texture"].SetValue(*Input);
     check_gl_error();
     RenderToTexture(output, PrimitiveType::Triangles);
-    FrameBuffer::GetCurrentlyBound()->Print();
     check_gl_error();
     return output;
 }

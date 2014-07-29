@@ -10,16 +10,11 @@ const float PiOver2 = Pi / 2.0;
 const float PiOver4 = Pi / 4.0;
 const float PiOver8 = Pi / 8.0;
 
-float atan2(vec2 v)
-{
-    return atan(v.y, v.x);
-}
-
 void main()
 {
     ivec2 pos      = ivec2(gl_FragCoord.xy);
     vec2  gradient = fetch(Gradients, pos).xy;
-    
+    /*
     float angle     = gradient.x;
     float magnitude = gradient.y;
     
@@ -56,5 +51,6 @@ void main()
         gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
     else
         gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-    //gl_FragColor = vec4(int(isEdgePixel));
+    //gl_FragColor = vec4(int(isEdgePixel));*/
+    gl_FragColor = vec4(gradient, 0, 1);
 }

@@ -65,7 +65,8 @@ Ptr<Texture> CannyFilter::PerformSteps()
     auto blurred = gaussian->Apply(Input);
     DEBUG_FB(blurred, "Blurred");
     
-    auto output = New<Texture>(GL_RED_EXT, GL_HALF_FLOAT_OES);
+    // todo: output only red
+    auto output = New<Texture>(GL_RG_EXT, GL_HALF_FLOAT_OES);
     auto temp1  = New<Texture>(GL_RG_EXT,  GL_HALF_FLOAT_OES);
     auto temp2  = temp1->GetEmptyClone();
     

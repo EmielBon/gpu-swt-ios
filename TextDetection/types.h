@@ -33,10 +33,12 @@ template<class T> using Function = std::function<T>;
 
 #ifdef DEBUG_STEPS
     #define DEBUG_FB(texture, name) RenderWindow::Instance().AddTexture(texture, name)
-    #define assert2(condition, message) if (!(condition)) throw std::runtime_error(String("") + (message))
+    #define assert2(condition, message) if (!(condition)) throw std::runtime_error(String("Error: ") + (message))
     #define crash(message) assert2(false, message)
+    #define warning(condition, message) if (!(condition)) printf("%s\n", (message))
 #else
     #define DEBUG_FB(texture, name)
     #define assert2(condition, message)
     #define crash(message)
+    #define warning(condition, message)
 #endif
