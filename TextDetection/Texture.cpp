@@ -8,6 +8,9 @@
 
 #include "Texture.h"
 
+int Texture::DefaultWidth  = 0;
+int Texture::DefaultHeight = 0;
+
 Texture::Texture(GLuint handle, int width, int height, GLenum format, GLenum type)
     : Parameters(width, height, format, type)
 {
@@ -36,4 +39,10 @@ void Texture::SetData(const GLvoid* pixels)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glTexImage2D(GL_TEXTURE_2D, 0, Parameters.Format, GetWidth(), GetHeight(), 0, Parameters.Format, Parameters.Type, pixels);
     Unbind();
+}
+
+void Texture::SetDefaultSize(int width, int height)
+{
+    DefaultWidth  = width;
+    DefaultHeight = height;
 }

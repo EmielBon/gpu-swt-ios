@@ -37,3 +37,13 @@ float getRatio(float x, float y)
 {
     return max(x / y, y / x);
 }
+
+float round(float x)
+{
+    return floor(x + 0.5);
+}
+
+vec2 round(vec2 v)
+{
+    return floor(v + vec2(0.5));
+}

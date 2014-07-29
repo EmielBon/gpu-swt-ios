@@ -46,15 +46,9 @@ void TextRegionsFilter::LoadShaderPrograms()
 
 void TextRegionsFilter::Initialize()
 {
-    auto gauss = New<GaussianFilter>();
-    gauss->DoLoadShaderPrograms();
     check_gl_error();
-    gray = ApplyFilter(*grayFilter, Input);
-    auto blur = ApplyFilter(*gauss, Input);
-    check_gl_error();
+    gray = grayFilter->Apply(Input); check_gl_error();
     DEBUG_FB(gray, "Gray");
-    DEBUG_FB(blur, "Gauss");
-    check_gl_error();
     //PreparePerPixelVertices();
 }
 
@@ -68,6 +62,107 @@ void TextRegionsFilter::PrepareSummationOperations()
 {
     glBlendEquation(GL_FUNC_ADD);
     glBlendFunc(GL_ONE, GL_ONE);
+}
+
+Ptr<Texture> TextRegionsFilter::PerformSteps()
+{
+    // Attention: output is null;
+    
+    //ReserveColorBuffers(12);
+    
+    /*auto swt1        = ColorBuffers[0];
+     auto swt2        = ColorBuffers[1];
+     auto components1 = ColorBuffers[2];
+     auto components2 = ColorBuffers[3];
+     auto bboxes      = ColorBuffers[4];
+     auto filtered    = ColorBuffers[5];
+     auto pixelCount  = ColorBuffers[6];
+     auto averages    = ColorBuffers[7];
+     auto varianceSum = ColorBuffers[8];
+     auto temp        = ColorBuffers[9];
+     auto filteredAverages = ColorBuffers[10];
+     auto output2     = ColorBuffers[11];
+     */
+    // Calculate SWT
+    swtFilter->GradientDirection = GradientDirection::With;
+    auto swt1 = swtFilter->Apply(gray);
+    /*
+     swtFilter->GradientDirection = GradientDirection::Against;
+     ApplyFilter(*swtFilter, swt2);
+     
+     // Determine connected components
+     connectedComponentsFilter->Input = swt1;
+     ApplyFilter(*connectedComponentsFilter, components1);
+     connectedComponentsFilter->Input = swt2;
+     ApplyFilter(*connectedComponentsFilter, components2);
+     
+     // Prepare summations
+     PrepareSummationOperations();
+     GraphicsDevice::SetBuffers(PerPixelVertices, nullptr);
+     glEnable(GL_BLEND);
+     
+     // Calculate pixel count in components
+     CountPixels(components1, pixelCount, true);
+     CountPixels(components2, pixelCount, false);
+     DEBUG_FB("Component pixel counts");
+     
+     // Average component color and SWT
+     AverageColorAndSWT(components1, pixelCount, Input, swt1, averages, true);
+     AverageColorAndSWT(components2, pixelCount, Input, swt2, averages, false);
+     */
+    /*auto pixels = FrameBuffer::DefaultOffscreenFrameBuffer->ReadPixels<cv::Vec4f>(0, 0, 800, 600, GL_RGBA, GL_FLOAT);
+     for(auto& pixel : pixels)
+     {
+     if (pixel[3] != 0.0)
+     printf("%f ", pixel[3]);
+     }*/
+    /*
+     DEBUG_FB("Average component colors");
+     
+     // Calculate variance
+     Variance(components1, pixelCount, swt1, averages, varianceSum, true);
+     Variance(components2, pixelCount, swt2, averages, varianceSum, false);
+     DEBUG_FB("Component variances");
+     
+     // Compute bounding boxes
+     PrepareBoundingBoxCalculation();
+     BoundingBoxes(components1, bboxes, true);
+     BoundingBoxes(components2, bboxes, false);
+     DEBUG_FB("Bounding Boxes");
+     
+     // End summations
+     GraphicsDevice::UseDefaultBuffers();
+     glDisable(GL_BLEND);
+     
+     // Filter invalid components
+     FilterInvalidComponents(bboxes, averages, pixelCount, varianceSum, filtered);
+     DEBUG_FB("Valids");
+     FilterComponentProperties(filtered, averages, filteredAverages);
+     
+     // Count unique components
+     GraphicsDevice::SetBuffers(PerPixelVertices, nullptr);
+     PrepareSummationOperations();
+     glEnable(GL_BLEND);
+     CountComponents(filtered, temp);
+     int componentCount = (int)FrameBuffer::ReadPixel(1, 1)[0];
+     int N = (int)ceil(sqrt(componentCount));
+     printf("Number of unique components: %i\n", componentCount);
+     if (componentCount > 255)
+     printf("Warning: Component count > 255\n");
+     glDisable(GL_BLEND);
+     
+     // Stencil routing
+     PrepareStencilRouting(N);
+     glEnable(GL_STENCIL_TEST);
+     StencilRouting(filtered, N, output);
+     PrepareStencilRouting(N);
+     StencilRouting(filteredAverages, N, output2);
+     ExtractLetterCandidates(output, output2, N, componentCount);
+     glDisable(GL_STENCIL_TEST);
+     glPointSize(1);
+     
+     GraphicsDevice::UseDefaultBuffers();*/
+    return nullptr;
 }
 
 void TextRegionsFilter::FilterInvalidComponents(Ptr<Texture> boundingBoxes, Ptr<Texture> averages, Ptr<Texture> pixelCounts, Ptr<Texture> varianceSums, Ptr<Texture> output)
@@ -197,104 +292,3 @@ void TextRegionsFilter::StencilRouting(Ptr<Texture> input, float N, Ptr<Texture>
     writeIDs->Uniforms["Texture"].SetValue(*input);
     RenderToTexture(output);
 }*/
-
-Ptr<Texture> TextRegionsFilter::PerformSteps()
-{
-    // Attention: output is null;
-    
-    //ReserveColorBuffers(12);
-    
-    /*auto swt1        = ColorBuffers[0];
-    auto swt2        = ColorBuffers[1];
-    auto components1 = ColorBuffers[2];
-    auto components2 = ColorBuffers[3];
-    auto bboxes      = ColorBuffers[4];
-    auto filtered    = ColorBuffers[5];
-    auto pixelCount  = ColorBuffers[6];
-    auto averages    = ColorBuffers[7];
-    auto varianceSum = ColorBuffers[8];
-    auto temp        = ColorBuffers[9];
-    auto filteredAverages = ColorBuffers[10];
-    auto output2     = ColorBuffers[11];
-    */
-    // Calculate SWT
-    swtFilter->GradientDirection = GradientDirection::With;
-    auto swt1 = ApplyFilter(*swtFilter, gray);
-    /*
-    swtFilter->GradientDirection = GradientDirection::Against;
-    ApplyFilter(*swtFilter, swt2);
-    
-    // Determine connected components
-    connectedComponentsFilter->Input = swt1;
-    ApplyFilter(*connectedComponentsFilter, components1);
-    connectedComponentsFilter->Input = swt2;
-    ApplyFilter(*connectedComponentsFilter, components2);
-
-    // Prepare summations
-    PrepareSummationOperations();
-    GraphicsDevice::SetBuffers(PerPixelVertices, nullptr);
-    glEnable(GL_BLEND);
-    
-    // Calculate pixel count in components
-    CountPixels(components1, pixelCount, true);
-    CountPixels(components2, pixelCount, false);
-    DEBUG_FB("Component pixel counts");
-    
-    // Average component color and SWT
-    AverageColorAndSWT(components1, pixelCount, Input, swt1, averages, true);
-    AverageColorAndSWT(components2, pixelCount, Input, swt2, averages, false);
-    */
-    /*auto pixels = FrameBuffer::DefaultOffscreenFrameBuffer->ReadPixels<cv::Vec4f>(0, 0, 800, 600, GL_RGBA, GL_FLOAT);
-    for(auto& pixel : pixels)
-    {
-        if (pixel[3] != 0.0)
-            printf("%f ", pixel[3]);
-    }*/
-    /*
-    DEBUG_FB("Average component colors");
-    
-    // Calculate variance
-    Variance(components1, pixelCount, swt1, averages, varianceSum, true);
-    Variance(components2, pixelCount, swt2, averages, varianceSum, false);
-    DEBUG_FB("Component variances");
-    
-    // Compute bounding boxes
-    PrepareBoundingBoxCalculation();
-    BoundingBoxes(components1, bboxes, true);
-    BoundingBoxes(components2, bboxes, false);
-    DEBUG_FB("Bounding Boxes");
-    
-    // End summations
-    GraphicsDevice::UseDefaultBuffers();
-    glDisable(GL_BLEND);
-    
-    // Filter invalid components
-    FilterInvalidComponents(bboxes, averages, pixelCount, varianceSum, filtered);
-    DEBUG_FB("Valids");
-    FilterComponentProperties(filtered, averages, filteredAverages);
-    
-    // Count unique components
-    GraphicsDevice::SetBuffers(PerPixelVertices, nullptr);
-    PrepareSummationOperations();
-    glEnable(GL_BLEND);
-    CountComponents(filtered, temp);
-    int componentCount = (int)FrameBuffer::ReadPixel(1, 1)[0];
-    int N = (int)ceil(sqrt(componentCount));
-    printf("Number of unique components: %i\n", componentCount);
-    if (componentCount > 255)
-        printf("Warning: Component count > 255\n");
-    glDisable(GL_BLEND);
-    
-    // Stencil routing
-    PrepareStencilRouting(N);
-    glEnable(GL_STENCIL_TEST);
-    StencilRouting(filtered, N, output);
-    PrepareStencilRouting(N);
-    StencilRouting(filteredAverages, N, output2);
-    ExtractLetterCandidates(output, output2, N, componentCount);
-    glDisable(GL_STENCIL_TEST);
-    glPointSize(1);
-
-    GraphicsDevice::UseDefaultBuffers();*/
-    return nullptr;
-}

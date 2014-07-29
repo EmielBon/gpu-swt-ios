@@ -42,9 +42,6 @@ protected:
     
     Ptr<Program> LoadProgram(const String &vertexShaderSource, const String &fragmentShaderSource);
     
-    // Apply a filter as part of this filter, aggregating the profiling information
-    Ptr<Texture> ApplyFilter(Filter &filter, Ptr<Texture> input);
-    
     void Render(PrimitiveType primitiveType, GLenum clearOptions = GL_NONE);
 
     void RenderToTexture(Ptr<Texture> destination, PrimitiveType primitiveType = PrimitiveType::Triangles, GLenum clearOptions = GL_NONE);

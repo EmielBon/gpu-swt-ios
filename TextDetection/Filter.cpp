@@ -64,8 +64,8 @@ Ptr<Texture> Filter::Apply(Ptr<Texture> input)
     Input = input;
     TotalTime = RenderTime = CompileTime = TimeSpan(0);
     
-    if (!Input)
-        throw std::runtime_error(String("No input specified for filter: ") + Name);
+    assert(Input);
+    
 #ifdef PROFILING
     glFinish();
     auto t = now();
@@ -124,14 +124,6 @@ Ptr<Program> Filter::LoadProgram(const String &vertexShaderSource, const String 
     return ContentLoader::Load<Program>(vertexShaderSource, fragmentShaderSource);
 }
 
-Ptr<Texture> Filter::ApplyFilter(Filter &filter, Ptr<Texture> input)
-{
-    auto output = filter.Apply(input);
-    RenderTime  += filter.RenderTime;
-    CompileTime += filter.CompileTime;
-    return output;
-}
-
 void Filter::PrintProfilingInfo() const
 {
     auto misc = TotalTime - RenderTime - CompileTime;
@@ -149,8 +141,8 @@ void Filter::PrintProfilingInfo() const
 
 void Filter::PreparePerPixelVertices()
 {
-    int width  = SWTHelperGPU::InputWidth;
-    int height = SWTHelperGPU::InputHeight;
+    int width  = Texture::DefaultWidth;
+    int height = Texture::DefaultHeight;
     
     List<VertexPosition> vertices;
     for (int x = 0; x < width;  ++x)

@@ -31,7 +31,7 @@ Ptr<Texture> textureFromImage(const cv::Mat &image)
         //case CV_32FC1 : format = GL_RGBA; type = GL_FLOAT;         break;
         //case CV_32FC2 : format = GL_RGBA; type = GL_FLOAT;         break;
         case CV_32FC3 : format = GL_RGB; type = GL_FLOAT;         break;
-        default: throw std::runtime_error("Incompatible source format for texture"); break;
+        default: crash("Incompatible source format for texture"); break;
     }
     
     List<T> pixelData;

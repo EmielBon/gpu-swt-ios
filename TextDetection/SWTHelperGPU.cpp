@@ -21,17 +21,11 @@
 #include "RenderBuffer.h"
 #include "RenderBufferType.h"
 
-int SWTHelperGPU::InputWidth = 0;
-int SWTHelperGPU::InputHeight = 0;
-
 TimeSpan renderTime, copyTime, compileTime;
 
 List< Ptr<LetterCandidate> > SWTHelperGPU::StrokeWidthTransform(Ptr<Texture> input)
 {
-    InputWidth  = input->GetWidth();
-    InputHeight = input->GetHeight();
-    
-    glViewport(0, 0, InputWidth, InputHeight);
+    glViewport(0, 0, Texture::DefaultWidth * 2, Texture::DefaultHeight * 2);
     glFinish();
     auto startTime = now();
     
@@ -78,5 +72,4 @@ void SWTHelperGPU::DisableIrrelvantState()
     glDisable(GL_STENCIL_TEST); check_gl_error();
     glDisable(GL_DEPTH_TEST); check_gl_error();
     // todo: more?
-    // todo: some state disabeling makes OpenGL Profiler crash T_T
 }

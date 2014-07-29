@@ -8,12 +8,11 @@
 
 #pragma once
 
-#include "IOGLBindableResource.h"
 #include "OGLResource.h"
 #include "types.h"
 
 template<class T>
-class OGLBindableResource : public OGLResource, public IOGLBindableResource
+class OGLBindableResource : public OGLResource
 {
 public:
     

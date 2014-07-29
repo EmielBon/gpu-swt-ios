@@ -26,13 +26,12 @@ Program::Program(const List< Ptr<Shader>> &shaders) : programId(0)
 
 GLuint Program::CreateFromShaders(const List<Ptr<Shader> > &shaders)
 {
-    if(shaders.size() == 0)
-        throw std::runtime_error("No shaders were provided to create the program");
+    assert(shaders.size() >= 2);
     
     //create the program object
     GLuint programId = glCreateProgram();
-    if(programId == 0)
-        throw std::runtime_error("glCreateProgram failed");
+    
+    assert(programId);
     
     //attach all the shaders
     for(unsigned i = 0; i < shaders.size(); ++i)
@@ -69,7 +68,7 @@ void Program::AssertLinkingSuccess(GLuint programId)
         glDeleteProgram(programId);
         programId = 0;
         
-        throw std::runtime_error(msg);
+        crash(msg);
     }
 }
 
@@ -95,10 +94,7 @@ void Program::IndexUniforms()
 GLint Program::GetAttributeLocation(const String &name) const
 {
     GLint attrib = glGetAttribLocation(programId, name.c_str());
-    
-    if(attrib == -1)
-        throw std::runtime_error(String("Program attribute not found: ") + name);
-    
+    assert2(attrib >= -1, "Program attribute not found: " + name);
     return attrib;
 }
 

@@ -21,6 +21,8 @@ public:
     
     Texture(GLuint handle, int width, int height, GLenum format, GLenum type);
     
+    Texture(GLenum format, GLenum type, const GLvoid* pixels = nullptr);
+    
     Texture(int width, int height, GLenum format, GLenum type, const GLvoid* pixels = nullptr);
     
     Texture(const TextureParameters &params, const GLvoid* pixels = nullptr);
@@ -35,15 +37,24 @@ public:
     
     void SetData(const GLvoid* pixels);
     
+    static void SetDefaultSize(int width, int height);
+    
 public:
     
     TextureParameters Parameters;
+    static int DefaultWidth, DefaultHeight;
 };
 
 inline Texture::Texture(int width, int height, GLenum format, GLenum type, const GLvoid *pixels /* = nullptr */)
     : Texture( TextureParameters(width, height, format, type), pixels )
 {
     
+}
+
+inline Texture::Texture(GLenum format, GLenum type, const GLvoid *pixels /* = nullptr */)
+    : Texture( DefaultWidth, DefaultHeight, format, type, pixels )
+{
+    assert(DefaultWidth > 0 && DefaultHeight > 0);
 }
 
 inline int Texture::GetWidth() const

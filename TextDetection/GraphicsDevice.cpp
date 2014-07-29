@@ -68,13 +68,11 @@ void GraphicsDevice::DrawArrays(PrimitiveType primitiveType)
 
 void GraphicsDevice::AssertCompleteProgram()
 {
-    if (Program::GetCurrentlyUsed() == nullptr)
-        throw std::runtime_error("Error: Rendering without program");
-        
+    assert(Program::GetCurrentlyUsed());
+    
     for (auto& keyValues : Program::GetCurrentlyUsed()->Uniforms)
     {
         auto &uniform = keyValues.second;
-        if (!uniform.IsInitialized())
-            throw std::runtime_error("Error: No value specified for uniform \"" + uniform.GetName() + "\"");
+        assert2(uniform.IsInitialized(), "Error: No value specified for uniform \"" + uniform.GetName() + "\"");
     }
 }

@@ -7,7 +7,7 @@
         <!--GLKit View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <glkViewController preferredFramesPerSecond="20" id="BV1-FR-VrT" customClass="TextDetectionViewController" sceneMemberID="viewController">
+                <glkViewController preferredFramesPerSecond="1" id="BV1-FR-VrT" customClass="TextDetectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dWe-On-idd"/>
                         <viewControllerLayoutGuide type="bottom" id="nZC-s9-Y68"/>

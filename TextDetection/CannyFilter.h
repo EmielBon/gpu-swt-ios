@@ -28,11 +28,11 @@ public:
     
 private:
     
-    void DetectEdges(const Texture &gradients, float lowerThreshold, float upperThreshold, Ptr<Texture> output);
+    void DetectEdges(Ptr<Texture> gradients, float lowerThreshold, float upperThreshold, Ptr<Texture> output);
     
-    void ScharrAveraging(const Texture &input, Ptr<Texture> output);
+    void ScharrAveraging(Ptr<Texture> input, Ptr<Texture> output);
     
-    void Differentiation(const Texture &input, Ptr<Texture> output);
+    void Differentiation(Ptr<Texture> input, Ptr<Texture> output);
     
     void PrepareStencilTest();
     

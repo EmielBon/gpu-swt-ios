@@ -12,7 +12,7 @@
 
 Ptr<Texture> SobelFilter::PerformSteps()
 {
-    auto output = New<Texture>(SWTHelperGPU::InputWidth, SWTHelperGPU::InputHeight, GL_RG_EXT, GL_HALF_FLOAT_OES);
+    auto output = New<Texture>(GL_RG_EXT, GL_HALF_FLOAT_OES);
     auto temp   = output->GetEmptyClone();
     ScharrAveraging(Input, temp);
     Differentiation(temp, output);
@@ -23,12 +23,12 @@ void SobelFilter::ScharrAveraging(Ptr<Texture> input, Ptr<Texture> output)
 {
     scharr->Use();
     scharr->Uniforms["Texture"].SetValue(*input);
-    RenderToTexture(output, PrimitiveType::Triangles);
+    RenderToTexture(output);
 }
 
 void SobelFilter::Differentiation(Ptr<Texture> input, Ptr<Texture> output)
 {
     diff->Use();
     diff->Uniforms["Texture"].SetValue(*input);
-    RenderToTexture(output, PrimitiveType::Triangles);
+    RenderToTexture(output);
 }

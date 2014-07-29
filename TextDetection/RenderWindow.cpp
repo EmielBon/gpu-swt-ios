@@ -45,6 +45,7 @@ RenderWindow::RenderWindow(GLuint inputTextureHandle, GLuint width, GLuint heigh
     //auto input = ContentLoader::Load<Texture>("sign800x600");
     
     auto input = New<Texture>(inputTextureHandle, width, height, GL_RGBA, GL_UNSIGNED_BYTE); // These parameters probably have no impact, except if you want an empty copy of this texture
+    Texture::SetDefaultSize(width, height);
     check_gl_error();
     AddTexture(input, "Input image", false);
     check_gl_error();
@@ -52,7 +53,7 @@ RenderWindow::RenderWindow(GLuint inputTextureHandle, GLuint width, GLuint heigh
     GraphicsDevice::SetDefaultBuffers(rect1->VertexBuffer, rect1->IndexBuffer);
     GraphicsDevice::UseDefaultBuffers();
     check_gl_error();
-    program = Program::LoadScreenSpaceProgram("Sobel1");
+    program = Program::LoadScreenSpaceProgram("Normal");
     check_gl_error();
     auto letterCandidates = SWTHelperGPU::StrokeWidthTransform(input);
     check_gl_error();
@@ -80,7 +81,7 @@ RenderWindow::RenderWindow(GLuint inputTextureHandle, GLuint width, GLuint heigh
 
 void RenderWindow::Draw()
 {
-    glViewport(0, 0, SWTHelperGPU::InputWidth, SWTHelperGPU::InputHeight);
+    glViewport(0, 0, Texture::DefaultWidth * 2, Texture::DefaultHeight * 2);
     check_gl_error();
     
     if (!textures.empty())
@@ -107,6 +108,7 @@ void RenderWindow::Draw()
          keyPressed = false;
          }
          */
+        currentTextureIndex = (currentTextureIndex + 1) % textures.size();
         DrawCurrentTexture();
     }
     check_gl_error();
@@ -114,18 +116,10 @@ void RenderWindow::Draw()
 
 void RenderWindow::DrawCurrentTexture()
 {
-    static float counter = 0;
-    counter += 0.1f;
-    if (counter > 1)
-    {
-        counter = 0;
-        currentTextureIndex = (currentTextureIndex + 1) % textures.size();
-    }
+    check_gl_error();
     glClearColor(1, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
-    check_gl_error();
     GraphicsDevice::UseDefaultBuffers();
-    check_gl_error();
     auto texture = textures[currentTextureIndex];
     check_gl_error();
     program->Use();
@@ -136,6 +130,7 @@ void RenderWindow::DrawCurrentTexture()
         GraphicsDevice::DrawArrays(PrimitiveType::Triangles);
     else
         GraphicsDevice::DrawPrimitives(PrimitiveType::Triangles);
+    printf("%s\n", textureDescriptors[currentTextureIndex].c_str());
     check_gl_error();
 }
 

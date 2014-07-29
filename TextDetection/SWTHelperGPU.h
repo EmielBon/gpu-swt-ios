@@ -19,8 +19,4 @@ public:
 private:
     
     static void DisableIrrelvantState();
-
-public:
-    
-    static int InputWidth, InputHeight;
 };

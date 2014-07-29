@@ -48,8 +48,8 @@ cv::Mat ContentLoader::LoadV(const String &resourceName)
         fileName += ".jpg";
     
     cv::Mat image = cv::imread((ContentPath + fileName).c_str());
-    if (image.data == NULL)
-        throw std::runtime_error("Error reading file");
+    assert(image.data != NULL);
+    
     return image;
 }
 

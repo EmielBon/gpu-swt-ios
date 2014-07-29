@@ -46,11 +46,9 @@ private:
     
     void WriteAverageRayValues2(const Texture &oppositePositions, const Texture &averageValues, Ptr<Texture> output);
     
-    void ScaleResult(const Texture &input, float scaleFactor, Ptr<Texture> output);
-    
 private:
     
-    Ptr<Program> cast, write, avg, writeAvg, scale;
+    Ptr<Program> cast, write, avg, writeAvg;
     Ptr<Filter> sobel;
     Ptr<CannyFilter> canny;
     Ptr<Texture> edges, gradients;

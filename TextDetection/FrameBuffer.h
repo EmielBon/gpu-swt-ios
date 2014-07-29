@@ -48,11 +48,7 @@ public:
     void Print(int x = 0, int y = 0, int width = 0, int height = 0);
     
     void Print(RenderBufferType renderBuffer, int rowCount = 0);
-    
-private:
-    
-    void AssertFrameBufferComplete() const;
-    
+        
 public:
     
     // todo: refactor to better reflect OpenGL

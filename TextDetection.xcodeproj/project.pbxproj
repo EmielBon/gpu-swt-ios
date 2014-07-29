@@ -201,8 +201,6 @@
 		179632071982830800262A80 /* WriteRays.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = WriteRays.vs; sourceTree = "<group>"; };
 		1796320F1982834000262A80 /* Value.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Value.fs; sourceTree = "<group>"; };
 		17963212198289B400262A80 /* Codec.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Codec.fsh; sourceTree = "<group>"; };
-		17A8075219868DFB0040A5B5 /* IOGLResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IOGLResource.h; sourceTree = "<group>"; };
-		17A8075319868E4F0040A5B5 /* IOGLBindableResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IOGLBindableResource.h; sourceTree = "<group>"; };
 		17B5D3A6197D05E100DE1FA4 /* Trivial.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Trivial.vs; sourceTree = "<group>"; };
 		17B5D3A8197D05FF00DE1FA4 /* Normal.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Normal.fs; sourceTree = "<group>"; };
 		17B5D3AA197D070900DE1FA4 /* TextureUtil.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextureUtil.fsh; sourceTree = "<group>"; };
@@ -332,8 +330,6 @@
 				172C1A93197575A8004C7283 /* GraphicsDevice.cpp */,
 				172C1A94197575A8004C7283 /* GraphicsDevice.h */,
 				172C1A95197575A8004C7283 /* IndexBuffer.h */,
-				17A8075319868E4F0040A5B5 /* IOGLBindableResource.h */,
-				17A8075219868DFB0040A5B5 /* IOGLResource.h */,
 				172C1A96197575A8004C7283 /* OGLBindableResource.h */,
 				172C1A98197575A8004C7283 /* OGLBuffer.h */,
 				172C1A97197575A8004C7283 /* OGLResource.h */,

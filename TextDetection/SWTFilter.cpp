@@ -30,15 +30,15 @@ void SWTFilter::LoadShaderPrograms()
     /*cast     = LoadScreenSpaceProgram("CastRays");
     write    = LoadProgram("WriteRays", "Value");
     avg      = LoadScreenSpaceProgram("AverageRays");
-    writeAvg = LoadProgram("WriteAverageRays", "Value");
-    scale    = LoadScreenSpaceProgram("ScaleColor");*/
+    writeAvg = LoadProgram("WriteAverageRays", "Value");*/
 }
 
 void SWTFilter::Initialize()
 {
-    //gradients = ApplyFilter(*sobel, Input);
-    //edges     = ApplyFilter(*canny, Input);
-    //DEBUG_FB(gradients, "Gradients");
+    gradients = sobel->Apply(Input); //check_gl_error();
+    DEBUG_FB(gradients, "Gradients"); //check_gl_error();
+    edges     = canny->Apply(Input); //check_gl_error();
+    DEBUG_FB(edges, "Edges");
     //PrepareEdgeOnlyStencil();
     //PrepareRayLines(*edges);
     
@@ -178,12 +178,4 @@ void SWTFilter::WriteAverageRayValues2(const Texture &oppositePositions, const T
     writeAvg->Uniforms["OppositePositions"].SetValue(oppositePositions);
     writeAvg->Uniforms["AverageValues"].SetValue(averageValues);
     RenderToTexture(output, PrimitiveType::Points);
-}
-
-void SWTFilter::ScaleResult(const Texture &input, float scaleFactor, Ptr<Texture> output)
-{
-    scale->Use();
-    scale->Uniforms["Texture"].SetValue(input);
-    scale->Uniforms["Scale"].SetValue(scaleFactor);
-    //RenderToTexture(output);
 }

@@ -8,11 +8,10 @@
 
 #pragma once
 
-#include "IOGLResource.h"
 #include "types.h"
 #include "GLError.h"
 
-class OGLResource : public IOGLResource
+class OGLResource
 {
 public:
     

@@ -12,6 +12,7 @@
 #include "FrameBuffer.h"
 #include "GraphicsDevice.h"
 #include "RenderWindow.h"
+#include "SWTHelperGPU.h"
 
 void CannyFilter::LoadShaderPrograms()
 {
@@ -19,14 +20,14 @@ void CannyFilter::LoadShaderPrograms()
     gaussian->DoLoadShaderPrograms();
     
     //histogram = LoadProgram("Histogram", "Value");
-    //canny     = LoadScreenSpaceProgram("Canny");
-    //scharr    = LoadScreenSpaceProgram("Sobel1");
-    //diffCanny = LoadScreenSpaceProgram("CannySobel2");
+    canny     = LoadScreenSpaceProgram("Canny");
+    scharr    = LoadScreenSpaceProgram("Sobel1");
+    diffCanny = LoadScreenSpaceProgram("CannySobel2");
 }
 
 void CannyFilter::Initialize()
 {
-    glClearColor(0, 0, 0, 0);
+    //glClearColor(0, 0, 0, 0);
     //PrepareStencilTest();
 }
 
@@ -61,40 +62,43 @@ Ptr<Texture> CannyFilter::PerformSteps()
         percentile += pixels[i] / count;
     float median = i / 255.0f;
     */
-    auto blurred = ApplyFilter(*gaussian, Input);
+    auto blurred = gaussian->Apply(Input);
     DEBUG_FB(blurred, "Blurred");
     
-    /*ScharrAveraging(*ColorBuffers[0], output);
-    Differentiation(*output, ColorBuffers[0]);
+    auto output = New<Texture>(GL_RED_EXT, GL_HALF_FLOAT_OES);
+    auto temp1  = New<Texture>(GL_RG_EXT,  GL_HALF_FLOAT_OES);
+    auto temp2  = temp1->GetEmptyClone();
+    
+    ScharrAveraging(blurred, temp1);
+    Differentiation(temp1,   temp2);
     
     //glEnable(GL_STENCIL_TEST);
     // todo: why / 2 ? Would it benefit from contrast stretch? Or should I use the 0.33rd and 0.66th percentile?? That would actually make a lot more sense...
-    DetectEdges(*ColorBuffers[0], 0.33f * median, 0.66f * median, output); // Buffer0 contains gradients
-    DEBUG_FB("Edges");*/
+    DetectEdges(temp2, 0.33f * 0.5f, 0.66f * 0.5f, output); // Buffer0 contains gradients
     //glDisable(GL_STENCIL_TEST);
-    return nullptr;
+    return output;
 }
 
-void CannyFilter::DetectEdges(const Texture &gradients, float lowerThreshold, float upperThreshold, Ptr<Texture> output)
+void CannyFilter::DetectEdges(Ptr<Texture> gradients, float lowerThreshold, float upperThreshold, Ptr<Texture> output)
 {
     canny->Use();
-    canny->Uniforms["Gradients"].SetValue(gradients);
+    canny->Uniforms["Gradients"].SetValue(*gradients);
     canny->Uniforms["LowerThreshold"].SetValue(lowerThreshold);
     canny->Uniforms["UpperThreshold"].SetValue(upperThreshold);
     // Make sure the color buffer is empty because Canny discards non-edge pixels
-    RenderToTexture(output, PrimitiveType::Unspecified, GL_COLOR_BUFFER_BIT/* | GL_STENCIL_BUFFER_BIT*/);
+    RenderToTexture(output, PrimitiveType::Triangles, GL_COLOR_BUFFER_BIT/* | GL_STENCIL_BUFFER_BIT*/);
 }
 
-void CannyFilter::ScharrAveraging(const Texture &input, Ptr<Texture> output)
+void CannyFilter::ScharrAveraging(Ptr<Texture> input, Ptr<Texture> output)
 {
     scharr->Use();
-    scharr->Uniforms["Texture"].SetValue(input);
+    scharr->Uniforms["Texture"].SetValue(*input);
     RenderToTexture(output);
 }
 
-void CannyFilter::Differentiation(const Texture &input, Ptr<Texture> output)
+void CannyFilter::Differentiation(Ptr<Texture> input, Ptr<Texture> output)
 {
     diffCanny->Use();
-    diffCanny->Uniforms["Texture"].SetValue(input);
+    diffCanny->Uniforms["Texture"].SetValue(*input);
     RenderToTexture(output);
 }

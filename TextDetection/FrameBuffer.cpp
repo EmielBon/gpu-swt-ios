@@ -30,52 +30,36 @@ FrameBuffer::FrameBuffer(Ptr<Texture> colorAttachment, Ptr<RenderBuffer> depthSt
         SetDepthStencil(depthStencil);
 }
 
-void FrameBuffer::AssertFrameBufferComplete() const
-{
-    if (!IsFrameBufferComplete())
-    {
-        check_gl_error();
-        throw std::runtime_error("Framebuffer initialization failed");
-    }
-}
-
 void FrameBuffer::SetColorAttachment(Ptr<Texture> colorAttachment)
 {
-    if (!colorAttachment)
-        throw std::runtime_error("Attempt to attach nullptr color attachment");
-        
+    assert(colorAttachment);
     ColorAttachment0 = colorAttachment;
     Bind();
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, ColorAttachment0->GetHandle(), 0);
-    AssertFrameBufferComplete();
+    assert(IsFrameBufferComplete());
 }
 
 void FrameBuffer::SetDepthStencil(Ptr<Texture> depthStencil)
 {
-    if (!depthStencil)
-        throw std::runtime_error("Attempt to attach nullptr color attachment");
-    
+    assert(depthStencil);
     DepthStencil = depthStencil;
-    // todo: remove bind
     Bind();
     check_gl_error();
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,   GL_TEXTURE_2D, DepthStencil->GetHandle(), 0);
     check_gl_error();
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_TEXTURE_2D, DepthStencil->GetHandle(), 0);
     check_gl_error();
-    AssertFrameBufferComplete();
+    assert(IsFrameBufferComplete());
 }
 
 void FrameBuffer::SetDepthStencil(Ptr<RenderBuffer> renderBufferAttachment)
 {
-    if (!renderBufferAttachment)
-        throw std::runtime_error("Attempt to attach nullptr renderbuffer attachment");
-    
+    assert(renderBufferAttachment);
     RenderBufferAttachment = renderBufferAttachment;
     Bind();
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,   GL_RENDERBUFFER, RenderBufferAttachment->GetHandle());
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, RenderBufferAttachment->GetHandle());
-    AssertFrameBufferComplete();
+    assert(IsFrameBufferComplete());
 }
 
 /*void FrameBuffer::CopyColorAttachment(const Texture &dest) const
@@ -136,7 +120,7 @@ void FrameBuffer::Print(int x, int y, int width, int height)
     }
     else
     {
-        throw std::runtime_error("Error: Unsupported format for framebuffer printing");
+        crash("Error: Unsupported format for framebuffer printing");
     }
 }
 
@@ -156,6 +140,6 @@ void FrameBuffer::Print(RenderBufferType renderBuffer, int rowCount)
         /*auto pixels = ReadStencil(0, 0, width, height);
         for(auto pixel : pixels)
             printf("%u ", pixel);*/
-        throw std::runtime_error("Error: Cannot do glReadPixels for stencil buffer in OpenGL ES 2.0");
+        crash("Error: Cannot do glReadPixels for stencil buffer in OpenGL ES 2.0");
     }
 }
