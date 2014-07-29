@@ -12,10 +12,10 @@
 
 Ptr<Texture> SobelFilter::PerformSteps()
 {
-    auto output = New<Texture>(GL_RG_EXT, GL_HALF_FLOAT_OES);
-    auto temp   = output->GetEmptyClone();
-    ScharrAveraging(Input, temp);
-    Differentiation(temp, output);
+    auto output = New<Texture>(GL_RG_EXT, GL_HALF_FLOAT_OES); glFinish();
+    auto temp   = output->GetEmptyClone(); glFinish();
+    ScharrAveraging(Input, temp); glFinish();
+    Differentiation(temp, output); glFinish();
     return output;
 }
 

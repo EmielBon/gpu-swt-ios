@@ -12,10 +12,11 @@
 
 Ptr<Texture> GaussianFilter::PerformSteps()
 {
-    auto output = New<Texture>(GL_RGBA, GL_UNSIGNED_BYTE);
-    auto temp = output->GetEmptyClone();
-    HorizontalPass(Input, temp);
-    VerticalPass(temp, output);
+    glFinish();
+    auto output = New<Texture>(GL_RGBA, GL_UNSIGNED_BYTE); glFinish();
+    auto temp = output->GetEmptyClone(); glFinish();
+    HorizontalPass(Input, temp); glFinish();
+    VerticalPass(temp, output); glFinish();
     return output;
 }
 

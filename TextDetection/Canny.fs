@@ -2,8 +2,8 @@
 #pragma include Util.fsh
 
 uniform sampler2D Gradients;
-uniform float LowerThreshold;// = 0.08;
-uniform float UpperThreshold;// = 0.16;
+uniform float LowerThreshold;
+uniform float UpperThreshold;
 
 const float Pi = 3.14159265359;
 const float PiOver2 = Pi / 2.0;
@@ -12,9 +12,9 @@ const float PiOver8 = Pi / 8.0;
 
 void main()
 {
-    ivec2 pos      = ivec2(gl_FragCoord.xy);
-    vec2  gradient = fetch(Gradients, pos).xy;
-    /*
+    vec2 pos      = vec2(gl_FragCoord.xy);
+    vec2 gradient = fetch(Gradients, pos).xy;
+    
     float angle     = gradient.x;
     float magnitude = gradient.y;
     
@@ -26,7 +26,7 @@ void main()
     
     // todo: is round implementation dependant?
     vec2 binnedGradient = round( vec2(cos(binned), sin(binned)) );
-    ivec2 dir = ivec2(sign(binnedGradient));
+    vec2 dir = vec2(sign(binnedGradient));
     
     float  forwardNeighbourGradient = fetch(Gradients, pos + dir).g;
     float backwardNeighbourGradient = fetch(Gradients, pos - dir).g;
@@ -36,7 +36,7 @@ void main()
     for (int i = -1; i <= 1; ++i)
     for (int j = -1; j <= 1; ++j)
         // todo: look at lerp instead of smoothstep
-        sum += smoothstep(LowerThreshold, UpperThreshold, fetch(Gradients, pos + ivec2(i, j)).g);
+        sum += smoothstep(LowerThreshold, UpperThreshold, fetch(Gradients, pos + vec2(i, j)).g);
     
     bool localMaximum     = magnitude > forwardNeighbourGradient && magnitude > backwardNeighbourGradient;
     bool strongEdge       = magnitude > UpperThreshold;
@@ -51,6 +51,6 @@ void main()
         gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
     else
         gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-    //gl_FragColor = vec4(int(isEdgePixel));*/
-    gl_FragColor = vec4(gradient, 0, 1);
+    //gl_FragColor = vec4(int(isEdgePixel));
+    //gl_FragColor = vec4(gradient, 0, 1);
 }

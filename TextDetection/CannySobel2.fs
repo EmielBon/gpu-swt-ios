@@ -1,13 +1,9 @@
 #pragma include TextureUtil.fsh
+#pragma include Util.fsh
 
 uniform sampler2D Texture;
 
 const vec2 weights = vec2(-1.0,/*0,*/1.0);
-
-float atan2(vec2 v)
-{
-    return atan(v.y, v.x);
-}
 
 void main()
 {

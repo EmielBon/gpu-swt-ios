@@ -25,7 +25,7 @@ TimeSpan renderTime, copyTime, compileTime;
 
 List< Ptr<LetterCandidate> > SWTHelperGPU::StrokeWidthTransform(Ptr<Texture> input)
 {
-    glViewport(0, 0, Texture::DefaultWidth * 2, Texture::DefaultHeight * 2);
+    glViewport(0, 0, Texture::DefaultWidth, Texture::DefaultHeight);
     glFinish();
     auto startTime = now();
     

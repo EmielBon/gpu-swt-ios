@@ -66,7 +66,6 @@ void Program::AssertLinkingSuccess(GLuint programId)
         delete[] strInfoLog;
         
         glDeleteProgram(programId);
-        programId = 0;
         
         crash(msg);
     }

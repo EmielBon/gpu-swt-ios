@@ -32,13 +32,14 @@ Ptr<Texture> GrayFilter::PerformSteps()
     RenderToTexture(output, PrimitiveType::Lines, GL_COLOR_BUFFER_BIT);
     GraphicsDevice::UseDefaultBuffers();*/
     
-    auto output = New<Texture>(GL_RED_EXT, GL_UNSIGNED_BYTE);
+    auto output = New<Texture>(GL_RED_EXT, GL_UNSIGNED_BYTE); glFinish();
     check_gl_error();
     grayscale->Use();
     check_gl_error();
     grayscale->Uniforms["Texture"].SetValue(*Input);
     check_gl_error();
     RenderToTexture(output, PrimitiveType::Triangles);
+    glFinish();
     check_gl_error();
     return output;
 }

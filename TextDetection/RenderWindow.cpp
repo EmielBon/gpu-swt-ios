@@ -81,7 +81,7 @@ RenderWindow::RenderWindow(GLuint inputTextureHandle, GLuint width, GLuint heigh
 
 void RenderWindow::Draw()
 {
-    glViewport(0, 0, Texture::DefaultWidth * 2, Texture::DefaultHeight * 2);
+    glViewport(0, 0, Texture::DefaultWidth, Texture::DefaultHeight);
     check_gl_error();
     
     if (!textures.empty())
