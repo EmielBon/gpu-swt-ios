@@ -9,12 +9,14 @@ void main()
 {
     vec2 pos = vec2(gl_FragCoord.xy);
     
-    gl_FragColor = sample(Texture, pos) * weights[0];
+    vec4 color = sample(Texture, pos) * weights[0];
     
     for(int i = 1; i < 3; ++i)
     {
         vec2 offset = vec2(0, offsets[i]);
-        gl_FragColor += sample(Texture, pos + offset) * weights[i];
-        gl_FragColor += sample(Texture, pos - offset) * weights[i];
+        color += sample(Texture, pos + offset) * weights[i];
+        color += sample(Texture, pos - offset) * weights[i];
     }
+    
+    gl_FragColor = color;
 }

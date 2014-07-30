@@ -72,6 +72,7 @@ Ptr<Texture> CannyFilter::PerformSteps()
     auto temp2  = New<Texture>(GL_RG_EXT, GL_HALF_FLOAT_OES); glFinish();
     
     ScharrAveraging(blurred, temp1); glFinish();
+    DEBUG_FB(temp1, "Sobel1");
     Differentiation(temp1,   temp2); glFinish();
     DEBUG_FB(temp2, "Diff");
     //glFinish();

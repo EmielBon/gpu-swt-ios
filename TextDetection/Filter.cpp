@@ -91,7 +91,7 @@ void Filter::Render(PrimitiveType primitiveType, GLenum clearOptions /* = GL_NON
     glFinish();
     auto f = now();
 #endif
-    if (clearOptions != GL_NONE);
+    if (clearOptions != GL_NONE)
         glClear(clearOptions);
     if (!GraphicsDevice::IndexBuffer)
         GraphicsDevice::DrawArrays(primitiveType);
