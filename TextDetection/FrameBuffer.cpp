@@ -17,7 +17,6 @@ FrameBuffer::FrameBuffer()
 {
     Setup(glGenFramebuffers, glDeleteFramebuffers, glBindFramebuffer, GL_FRAMEBUFFER);
     Generate();
-    check_gl_error();
     // OpenGL ES only allows COLOR_ATTACHMENT0!
     //GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
     //glDrawBuffers(1, drawBuffers);
@@ -44,11 +43,8 @@ void FrameBuffer::SetDepthStencil(Ptr<Texture> depthStencil)
     assert(depthStencil);
     DepthStencil = depthStencil;
     Bind();
-    check_gl_error();
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,   GL_TEXTURE_2D, DepthStencil->GetHandle(), 0);
-    check_gl_error();
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_TEXTURE_2D, DepthStencil->GetHandle(), 0);
-    check_gl_error();
     assert(IsFrameBufferComplete());
 }
 
@@ -74,49 +70,44 @@ void FrameBuffer::SetDepthStencil(Ptr<RenderBuffer> renderBufferAttachment)
     
     auto prev = Texture::GetCurrentlyBound();
     dest.Bind();
-    check_gl_error();
+    
     glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0, dest.GetWidth(), dest.GetHeight()); // todo: does not work with float textures in OpenGL ES 2.0 accoring to the extension
-    check_gl_error();
+    
     if (prev)
         prev->Bind();
-    check_gl_error();
+    
 }*/
 
 void FrameBuffer::Print(int x, int y, int width, int height)
 {
-    int w = width  == 0 ? ColorAttachment0->GetWidth()  : width;
-    int h = height == 0 ? ColorAttachment0->GetHeight() : height;
-    auto &params  = ColorAttachment0->Parameters;
-    //GLenum type   = params.Type; // Only supports GL_UNSIGNED_BYTE for now
-    GLenum format = params.Format;
+    int w = width  == 0 ? ColorAttachment0->Width  : width;
+    int h = height == 0 ? ColorAttachment0->Height : height;
+    //GLenum type   = ColorAttachment0->Type; // Only supports GL_UNSIGNED_BYTE for now
+    GLenum format = ColorAttachment0->Format;
     
     if (format == GL_ALPHA || format == GL_LUMINANCE || format == GL_RED_EXT)
     {
         auto pixels = ReadPixels<GLubyte>(x, y, w, h);
         for(auto pixel : pixels)
             printf("%u ", pixel);
-        check_gl_error();
     }
     else if (format == GL_RG_EXT)
     {
         auto pixels = ReadPixels<Vector2b>(x, y, w, h);
         for(auto pixel : pixels)
             printf("(%u,%u)", pixel[0], pixel[1]);
-        check_gl_error();
     }
     else if (format == GL_RGB)
     {
         auto pixels = ReadPixels<Vector3b>(x, y, w, h);
         for(auto pixel : pixels)
             printf("(%u,%u,%u)", pixel[0], pixel[1], pixel[2]);
-        check_gl_error();
     }
     else if (format == GL_RGBA)
     {
         auto pixels = ReadPixels<Vector4b>(x, y, w, h);
         for(auto pixel : pixels)
             printf("(%u,%u,%u,%u)", pixel[0], pixel[1], pixel[2], pixel[3]);
-        check_gl_error();
     }
     else
     {
@@ -126,8 +117,8 @@ void FrameBuffer::Print(int x, int y, int width, int height)
 
 void FrameBuffer::Print(RenderBufferType renderBuffer, int rowCount)
 {
-    int width  = ColorAttachment0->GetWidth();
-    int height = (rowCount == 0) ? ColorAttachment0->GetHeight() : rowCount;
+    int width  = ColorAttachment0->Width;
+    int height = (rowCount == 0) ? ColorAttachment0->Height : rowCount;
     
     if (renderBuffer == RenderBufferType::Depth)
     {

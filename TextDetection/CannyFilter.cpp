@@ -62,23 +62,22 @@ Ptr<Texture> CannyFilter::PerformSteps()
         percentile += pixels[i] / count;
     float median = i / 255.0f;
     */
-    glFinish();
-    auto blurred = gaussian->Apply(Input); glFinish();
+    auto blurred = gaussian->Apply(Input);
     DEBUG_FB(blurred, "Blurred");
     
     // todo: output only red
-    auto output = New<Texture>(GL_RG_EXT, GL_HALF_FLOAT_OES); glFinish();
-    auto temp1  = New<Texture>(GL_RG_EXT, GL_HALF_FLOAT_OES); glFinish();
-    auto temp2  = New<Texture>(GL_RG_EXT, GL_HALF_FLOAT_OES); glFinish();
+    auto output = New<Texture>(GL_RG_EXT, GL_HALF_FLOAT_OES);
+    auto temp1  = New<Texture>(GL_RG_EXT, GL_HALF_FLOAT_OES);
+    auto temp2  = New<Texture>(GL_RG_EXT, GL_HALF_FLOAT_OES);
     
-    ScharrAveraging(blurred, temp1); glFinish();
+    ScharrAveraging(blurred, temp1);
     DEBUG_FB(temp1, "Sobel1");
-    Differentiation(temp1,   temp2); glFinish();
+    Differentiation(temp1,   temp2);
     DEBUG_FB(temp2, "Diff");
     //glFinish();
     //glEnable(GL_STENCIL_TEST);
     // todo: why / 2 ? Would it benefit from contrast stretch? Or should I use the 0.33rd and 0.66th percentile?? That would actually make a lot more sense...
-    DetectEdges(temp2, /*0.33f * 0.4627f*/0.08f, /*0.66f * 0.4627f*/0.18f, output); glFinish();
+    DetectEdges(temp2, /*0.33f * 0.4627f*/0.08f, /*0.66f * 0.4627f*/0.18f, output);
     //glDisable(GL_STENCIL_TEST);
     return output;
 }
@@ -86,7 +85,8 @@ Ptr<Texture> CannyFilter::PerformSteps()
 void CannyFilter::DetectEdges(Ptr<Texture> gradients, float lowerThreshold, float upperThreshold, Ptr<Texture> output)
 {
     canny->Use();
-    canny->Uniforms["Gradients"].SetValue(*gradients); check_gl_error();
+    glFinish();
+    canny->Uniforms["Gradients"].SetValue(*gradients); 
     canny->Uniforms["LowerThreshold"].SetValue(lowerThreshold);
     canny->Uniforms["UpperThreshold"].SetValue(upperThreshold);
     // Make sure the color buffer is empty because Canny discards non-edge pixels
@@ -96,13 +96,13 @@ void CannyFilter::DetectEdges(Ptr<Texture> gradients, float lowerThreshold, floa
 void CannyFilter::ScharrAveraging(Ptr<Texture> input, Ptr<Texture> output)
 {
     scharr->Use();
-    scharr->Uniforms["Texture"].SetValue(*input); check_gl_error();
+    scharr->Uniforms["Texture"].SetValue(*input); 
     RenderToTexture(output);
 }
 
 void CannyFilter::Differentiation(Ptr<Texture> input, Ptr<Texture> output)
 {
     diffCanny->Use();
-    diffCanny->Uniforms["Texture"].SetValue(*input); check_gl_error();
+    diffCanny->Uniforms["Texture"].SetValue(*input); 
     RenderToTexture(output);
 }

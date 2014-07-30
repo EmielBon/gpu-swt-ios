@@ -46,8 +46,8 @@ void TextRegionsFilter::LoadShaderPrograms()
 
 void TextRegionsFilter::Initialize()
 {
-    check_gl_error();
-    gray = grayFilter->Apply(Input); check_gl_error();
+    
+    gray = grayFilter->Apply(Input); 
     DEBUG_FB(gray, "Gray");
     //PreparePerPixelVertices();
 }
@@ -226,8 +226,8 @@ void TextRegionsFilter::Variance(Ptr<Texture> components, Ptr<Texture> pixelCoun
 
 void TextRegionsFilter::PrepareStencilRouting(int N)
 {
-    int width  = Input->GetWidth();
-    int height = Input->GetHeight();
+    int width  = Input->Width;
+    int height = Input->Height;
     
     List<GLuint> pixels(N * N, 1);
     for(int i = 1; i < N * N; ++i)
@@ -263,8 +263,8 @@ void TextRegionsFilter::ExtractLetterCandidates(Ptr<Texture> filteredBoundingBox
         auto letter = New<LetterCandidate>();
         
         // Retrieve bounding box
-        int x1 = -((int)bbox[0] - (Input->GetWidth() - 1));
-        int y1 = -((int)bbox[1] - (Input->GetHeight() - 1));
+        int x1 = -((int)bbox[0] - (Input->Width - 1));
+        int y1 = -((int)bbox[1] - (Input->Height - 1));
         int x2 = (int)bbox[2];
         int y2 = (int)bbox[3];
         letter->BoundingBox = BoundingBox(cv::Rect(x1, y1, x2 - x1, y2 - y1));

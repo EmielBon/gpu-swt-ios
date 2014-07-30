@@ -48,8 +48,8 @@ inline void OGLBuffer<T>::Setup(GLenum target)
 template<class T>
 inline void OGLBuffer<T>::SetData(GLenum target, GLsizei count, size_t elementSize, const void *data)
 {
-    check_gl_error();
+    
     glBufferData(target, count * elementSize, data, GL_STATIC_DRAW);
     this->count = count;
-    check_gl_error();
+    
 }

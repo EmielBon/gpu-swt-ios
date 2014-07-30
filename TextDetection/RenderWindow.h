@@ -24,13 +24,13 @@ public:
     
     void DrawRect(const DrawableRect &rect);
     
-    void Draw();
+    void DrawTexture(int index);
+    
+    const char* GetTextureName(int index);
     
     void AddTexture(std::shared_ptr<Texture> input, const String &descriptor = "", bool makeCopy = true);
     
     void AddFrameBufferSnapshot(const String &descriptor = "");
-    
-    void DrawCurrentTexture();
     
 private:
     

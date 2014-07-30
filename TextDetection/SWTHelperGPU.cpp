@@ -35,19 +35,19 @@ List< Ptr<LetterCandidate> > SWTHelperGPU::StrokeWidthTransform(Ptr<Texture> inp
     // Create and setup framebuffer
     FrameBuffer::DefaultOffscreenFrameBuffer = New<FrameBuffer>();
     //frameBuffer.SetDepthStencil(depthStencil);
-    check_gl_error();
+    
     auto textRegionsFilter = New<TextRegionsFilter>();
-    check_gl_error();
+    
     textRegionsFilter->DoLoadShaderPrograms();
-    check_gl_error();
+    
     glFinish();
     auto setupTime = now() - startTime;
-    check_gl_error();
+    
     textRegionsFilter->Apply(input);
-    check_gl_error();
+    
     renderTime  += textRegionsFilter->RenderTime;
     compileTime += textRegionsFilter->CompileTime;
-    check_gl_error();
+    
     //FrameBuffer::DefaultOffscreenFrameBuffer->Print(RenderBufferType::Stencil);
     
     glFinish();
@@ -66,10 +66,10 @@ List< Ptr<LetterCandidate> > SWTHelperGPU::StrokeWidthTransform(Ptr<Texture> inp
 
 void SWTHelperGPU::DisableIrrelvantState()
 {
-    glDisable(GL_CULL_FACE); check_gl_error();
-    glDisable(GL_DITHER); check_gl_error();
-    glDisable(GL_BLEND); check_gl_error();
-    glDisable(GL_STENCIL_TEST); check_gl_error();
-    glDisable(GL_DEPTH_TEST); check_gl_error();
+    glDisable(GL_CULL_FACE); 
+    glDisable(GL_DITHER); 
+    glDisable(GL_BLEND); 
+    glDisable(GL_STENCIL_TEST); 
+    glDisable(GL_DEPTH_TEST); 
     // todo: more?
 }

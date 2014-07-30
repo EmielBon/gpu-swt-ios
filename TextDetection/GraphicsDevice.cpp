@@ -33,11 +33,11 @@ void GraphicsDevice::DrawPrimitives(PrimitiveType primitiveType)
 
 void GraphicsDevice::DrawArrays(PrimitiveType primitiveType)
 {
-    check_gl_error();
+    
     AssertCompleteProgram();
-    check_gl_error();
+    
     VertexBuffer->VertexArrayObject.Bind();
-    check_gl_error();
+    
     // Draw without index buffer
     glDrawArrays((GLenum)primitiveType, 0, VertexBuffer->Count());
     VertexArray::BindDefault();

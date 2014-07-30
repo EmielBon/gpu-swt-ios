@@ -9,7 +9,6 @@
 #pragma once
 
 #include "OGLBindableResource.h"
-#include "TextureParameters.h"
 #include "types.h"
 
 class Texture : public OGLBindableResource<Texture>
@@ -21,48 +20,28 @@ public:
     
     Texture(GLuint handle, int width, int height, GLenum format, GLenum type);
     
-    Texture(GLenum format, GLenum type, const GLvoid* pixels = nullptr);
+    Texture(GLenum format, GLenum type, GLvoid* pixels = nullptr);
     
-    Texture(int width, int height, GLenum format, GLenum type, const GLvoid* pixels = nullptr);
-    
-    Texture(const TextureParameters &params, const GLvoid* pixels = nullptr);
+    Texture(int width, int height, GLenum format, GLenum type, GLvoid* pixels = nullptr);
     
     virtual ~Texture() = default;
     
-    int GetWidth() const;
-    
-    int GetHeight() const;
-    
     Ptr<Texture> GetEmptyClone() const;
     
-    void SetData(const GLvoid* pixels);
+    void SetData(GLvoid* pixels);
     
     static void SetDefaultSize(int width, int height);
     
 public:
     
-    TextureParameters Parameters;
+    int Width, Height;
+    GLenum Format, Type;
     static int DefaultWidth, DefaultHeight;
+    static Ptr<List<GLuint>> zeros;
 };
 
-inline Texture::Texture(int width, int height, GLenum format, GLenum type, const GLvoid *pixels /* = nullptr */)
-    : Texture( TextureParameters(width, height, format, type), pixels )
-{
-    
-}
-
-inline Texture::Texture(GLenum format, GLenum type, const GLvoid *pixels /* = nullptr */)
+inline Texture::Texture(GLenum format, GLenum type, GLvoid *pixels /* = nullptr */)
     : Texture( DefaultWidth, DefaultHeight, format, type, pixels )
 {
     assert(DefaultWidth > 0 && DefaultHeight > 0);
-}
-
-inline int Texture::GetWidth() const
-{
-    return Parameters.Width;
-}
-
-inline int Texture::GetHeight() const
-{
-    return Parameters.Height;
 }

@@ -46,17 +46,17 @@ RenderWindow::RenderWindow(GLuint inputTextureHandle, GLuint width, GLuint heigh
     
     auto input = New<Texture>(inputTextureHandle, width, height, GL_RGBA, GL_UNSIGNED_BYTE); // These parameters probably have no impact, except if you want an empty copy of this texture
     Texture::SetDefaultSize(width, height);
-    check_gl_error();
+    
     AddTexture(input, "Input image", false);
-    check_gl_error();
+    
     rect1 = New<DrawableRect>(-1, -1, 1, 1);
     GraphicsDevice::SetDefaultBuffers(rect1->VertexBuffer, rect1->IndexBuffer);
     GraphicsDevice::UseDefaultBuffers();
-    check_gl_error();
+    
     program = Program::LoadScreenSpaceProgram("Normal");
-    check_gl_error();
+    
     auto letterCandidates = SWTHelperGPU::StrokeWidthTransform(input);
-    check_gl_error();
+    
     /*FilterOnOverlappingBoundingBoxes(letterCandidates);
     //DrawBoundingBoxes(input, components, "Boundingboxes with overlap <= 2 (letters)");
     
@@ -79,59 +79,29 @@ RenderWindow::RenderWindow(GLuint inputTextureHandle, GLuint width, GLuint heigh
     AddTexture(output, "Detected text regions");*/
 }
 
-void RenderWindow::Draw()
+void RenderWindow::DrawTexture(int index)
 {
-    glViewport(0, 0, Texture::DefaultWidth, Texture::DefaultHeight);
-    check_gl_error();
+    assert(index >= 0);
     
-    if (!textures.empty())
-    {
-        /*
-         static bool keyPressed = false;
-         
-         if (glfwGetKey(window, GLFW_KEY_RIGHT) && !keyPressed)
-         {
-         currentTextureIndex = (currentTextureIndex + 1) % textures.size();
-         keyPressed = true;
-         glfwSetWindowTitle(window, textureDescriptors[currentTextureIndex].c_str());
-         }
-         if (glfwGetKey(window, GLFW_KEY_LEFT) && !keyPressed)
-         {
-         currentTextureIndex--;
-         if (currentTextureIndex < 0)
-         currentTextureIndex += textures.size();
-         keyPressed = true;
-         glfwSetWindowTitle(window, textureDescriptors[currentTextureIndex].c_str());
-         }
-         if (!glfwGetKey(window, GLFW_KEY_RIGHT) && !glfwGetKey(window, GLFW_KEY_LEFT))
-         {
-         keyPressed = false;
-         }
-         */
-        currentTextureIndex = (currentTextureIndex + 1) % textures.size();
-        DrawCurrentTexture();
-    }
-    check_gl_error();
-}
-
-void RenderWindow::DrawCurrentTexture()
-{
-    check_gl_error();
+    glViewport(0, 0, Texture::DefaultWidth, Texture::DefaultHeight);
     glClearColor(1, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
-    GraphicsDevice::UseDefaultBuffers();
-    auto texture = textures[currentTextureIndex];
-    check_gl_error();
+
+    auto texture = textures[index % textures.size()];
     program->Use();
-    check_gl_error();
     program->Uniforms["Texture"].SetValue(*texture);
-    check_gl_error();
+    
     if (!GraphicsDevice::IndexBuffer)
         GraphicsDevice::DrawArrays(PrimitiveType::Triangles);
     else
         GraphicsDevice::DrawPrimitives(PrimitiveType::Triangles);
+    
     printf("%s\n", textureDescriptors[currentTextureIndex].c_str());
-    check_gl_error();
+}
+
+const char* RenderWindow::GetTextureName(int index)
+{
+    return textureDescriptors[index % textures.size()].c_str();
 }
 
 void RenderWindow::AddTexture(Ptr<Texture> input, const String &descriptor /* = "" */, bool makeCopy /* = true */)

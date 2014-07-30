@@ -27,17 +27,17 @@ public:
 
 inline IndexBuffer::IndexBuffer()
 {
-    check_gl_error();
+    
     Setup(GL_ELEMENT_ARRAY_BUFFER);
     Generate();
-    check_gl_error();
+    
 }
 
 inline void IndexBuffer::SetData(const List<GLubyte> &indices)
 {
-    check_gl_error();
+    
     Bind();
-    check_gl_error();
+    
     base::SetData(GL_ELEMENT_ARRAY_BUFFER, indices.size(), sizeof(GLubyte), indices.data());
-    check_gl_error();
+    
 }

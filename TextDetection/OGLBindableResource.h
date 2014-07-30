@@ -57,7 +57,7 @@ inline void OGLBindableResource<T>::Bind() const
     {
         boundBuffer = const_cast<OGLBindableResource*>(this);
         BindFunction( TargetName, GetHandle() );
-        check_gl_error();
+        
     }
 }
 
@@ -67,7 +67,7 @@ inline void OGLBindableResource<T>::Unbind() const
     if (IsBound())
     {
         BindFunction(TargetName, 0);
-        check_gl_error();
+        
     }
 }
 

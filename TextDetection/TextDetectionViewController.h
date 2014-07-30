@@ -14,4 +14,6 @@
 {
     RenderWindow *window;
 }
+@property (weak, nonatomic) IBOutlet UILabel *visibleTextureNameLabel;
+
 @end

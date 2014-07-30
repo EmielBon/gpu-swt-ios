@@ -14,7 +14,7 @@
 
 DrawableRect::DrawableRect(float x1, float y1, float x2, float y2)
 {
-    /*check_gl_error();
+    /*
     
     List<VertexPosition> vertices(4);
     
@@ -25,10 +25,10 @@ DrawableRect::DrawableRect(float x1, float y1, float x2, float y2)
     
     List<GLubyte> indices = { 0, 1, 2, 1, 2, 3 };
 
-    VertexBuffer = New<::VertexBuffer>(); check_gl_error();
-    VertexBuffer->SetData(vertices);      check_gl_error();
-    IndexBuffer = New<::IndexBuffer>();   check_gl_error();
-    IndexBuffer->SetData(indices);        check_gl_error();*/
+    VertexBuffer = New<::VertexBuffer>(); 
+    VertexBuffer->SetData(vertices);      
+    IndexBuffer = New<::IndexBuffer>();   
+    IndexBuffer->SetData(indices);        */
     
     List<VertexPosition> vertices(6);
      

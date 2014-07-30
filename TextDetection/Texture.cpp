@@ -10,34 +10,42 @@
 
 int Texture::DefaultWidth  = 0;
 int Texture::DefaultHeight = 0;
+Ptr<List<GLuint>> Texture::zeros = nullptr;
 
-Texture::Texture(GLuint handle, int width, int height, GLenum format, GLenum type)
-    : Parameters(width, height, format, type)
+Texture::Texture(int width, int height, GLenum format, GLenum type, GLvoid *pixels /* = nullptr */)
+    : Width(width), Height(height), Format(format), Type(type)
 {
-    Setup( [&](GLsizei count, GLuint* textures) { this->handle = handle; }, glDeleteTextures, glBindTexture, GL_TEXTURE_2D);
-    Generate();
-}
-
-Texture::Texture(const TextureParameters &params, const GLvoid *pixels /* = nullptr */) : Parameters(params)
-{
+    if (!zeros)
+    {
+        GLuint zero = 0;
+        zeros = New<List<GLuint>>(Width * Height, zero);
+    }
+    
     Setup(glGenTextures, glDeleteTextures, glBindTexture, GL_TEXTURE_2D);
     Generate();
     SetData(pixels);
 }
 
-Ptr<Texture> Texture::GetEmptyClone() const
+Texture::Texture(GLuint handle, int width, int height, GLenum format, GLenum type)
+    : Width(width), Height(height), Format(format), Type(type)
 {
-    return New<Texture>(Parameters);
+    Setup( [&](GLsizei count, GLuint* textures) { this->handle = handle; }, glDeleteTextures, glBindTexture, GL_TEXTURE_2D);
+    Generate();
 }
 
-void Texture::SetData(const GLvoid* pixels)
+Ptr<Texture> Texture::GetEmptyClone() const
+{
+    return New<Texture>(Width, Height, Format, Type);
+}
+
+void Texture::SetData(GLvoid* pixels)
 {
     Bind();
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexImage2D(GL_TEXTURE_2D, 0, Parameters.Format, GetWidth(), GetHeight(), 0, Parameters.Format, Parameters.Type, pixels);
+        glTexImage2D(GL_TEXTURE_2D, 0, Format, Width, Height, 0, Format, Type, pixels ? pixels : zeros->data());
     Unbind();
 }
 

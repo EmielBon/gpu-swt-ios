@@ -75,8 +75,7 @@ inline List<T> FrameBuffer::ReadPixels(int x, int y, int width, int height, GLen
 template<class T>
 inline List<T> FrameBuffer::ReadPixels(int x, int y, int width, int height)
 {
-    auto &params = ColorAttachment0->Parameters;
-    return ReadPixels<T>(x, y, width, height, params.Format, params.Type);
+    return ReadPixels<T>(x, y, width, height, ColorAttachment0->Format, ColorAttachment0->Type);
 }
 
 template<class T>

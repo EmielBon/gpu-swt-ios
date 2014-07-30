@@ -13,7 +13,11 @@ void Uniform::SetValue(const Texture &texture)
 {
     AssertLocation();
     initialized = true;
-    glActiveTexture(GL_TEXTURE0 + index); check_gl_error();
-    texture.Bind(); check_gl_error();
-    SetValue(index); check_gl_error();
+    glActiveTexture(GL_TEXTURE0 + index);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    texture.Bind();
+    SetValue(index); 
 }

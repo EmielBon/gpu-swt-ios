@@ -47,9 +47,9 @@ void Filter::DoInitialize()
 {
     if (!initialized)
     {
-        check_gl_error();
+        
         Initialize();
-        check_gl_error();
+        
         ColorBuffers.clear();
         /*if (!PerPixelVertices && !Input)
             throw std::runtime_error("Cannot initialize per pixel vertex buffer without input texture");
@@ -70,13 +70,13 @@ Ptr<Texture> Filter::Apply(Ptr<Texture> input)
     glFinish();
     auto t = now();
 #endif
-    check_gl_error();
+    
     DoLoadShaderPrograms();
-    check_gl_error();
+    
     DoInitialize();
-    check_gl_error();
+    
     auto output = PerformSteps();
-    check_gl_error();
+    
     ColorBuffers.clear();
 #ifdef PROFILING
     TotalTime = now() - t;

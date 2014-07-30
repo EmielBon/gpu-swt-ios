@@ -11,15 +11,30 @@
 #include "RenderWindow.h"
 
 @interface TextDetectionViewController ()
+// Methods
+- (void) tap:(UITapGestureRecognizer *)recognizer;
+// Properties
 @property (strong, nonatomic) EAGLContext *context;
+@property (nonatomic) NSUInteger currentTextureIndex;
+
 @end
 
 @implementation TextDetectionViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.paused = YES;
+    self.resumeOnDidBecomeActive = NO;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    [tapGesture setNumberOfTapsRequired:1];
     
+    [self.view addGestureRecognizer:tapGesture];
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
     if (!self.context) {
@@ -40,6 +55,12 @@
     
     ContentLoader::ContentPath = bundlePath.UTF8String;
     window = new RenderWindow(textureInfo.name, textureInfo.width, textureInfo.height);
+}
+
+- (void) tap:(UITapGestureRecognizer *)recognizer
+{
+    self.currentTextureIndex++;
+    [self.view setNeedsDisplay];
 }
 
 - (void)dealloc
@@ -71,7 +92,8 @@
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
     [view bindDrawable];
-    window->Draw();
+    self.visibleTextureNameLabel.text = [NSString stringWithUTF8String:window->GetTextureName(self.currentTextureIndex)];
+    window->DrawTexture(self.currentTextureIndex);
 }
 
 @end
