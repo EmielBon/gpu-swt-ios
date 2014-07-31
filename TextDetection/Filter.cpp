@@ -7,25 +7,15 @@
 //
 
 #include "Filter.h"
-#include "Program.h"
-#include "Profiling.h"
-#include "FrameBuffer.h"
 #include "GraphicsDevice.h"
-#include "Texture.h"
-#include "ContentLoader.h"
 #include "FrameBuffer.h"
+#include "ContentLoader.h"
+#include "Profiling.h"
+#include "RenderWindow.h" // todo: remove
 #include "VertexPosition.h"
 #include "VertexBuffer.h"
-#include "SWTHelperGPU.h"
 
 Ptr<VertexBuffer> Filter::PerPixelVertices = nullptr;
-
-void Filter::ReserveColorBuffers(int count)
-{
-    ColorBuffers.clear();
-    for(int i = 0; i < count; ++i)
-        ColorBuffers.push_back( GetColorAttachment()->GetEmptyClone() );
-}
 
 void Filter::DoLoadShaderPrograms()
 {
@@ -47,10 +37,7 @@ void Filter::DoInitialize()
 {
     if (!initialized)
     {
-        
         Initialize();
-        
-        ColorBuffers.clear();
         /*if (!PerPixelVertices && !Input)
             throw std::runtime_error("Cannot initialize per pixel vertex buffer without input texture");
         if (!PerPixelVertices) // initialize the static per pixel vertexbuffer once
@@ -63,24 +50,19 @@ Ptr<Texture> Filter::Apply(Ptr<Texture> input)
 {
     Input = input;
     TotalTime = RenderTime = CompileTime = TimeSpan(0);
-    
     assert(Input);
-    
 #ifdef PROFILING
     glFinish();
     auto t = now();
 #endif
-    
     DoLoadShaderPrograms();
-    
     DoInitialize();
-    
     auto output = PerformSteps();
-    
-    ColorBuffers.clear();
 #ifdef PROFILING
     TotalTime = now() - t;
     PrintProfilingInfo();
+    RenderWindow::CompileTime += CompileTime;
+    RenderWindow::RenderTime  += RenderTime;
 #endif
     return output;
 }

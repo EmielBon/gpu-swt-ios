@@ -8,7 +8,6 @@
 
 #include "SobelFilter.h"
 #include "Texture.h"
-#include "SWTHelperGPU.h"
 
 Ptr<Texture> SobelFilter::PerformSteps()
 {

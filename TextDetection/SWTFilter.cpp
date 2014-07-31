@@ -17,7 +17,6 @@
 #include "RenderWindow.h"
 #include "GaussianFilter.h"
 #include "FrameBuffer.h"
-#include "SWTHelperGPU.h"
 
 void SWTFilter::LoadShaderPrograms()
 {

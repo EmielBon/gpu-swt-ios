@@ -46,7 +46,7 @@
 		172C1ADD1976C225004C7283 /* LetterCandidate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AD61976C225004C7283 /* LetterCandidate.cpp */; };
 		172C1ADE1976C225004C7283 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AD81976C225004C7283 /* Ray.cpp */; };
 		172C1AE11976CA66004C7283 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172C1AE01976CA66004C7283 /* opencv2.framework */; };
-		172C1AE61976D811004C7283 /* SWTHelperGPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AE41976D811004C7283 /* SWTHelperGPU.cpp */; };
+		172C1AE61976D811004C7283 /* SWTHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AE41976D811004C7283 /* SWTHelper.cpp */; };
 		172C1AED1976DB84004C7283 /* GrayFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AE91976DB84004C7283 /* GrayFilter.cpp */; };
 		172C1AEE1976DB84004C7283 /* TextRegionsFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AEB1976DB84004C7283 /* TextRegionsFilter.cpp */; };
 		172C1AF11976DBB8004C7283 /* Filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 172C1AEF1976DBB8004C7283 /* Filter.cpp */; };
@@ -169,8 +169,8 @@
 		172C1AE01976CA66004C7283 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = TextDetection/opencv2.framework; sourceTree = "<group>"; };
 		172C1AE21976D7C4004C7283 /* MathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathHelper.h; sourceTree = "<group>"; };
 		172C1AE31976D7C4004C7283 /* Profiling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Profiling.h; sourceTree = "<group>"; };
-		172C1AE41976D811004C7283 /* SWTHelperGPU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = SWTHelperGPU.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		172C1AE51976D811004C7283 /* SWTHelperGPU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTHelperGPU.h; sourceTree = "<group>"; };
+		172C1AE41976D811004C7283 /* SWTHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = SWTHelper.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		172C1AE51976D811004C7283 /* SWTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTHelper.h; sourceTree = "<group>"; };
 		172C1AE91976DB84004C7283 /* GrayFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = GrayFilter.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		172C1AEA1976DB84004C7283 /* GrayFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayFilter.h; sourceTree = "<group>"; };
 		172C1AEB1976DB84004C7283 /* TextRegionsFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = TextRegionsFilter.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -271,8 +271,6 @@
 		172C1A5619755954004C7283 /* TextDetection */ = {
 			isa = PBXGroup;
 			children = (
-				172C1AC919769ECD004C7283 /* RenderWindow.h */,
-				172C1AC819769ECD004C7283 /* RenderWindow.cpp */,
 				172C1A6C19755954004C7283 /* TextDetectionViewController.h */,
 				172C1A6D19755954004C7283 /* TextDetectionViewController.mm */,
 				172C1A6F19755954004C7283 /* Images.xcassets */,
@@ -385,6 +383,8 @@
 				172C1AC219757A32004C7283 /* ContentLoader.h */,
 				172C1AC319757A32004C7283 /* DrawableRect.cpp */,
 				172C1AC419757A32004C7283 /* DrawableRect.h */,
+				172C1AC819769ECD004C7283 /* RenderWindow.cpp */,
+				172C1AC919769ECD004C7283 /* RenderWindow.h */,
 			);
 			name = Framework;
 			sourceTree = "<group>";
@@ -400,22 +400,14 @@
 				172C1AD71976C225004C7283 /* LetterCandidate.h */,
 				172C1AD81976C225004C7283 /* Ray.cpp */,
 				172C1AD91976C225004C7283 /* Ray.h */,
+				172C1AE41976D811004C7283 /* SWTHelper.cpp */,
+				172C1AE51976D811004C7283 /* SWTHelper.h */,
 				172C1ADA1976C225004C7283 /* SWTParameters.h */,
 			);
 			name = SWT;
 			sourceTree = "<group>";
 		};
 		172C1AE71976D817004C7283 /* SWT-GPU */ = {
-			isa = PBXGroup;
-			children = (
-				172C1AE81976DB78004C7283 /* Filters */,
-				172C1AE41976D811004C7283 /* SWTHelperGPU.cpp */,
-				172C1AE51976D811004C7283 /* SWTHelperGPU.h */,
-			);
-			name = "SWT-GPU";
-			sourceTree = "<group>";
-		};
-		172C1AE81976DB78004C7283 /* Filters */ = {
 			isa = PBXGroup;
 			children = (
 				179631E81982828000262A80 /* CannyFilter.cpp */,
@@ -433,7 +425,7 @@
 				172C1AEB1976DB84004C7283 /* TextRegionsFilter.cpp */,
 				172C1AEC1976DB84004C7283 /* TextRegionsFilter.h */,
 			);
-			name = Filters;
+			name = "SWT-GPU";
 			sourceTree = "<group>";
 		};
 		172C1AF819796E47004C7283 /* Shaders */ = {
@@ -638,7 +630,7 @@
 				172C1AEE1976DB84004C7283 /* TextRegionsFilter.cpp in Sources */,
 				172C1A6E19755954004C7283 /* TextDetectionViewController.mm in Sources */,
 				172C1AB5197575A8004C7283 /* Shader.cpp in Sources */,
-				172C1AE61976D811004C7283 /* SWTHelperGPU.cpp in Sources */,
+				172C1AE61976D811004C7283 /* SWTHelper.cpp in Sources */,
 				172C1ADC1976C225004C7283 /* Component.cpp in Sources */,
 				172C1AB3197575A8004C7283 /* Program.cpp in Sources */,
 				172C1AC619757A32004C7283 /* ContentLoader.cpp in Sources */,

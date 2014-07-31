@@ -12,7 +12,7 @@
 #include "FrameBuffer.h"
 #include "GraphicsDevice.h"
 #include "RenderWindow.h"
-#include "SWTHelperGPU.h"
+#include "SWTHelper.h"
 
 void CannyFilter::LoadShaderPrograms()
 {

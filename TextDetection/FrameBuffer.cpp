@@ -17,9 +17,6 @@ FrameBuffer::FrameBuffer()
 {
     Setup(glGenFramebuffers, glDeleteFramebuffers, glBindFramebuffer, GL_FRAMEBUFFER);
     Generate();
-    // OpenGL ES only allows COLOR_ATTACHMENT0!
-    //GLenum drawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
-    //glDrawBuffers(1, drawBuffers);
 }
 
 FrameBuffer::FrameBuffer(Ptr<Texture> colorAttachment, Ptr<RenderBuffer> depthStencil) : FrameBuffer()

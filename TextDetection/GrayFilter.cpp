@@ -12,7 +12,6 @@
 #include "Texture.h"
 #include "GraphicsDevice.h"
 #include "FrameBuffer.h"
-#include "SWTHelperGPU.h"
 
 Ptr<Texture> GrayFilter::PerformSteps()
 {
@@ -35,9 +34,7 @@ Ptr<Texture> GrayFilter::PerformSteps()
     auto output = New<Texture>(GL_RED_EXT, GL_UNSIGNED_BYTE); glFinish();
     
     grayscale->Use();
-    
     grayscale->Uniforms["Texture"].SetValue(*Input);
-    
     RenderToTexture(output, PrimitiveType::Triangles);
     glFinish();
     

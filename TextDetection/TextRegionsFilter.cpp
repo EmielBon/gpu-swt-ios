@@ -17,7 +17,6 @@
 #include "VertexBuffer.h"
 #include "GraphicsDevice.h"
 #include "RenderWindow.h"
-#include "SWTHelperGPU.h"
 #include "SWTParameters.h"
 #include "LetterCandidate.h"
 #include <cmath>
@@ -46,7 +45,6 @@ void TextRegionsFilter::LoadShaderPrograms()
 
 void TextRegionsFilter::Initialize()
 {
-    
     gray = grayFilter->Apply(Input); 
     DEBUG_FB(gray, "Gray");
     //PreparePerPixelVertices();
