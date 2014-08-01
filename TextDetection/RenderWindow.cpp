@@ -111,7 +111,7 @@ void RenderWindow::DrawTexture(int index)
     if (!GraphicsDevice::IndexBuffer)
         GraphicsDevice::DrawArrays(PrimitiveType::Triangles);
     else
-        GraphicsDevice::DrawPrimitives(PrimitiveType::Triangles);
+        GraphicsDevice::DrawElements(PrimitiveType::Triangles);
 }
 
 void RenderWindow::DisableIrrelvantState()

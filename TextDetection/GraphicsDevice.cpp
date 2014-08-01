@@ -17,27 +17,19 @@ Ptr<::IndexBuffer>  GraphicsDevice::IndexBuffer  = nullptr;
 Ptr<::VertexBuffer> GraphicsDevice::DefaultVertexBuffer = nullptr;
 Ptr<::IndexBuffer>  GraphicsDevice::DefaultIndexBuffer  = nullptr;
 
-void GraphicsDevice::DrawPrimitives(PrimitiveType primitiveType)
+void GraphicsDevice::DrawElements(PrimitiveType primitiveType)
 {
     AssertCompleteProgram();
     VertexBuffer->VertexArrayObject.Bind();
-    //VertexBuffer->VertexArrayObject.Bind();
-    // bind the index buffer (apparently HAS to happen AFTER vertex array setup)
-    IndexBuffer->Bind();
-    // draw the VAO
-    // todo: kan miss een kleiner datatype dan int of zelfs short, omdat er voor per pixel geen indices gebruikt worden
+    IndexBuffer->Bind(); // apparently HAS to happen AFTER vertex array setup
     glDrawElements((GLenum)primitiveType, IndexBuffer->Count(), GL_UNSIGNED_BYTE, NULL);
     IndexBuffer->Unbind();
-    VertexBuffer->Unbind();
 }
 
 void GraphicsDevice::DrawArrays(PrimitiveType primitiveType)
 {
-    
     AssertCompleteProgram();
-    
     VertexBuffer->VertexArrayObject.Bind();
-    
     // Draw without index buffer
     glDrawArrays((GLenum)primitiveType, 0, VertexBuffer->Count());
     VertexArray::BindDefault();

@@ -74,7 +74,6 @@ Ptr<Texture> CannyFilter::PerformSteps()
     DEBUG_FB(temp1, "Sobel1");
     Differentiation(temp1,   temp2);
     DEBUG_FB(temp2, "Diff");
-    //glFinish();
     //glEnable(GL_STENCIL_TEST);
     // todo: why / 2 ? Would it benefit from contrast stretch? Or should I use the 0.33rd and 0.66th percentile?? That would actually make a lot more sense...
     DetectEdges(temp2, /*0.33f * 0.4627f*/0.08f, /*0.66f * 0.4627f*/0.18f, output);
@@ -85,7 +84,6 @@ Ptr<Texture> CannyFilter::PerformSteps()
 void CannyFilter::DetectEdges(Ptr<Texture> gradients, float lowerThreshold, float upperThreshold, Ptr<Texture> output)
 {
     canny->Use();
-    glFinish();
     canny->Uniforms["Gradients"].SetValue(*gradients); 
     canny->Uniforms["LowerThreshold"].SetValue(lowerThreshold);
     canny->Uniforms["UpperThreshold"].SetValue(upperThreshold);

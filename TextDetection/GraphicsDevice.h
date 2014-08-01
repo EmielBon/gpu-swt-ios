@@ -15,7 +15,7 @@ class GraphicsDevice
 {
 public:
     
-    static void DrawPrimitives(PrimitiveType primitiveType);
+    static void DrawElements(PrimitiveType primitiveType);
     
     static void DrawArrays(PrimitiveType primitiveType);
     

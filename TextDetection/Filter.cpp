@@ -78,7 +78,7 @@ void Filter::Render(PrimitiveType primitiveType, GLenum clearOptions /* = GL_NON
     if (!GraphicsDevice::IndexBuffer)
         GraphicsDevice::DrawArrays(primitiveType);
     else
-        GraphicsDevice::DrawPrimitives(primitiveType);
+        GraphicsDevice::DrawElements(primitiveType);
 #ifdef PROFILING
     glFinish();
     RenderTime += now() - f;

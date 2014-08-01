@@ -34,9 +34,9 @@ void SWTFilter::LoadShaderPrograms()
 
 void SWTFilter::Initialize()
 {
-    gradients = sobel->Apply(Input);  glFinish();
+    gradients = sobel->Apply(Input);
     DEBUG_FB(gradients, "Gradients");
-    edges     = canny->Apply(Input);  glFinish();
+    edges     = canny->Apply(Input);
     DEBUG_FB(edges, "Edges");
     //PrepareEdgeOnlyStencil();
     //PrepareRayLines(*edges);
